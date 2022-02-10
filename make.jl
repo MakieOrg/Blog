@@ -1,0 +1,3 @@
+using Blog
+
+Blog.make()
