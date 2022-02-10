@@ -17,22 +17,21 @@ function show_html(io, dom)
             rendered,
         )
     )
-    return sprint() do io
-        println(io, "<!doctype html>")
-        show(io, MIME"text/html"(), Hyperscript.Pretty(html_body))
-    end
+    println(io, "<!doctype html>")
+    show(io, MIME"text/html"(), Hyperscript.Pretty(html_body))
 end
 
 function make()
     src = readdir(joinpath(@__DIR__, "entries"), join=true)
-    out = abspath(joinpath(@__DIR__, "..", "site"))
+    out = normpath(joinpath(@__DIR__, "..", "docs"))
     @show out
     for file in src
         name, ext = splitext(file)
         if ext == ".md"
             entry =  Markdown.parse_file(file)
-            @show joinpath(out, name * ".html")
-            open(joinpath(out, name * ".html"), "w") do io
+            outfile = joinpath(out, basename(name) * ".html")
+            @show outfile
+            open(outfile, "w") do io
                 show_html(io, DOM.div(entry))
             end
         end
