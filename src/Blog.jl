@@ -27,7 +27,7 @@ function make_app(dom)
             DOM.head(
                 DOM.meta(charset="UTF-8"),
                 assets...,
-                DOM.link(rel="icon", type="image/x-icon", href=asset("images", "icon_transparent.png")),
+                DOM.link(rel="icon", type="image/x-icon", href=asset("images", "favicon.ico")),
                 DOM.script(src="https://cdn.tailwindcss.com/3.0.23")
             ),
             DOM.body(dom, highlight)
@@ -38,7 +38,7 @@ end
 function page(file)
     source = read(file, String)
     md = JSServe.string_to_markdown(source, Main; eval_julia_code=Main)
-    banner = DOM.img(src = asset("images", "bannermesh_gradient.png"))
+    banner = DOM.a(DOM.img(src = asset("images", "bannermesh_gradient.png")), href="/")
     body = DOM.div(md, class="md:container md:mx-auto center")
     return make_app(DOM.div(banner, body))
 end
