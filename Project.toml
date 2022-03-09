@@ -5,11 +5,14 @@ version = "0.1.0"
 
 [deps]
 CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+Downloads = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
 GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+GitHub = "bc5e4493-9b4d-5f90-b8aa-2b2bcaad7a26"
 Hyperscript = "47d2ed2b-36de-50cf-bf87-49c2cf4b8b91"
 JSServe = "824d6782-a2ef-11e9-3a09-e5662e0c26f9"
 Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
 Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
+Serialization = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [compat]

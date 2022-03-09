@@ -5,9 +5,12 @@
 # hide
 
 using JSServe
-entries = map(readdir(Blog.markdown())) do entry
-    name = splitext(basename(entry))[1]
-    DOM.a(entry, href="blogposts/$(name).html")
+entries = []
+foreach(readdir(Blog.markdown())) do entry
+    name, ext = splitext(basename(entry))
+    if ext == ".md"
+        push!(entries, DOM.a(name, href="blogposts/$(name).html"))
+    end
 end
 DOM.div(entries...)
 ```

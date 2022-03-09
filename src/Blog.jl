@@ -8,8 +8,23 @@ using JSServe: Asset, ES6Module, AssetFolder, Routes
 site_path(files...) = normpath(joinpath(@__DIR__, "..", "docs", files...))
 markdown(files...) = joinpath(@__DIR__, "pages", "blogposts", files...)
 asset(files...) = Asset(normpath(joinpath(@__DIR__, "assets", files...)))
-
 const Highlight = ES6Module(joinpath(@__DIR__,  "assets", "libs", "highlight", "highlight.pack.js"))
+
+function JSServe.jsrender(owner::GitHub.Owner)
+    name = DOM.span(string(owner.login), style="margin: 2px; font-size:20px;color: 'gray")
+    return DOM.div(
+        DOM.a(DOM.div(
+            DOM.img(src=owner.avatar_url, style="border-radius: 50%", width=24), name;
+    style="display: flex; align-items: center; justify-content: center"),
+            href=owner.html_url
+        ; style="color: gray; text-decoration: none");
+        style="float:left")
+end
+
+function list(elements)
+    style = "display: flex; flex-direction: column; justify-content: start; align-items: start"
+    return DOM.div(JSServe.jsrender.(elements)..., style=style)
+end
 
 function make_app(dom)
     return App() do
@@ -37,7 +52,7 @@ end
 
 function page(file)
     source = read(file, String)
-    md = JSServe.string_to_markdown(source, Main; eval_julia_code=Main)
+    md = JSServe.string_to_markdown(source, Blog; eval_julia_code=Blog)
     banner = DOM.a(DOM.img(src = asset("images", "bannermesh_gradient.png")), href="/")
     body = DOM.div(md, class="md:container md:mx-auto center")
     return make_app(DOM.div(banner, body))
