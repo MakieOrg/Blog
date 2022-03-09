@@ -3,61 +3,55 @@ module Blog
 using JSServe
 using Markdown
 using Hyperscript
+using JSServe: Asset, ES6Module, AssetFolder, Routes
 
 site_path(files...) = normpath(joinpath(@__DIR__, "..", "docs", files...))
 markdown(files...) = joinpath(@__DIR__, "pages", "blogposts", files...)
-library(name, paths...) = JSServe.Dependency(name,site_path.("/libs", collect(paths)))
-asset(files...) = JSServe.Asset(site_path(files...))
+asset(files...) = Asset(normpath(joinpath(@__DIR__, "assets", files...)))
 
-const hljs = library(:hljs, "highlight/highlight.pack.js", "highlight/github.min.css")
+const Highlight = ES6Module(joinpath(@__DIR__,  "assets", "libs", "highlight", "highlight.pack.js"))
 
-function StaticSession()
-    us = JSServe.UrlSerializer(false, site_path(), false, "", false)
-    return Session(; url_serializer=us)
-end
+function make_app(dom)
+    return App() do
+        assets = asset.([
+            "css/franklin.css",
+            "css/makie.css",
+            "css/minimal-mistakes.css",
+            "libs/highlight/github.min.css"])
 
-function show_html(io, dom)
-    s = StaticSession()
-    assets = asset.(["/css/franklin.css", "/css/makie.css", "/css/minimal-mistakes.css"])
-    append!(assets, Blog.hljs.assets)
-    rendered = JSServe.jsrender(s, dom)
-    html_body = DOM.html(
-        DOM.head(
-            DOM.meta(charset="UTF-8"),
-            JSServe.include_asset.(assets, (s.url_serializer,))...
-        ),
-        DOM.body(
-            rendered,
+        highlight = DOM.div(
+            DOM.script(src=asset("libs", "highlight", "highlight.pack.js")),
+            DOM.script("hljs.highlightAll()")
         )
-    )
-    println(io, "<!doctype html>")
-    show(io, MIME"text/html"(), Hyperscript.Pretty(html_body))
+        return DOM.html(
+            DOM.head(
+                DOM.meta(charset="UTF-8"),
+                assets...,
+                DOM.script(src="https://cdn.tailwindcss.com/3.0.23")
+            ),
+            DOM.body(dom, highlight))
+    end
 end
 
 function page(file)
     source = read(file, String)
     md = JSServe.string_to_markdown(source, Main; eval_julia_code=Main)
-    banner = DOM.img(src = asset("/assets", "bannermesh_gradient.png"))
-    return DOM.div(banner, md, js"$(hljs).highlightAll()")
+    banner = DOM.img(src = asset("images", "bannermesh_gradient.png"))
+    body = DOM.div(md, class="md:container md:mx-auto center")
+    return make_app(DOM.div(banner, body))
 end
 
 function make()
     src = readdir(markdown(), join=true)
-    out = normpath(joinpath(@__DIR__, "..", "docs", "blogposts"))
+    routes = Routes()
     for file in src
-        name, ext = splitext(file)
+        name, ext = splitext(basename(file))
         if ext == ".md"
-            p = page(file)
-            outfile = joinpath(out, basename(name) * ".html")
-            open(outfile, "w") do io
-                show_html(io, DOM.div(p))
-            end
+            routes["blogposts/" * name] = page(file)
         end
     end
-    open(joinpath(@__DIR__, "..", "docs", "index.html"), "w") do io
-        p = page(markdown("..", "index.md"))
-        show_html(io, DOM.div(p))
-    end
+    routes["/"] = page(markdown("..", "index.md"))
+    JSServe.export_static(site_path(), routes)
 end
 
 end
