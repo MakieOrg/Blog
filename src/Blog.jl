@@ -21,15 +21,17 @@ function make_app(dom)
 
         highlight = DOM.div(
             DOM.script(src=asset("libs", "highlight", "highlight.pack.js")),
-            DOM.script("hljs.highlightAll()")
+        DOM.script("hljs.highlightAll()")
         )
         return DOM.html(
             DOM.head(
                 DOM.meta(charset="UTF-8"),
                 assets...,
+                DOM.link(rel="icon", type="image/x-icon", href=asset("images", "icon_transparent.png")),
                 DOM.script(src="https://cdn.tailwindcss.com/3.0.23")
             ),
-            DOM.body(dom, highlight))
+            DOM.body(dom, highlight)
+        )
     end
 end
 
