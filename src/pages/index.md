@@ -12,5 +12,5 @@ foreach(readdir(Blog.markdown())) do entry
         push!(entries, DOM.a(name, href="blogposts/$(name).html"))
     end
 end
-DOM.div(entries...)
+Blog.list(entries)
 ```
