@@ -46,7 +46,7 @@ function page(file)
     source = read(file, String)
     md = JSServe.string_to_markdown(source, Blog; eval_julia_code=Blog)
     banner = DOM.a(DOM.img(src = asset("images", "bannermesh_gradient.png")), href="/")
-    body = DOM.div(md, class="px-4 text-2xl  lg:text-base max-w-prose mx-auto")
+    body = DOM.div(md, class="px-4 text-2xl md:text-lg lg:text-base max-w-prose mx-auto")
     return make_app(DOM.div(banner, body))
 end
 
