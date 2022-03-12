@@ -24,7 +24,8 @@ function make_app(dom)
             "css/franklin.css",
             "css/makie.css",
             "css/minimal-mistakes.css",
-            "libs/highlight/github.min.css"])
+            "libs/highlight/github.min.css",
+            "css/style.css"])
 
         highlight = DOM.div(
             DOM.script(src=asset("libs", "highlight", "highlight.pack.js")),
@@ -36,7 +37,6 @@ function make_app(dom)
                 DOM.meta(name="viewport", content="width=device-width, initial-scale=1"),
                 assets...,
                 DOM.link(rel="icon", type="image/x-icon", href=asset("images", "favicon.ico")),
-                DOM.script(src="https://cdn.tailwindcss.com/3.0.23")
             ),
             DOM.body(dom, highlight)
         )
@@ -47,8 +47,7 @@ function page(file)
     source = read(file, String)
     md = JSServe.string_to_markdown(source, Blog; eval_julia_code=Blog)
     banner = DOM.a(DOM.img(src = asset("images", "bannermesh_gradient.png")), href="/")
-    style = "font-size: 4mm; line-height: 6mm"
-    body = DOM.div(md, class="px-4 max-w-2xl mx-auto", style=style)
+    body = DOM.div(DOM.div(md, class="inner-page"), class="outer-page")
     return make_app(DOM.div(banner, body))
 end
 
