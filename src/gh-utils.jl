@@ -31,7 +31,7 @@ end
 function JSServe.jsrender(owner::GitHub.Owner)
     name = DOM.span(string(owner.login), style="margin: 2px; color: 'gray")
     img = DOM.img(src=owner.avatar_url, style="border-radius: 50%", width=22)
-    img_name = DOM.div(img, name; style="display: flex")
+    img_name = DOM.div(img, name; style="display: flex; align-items: center")
     return DOM.span(
         DOM.a(img_name, href=owner.html_url; style="color: gray; text-decoration: none");
         style="padding: 2px")
