@@ -18,10 +18,17 @@ function list(elements)
     return DOM.div(JSServe.jsrender.(elements)..., style=style)
 end
 
-function make_app(dom)
-    return JSServe.App() do
+function parse_markdown(session, file)
+    source = read(file, String)
+    md = JSServe.string_to_markdown(session, source; eval_julia_code=Blog)
+    banner = DOM.a(DOM.img(src = asset("images", "bannermesh_gradient.png")), href="/")
+    body = DOM.div(DOM.div(md, class="inner-page"), class="outer-page")
+    return DOM.div(banner, body)
+end
+
+function page(file)
+    return JSServe.App() do session::Session
         assets = asset.([
-            "css/franklin.css",
             "css/makie.css",
             "css/minimal-mistakes.css",
             "libs/highlight/github.min.css",
@@ -29,8 +36,9 @@ function make_app(dom)
 
         highlight = DOM.div(
             DOM.script(src=asset("libs", "highlight", "highlight.pack.js")),
-        DOM.script("hljs.highlightAll()")
+            DOM.script("hljs.highlightAll()")
         )
+        dom = parse_markdown(session, file)
         return DOM.html(
             DOM.head(
                 DOM.meta(charset="UTF-8"),
@@ -43,25 +51,20 @@ function make_app(dom)
     end
 end
 
-function page(file)
-    source = read(file, String)
-    md = JSServe.string_to_markdown(source, Blog; eval_julia_code=Blog)
-    banner = DOM.a(DOM.img(src = asset("images", "bannermesh_gradient.png")), href="/")
-    body = DOM.div(DOM.div(md, class="inner-page"), class="outer-page")
-    return make_app(DOM.div(banner, body))
-end
 
 function make()
     src = readdir(markdown(), join=true)
     routes = Routes()
-    for file in src
+    for file in ["c:\\Users\\sdani\\SimiWorld\\ProgrammerLife\\JSServeDev\\dev\\Blog\\src\\pages\\blogposts\\v0.16.md"]
         name, ext = splitext(basename(file))
+        @show name file ext
         if ext == ".md"
             routes["blogposts/" * name] = page(file)
         end
     end
     routes["/"] = page(markdown("..", "index.md"))
-    JSServe.export_static(site_path(), routes)
+    folder = AssetFolder(site_path())
+    JSServe.export_static(site_path(), routes; asset_server=folder)
 end
 
 end
