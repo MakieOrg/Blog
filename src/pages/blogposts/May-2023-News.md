@@ -235,6 +235,7 @@ People have been looking for a ggplot equivalent in Julia for quite some time, a
 # hide
 using TidierPlots
 TidierPlots.autoplot[] = false
+nothing
 ```
 
 ```julia
