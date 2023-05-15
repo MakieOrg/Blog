@@ -5,12 +5,14 @@ using Markdown
 using Hyperscript
 using JSServe: Asset, ES6Module, AssetFolder, Routes
 using GitHub, Downloads
+using CairoMakie
 
 include("gh-utils.jl")
 
 site_path(files...) = normpath(joinpath(@__DIR__, "..", "docs", files...))
 markdown(files...) = joinpath(@__DIR__, "pages", "blogposts", files...)
-asset(files...) = Asset(normpath(joinpath(@__DIR__, "assets", files...)))
+assetpath(files...) = normpath(joinpath(@__DIR__, "assets", files...))
+asset(files...) = Asset(assetpath( files...))
 const Highlight = ES6Module(joinpath(@__DIR__,  "assets", "libs", "highlight", "highlight.pack.js"))
 
 function list(elements)
@@ -20,7 +22,7 @@ end
 
 function parse_markdown(session, file)
     source = read(file, String)
-    md = JSServe.string_to_markdown(session, source; eval_julia_code=Blog)
+    md = JSServe.string_to_markdown(session, source; eval_julia_code=Main)
     banner = DOM.a(DOM.img(src = asset("images", "bannermesh_gradient.png")), href="/")
     body = DOM.div(DOM.div(md, class="inner-page"), class="outer-page")
     return DOM.div(banner, body)
@@ -51,18 +53,29 @@ function page(file)
     end
 end
 
+function Video(url)
+    return DOM.video(DOM.source(src=url,type="video/mp4"), autoplay=true, controls=true)
+end
 
-function make()
+
+JSServe.jsrender(s::Session, card::Vector) = JSServe.jsrender(s, DOM.div(JSServe.TailwindCSS, card...; class="flex flex-wrap"))
+
+
+function make(pages::String...)
     src = readdir(markdown(), join=true)
     routes = Routes()
-    for file in ["c:\\Users\\sdani\\SimiWorld\\ProgrammerLife\\JSServeDev\\dev\\Blog\\src\\pages\\blogposts\\v0.16.md"]
+    for file in readdir(markdown(); join=true)
         name, ext = splitext(basename(file))
-        @show name file ext
         if ext == ".md"
-            routes["blogposts/" * name] = page(file)
+            if isempty(pages) || (name in pages)
+                println(name)
+                routes["blogposts/" * name] = page(file)
+            end
         end
     end
-    routes["/"] = page(markdown("..", "index.md"))
+    if isempty(pages) || ("index" in pages)
+        routes["/"] = page(markdown("..", "index.md"))
+    end
     folder = AssetFolder(site_path())
     JSServe.export_static(site_path(), routes; asset_server=folder)
 end

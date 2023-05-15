@@ -36,3 +36,17 @@ function JSServe.jsrender(owner::GitHub.Owner)
         DOM.a(img_name, href=owner.html_url; style="color: gray; text-decoration: none");
         style="padding: 2px")
 end
+
+
+const GITHUB_OWNERS = Dict{String, GitHub.Owner}()
+function gh_owner(name)
+    get!(GITHUB_OWNERS, name) do
+        println("api call")
+        GitHub.owner(name)
+    end
+end
+
+function gh_by(names...)
+    by = DOM.span("By: ", style="margin: 2px; font-weight: 500")
+    DOM.div(by, map(gh_owner, names)...; style="display: flex; align-items: center")
+end

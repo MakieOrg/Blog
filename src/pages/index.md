@@ -6,10 +6,10 @@
 
 using JSServe
 entries = []
-foreach(readdir(Blog.markdown())) do entry
+foreach(reverse(["v0.16.md", "v0.18.md", "makiecon.md", "May-2023-News.md"])) do entry
     name, ext = splitext(basename(entry))
     if ext == ".md"
-        push!(entries, DOM.a(name, href="blogposts/$(name).html"))
+        push!(entries, DOM.a(titlecase(replace(name, "-" => " ")), href="blogposts/$(name).html"))
     end
 end
 Blog.list(entries)
