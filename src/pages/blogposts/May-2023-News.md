@@ -35,7 +35,7 @@ Blog.gh_by("behinger", "fatteneder")
 
 It extends the functionality of the existing `PlotSpec` infrastructure and allows for the creation and deletion of plots as needed. It is compatible with any backend.
 
-This functionality is crucial for improving the integration of WGLMakie within Pluto. While Pluto lacks support for UIs via Observables like Makie, it follows a declarative style where users write out the complete plot command for each animation step. Having an efficient declaritive API in Makie will ensure compatibility between WGLMakie and Pluto.
+This functionality is crucial for improving the integration of WGLMakie within Pluto. While Pluto lacks support for UIs via Observables like Makie, it follows a declarative style where users write out the complete plot command for each animation step. Having an efficient declarative API in Makie will ensure compatibility between WGLMakie and Pluto.
 
 ```julia
 # hide
@@ -94,7 +94,7 @@ Blog.gh_by("behinger")
 
 Some highlights from the 0.19.5 release:
 
-## More fixes for line rendering in GLMakie [#2843](https://github.com/MakieOrg/Makie.jl/pull/2843)
+## More fixes for line rendering in GLMakie
 
 [Frederic Freyer](https://github.com/ffreyer) went all in on fixing remaining issues with the new line rendering from [v0.19.3](https://github.com/MakieOrg/Makie.jl/pull/2666).
 See the well documented [PR](https://github.com/MakieOrg/Makie.jl/pull/2843) for more information about the challenges!
@@ -110,11 +110,11 @@ See the well documented [PR](https://github.com/MakieOrg/Makie.jl/pull/2843) for
 
 ## Fixes for `Makie.inline!()` [#2919](https://github.com/MakieOrg/Makie.jl/pull/2919) [#2937](https://github.com/MakieOrg/Makie.jl/pull/2937)
 
-We now allow and default to `Makie.inline!(automatic)`, which is better at automatically opening a window / inlining a plot into plotpane when needed [#2919](https://github.com/MakieOrg/Makie.jl/pull/2919) [#2937](https://github.com/MakieOrg/Makie.jl/pull/2937)
+We now allow and default to `Makie.inline!(automatic)`, which is better at automatically opening a window / inlining a plot into plo tpane when needed [#2919](https://github.com/MakieOrg/Makie.jl/pull/2919) [#2937](https://github.com/MakieOrg/Makie.jl/pull/2937)
 
 ## Block/Axis doc improvements [#2940](https://github.com/MakieOrg/Makie.jl/pull/2940) [#2932](https://github.com/MakieOrg/Makie.jl/pull/2932) [#2894](https://github.com/MakieOrg/Makie.jl/pull/2894)
 
-We got a lot of feedback regarding Makie's documentation during MakieCon. Many users feel that while it contains a lot of information, it could be structured more clearly. A system for structuring documentation that has been gaining popularity is the four-sector system from the folks at [divio](https://documentation.divio.com/) which separates tutorials, how-to's, explanations and reference.
+We got a lot of feedback regarding Makie's documentation during MakieCon. Many users feel that while it contains a lot of information, it could be structured more clearly. A system for structuring documentation that has been gaining popularity is the four-sector system from the folks at [divio](https://documentation.divio.com/) which separates tutorials, how-to's, explanations and references.
 
 There is an ongoing effort to make plotting function and `Block` documentation pages more reference-like, with more focused examples for each attribute or keyword argument, and extended help functionality in the Julia REPL. In the future, we'd like to add more complex how-to's, an area in which the separate project [Beautiful Makie](https://beautiful.makie.org/dev/) has been stronger than the official documentation in the past.
 
@@ -136,7 +136,7 @@ Also, it fixes [a long standing issue](https://github.com/JuliaGL/GLFW.jl/issues
 ## [Miner.jl](https://github.com/ashwani-rathee/Miner.jl)
 
 Miner.jl is a MineCraft clone written entirely in Julia and Makie.
-It's still a prototype, but already shows that its possible to create a game with Makie, showing off the flexibility and performance Makie offers:
+It's still a prototype, but already shows that it's possible to create a game with Makie, showing off the flexibility and performance Makie offers:
 
 ```julia
 # hide
@@ -172,7 +172,7 @@ During MakieCon and before, lots of cool use cases have been opened up:
 
 ### [SegmentAnything.jl](https://github.com/rafaqz/SegmentAnything.jl)
 
-Simon Danisch has made an [initial demo](https://github.com/SimonDanisch/MakieSAM.jl) directly calling segment-anything via PyCall and integrating it with Tyler, to easily segment satelite data:
+Simon Danisch has made an [initial demo](https://github.com/SimonDanisch/MakieSAM.jl) directly calling segment-anything via PyCall and integrating it with Tyler, to easily segment satellite data:
 
 ![tyler-sam](https://github.com/MakieOrg/Makie.jl/assets/1010467/2cf43375-cbea-4c9f-9d9f-df1ec670a5fe)
 
@@ -217,10 +217,9 @@ Blog.gh_by("felixcremer", "meggart")
 
 ## [GtkMakie.jl](https://github.com/JuliaGtk/GtkMakie.jl)
 
-Jared Wahlstrand took the heroic task of wrapping [Gtk4](https://github.com/JuliaGtk/Gtk4.jl) which works well on windows and finally allows for OpenGL integration working on all platforms which allows for a native GLMakie integration.
- The package is in it's early days, but already quite usable:
+Jared Wahlstrand took the heroic task of wrapping [Gtk4](https://github.com/JuliaGtk/Gtk4.jl) which works well on windows and finally allows for OpenGL integration working on all platforms which allows for a native GLMakie integration. The package is in its early days, but already quite usable:
 
-![gtmakie](https://github.com/MakieOrg/GeoMakie.jl/assets/1010467/6a463e62-3fc7-4833-b8dd-da458000e494)
+![gtkmakie](https://github.com/MakieOrg/GeoMakie.jl/assets/1010467/6a463e62-3fc7-4833-b8dd-da458000e494)
 
 ```julia
 # hide
@@ -233,6 +232,7 @@ Blog.gh_by("jwahlstrand", "SimonDanisch")
 People have been looking for a ggplot equivalent in Julia for quite some time, and now we have a new Package for it:
 
 >TidierPlots.jl is a 100% Julia implementation of the R package ggplot in Julia. Powered by the AlgebraOfGraphics.jl, Makie.jl, and Julia’s extensive meta-programming capabilities, TidierPlots.jl is an R user’s love letter to data visualization in Julia.
+
 ```julia
 # hide
 using TidierPlots
@@ -260,7 +260,7 @@ Blog.gh_by("rdboyes", "pdimens")
 # Social Media
 
 You can follow Makie's development on many social media networks.
-Twitter is right now the most used one, but since its a dying platform we hope to move things to any of the other platforms:
+Twitter is right now the most used one, but since it's a dying platform we hope to move things to any of the other platforms:
 
 - [julialang.social/@makie](https://julialang.social/@makie)
 - [makieplots.bsky.social](https://staging.bsky.app/profile/makieplots.bsky.social)
