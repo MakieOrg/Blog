@@ -1,6 +1,8 @@
 # MakieCon highlights
 
-First of all, we're happy to announce that Makie is now the most starred Julia plotting library:
+We like to thank the [Max Planck Institute for Biogeochemistry](https://www.bgc-jena.mpg.de/5632072/makiecon) for hosting MakieCon 23, the [Julia Numfocus Project](https://numfocus.org/donate-to-julia) for supporting us with travel funds and [Dr. Lazaro Alonso Silva](https://github.com/sponsors/lazarusA) for organizing MakieCon.
+
+At MakieCon, we were happy to announce that Makie is now the most starred Julia plotting library:
 
 [![stars](https://github.com/MakieOrg/Makie.jl/assets/1010467/6e437b43-3f69-43b8-8531-046fc40f5785)](https://star-history.com/#MakieOrg/Makie.jl&JuliaPlots/Plots.jl&GiovineItalia/Gadfly.jl&JuliaPy/PyPlot.jl&jheinen/GR.jl&JuliaPlots/UnicodePlots.jl&Date)
 
@@ -258,7 +260,7 @@ Blog.gh_by("rdboyes", "pdimens")
 # Social Media
 
 You can follow Makie's development on many social media networks.
-Twitter is right now the most used one, but since its a dying platform, we hope to move things to any of the other platforms:
+Twitter is right now the most used one, but since its a dying platform we hope to move things to any of the other platforms:
 
 - [julialang.social/@makie](https://julialang.social/@makie)
 - [makieplots.bsky.social](https://staging.bsky.app/profile/makieplots.bsky.social)
