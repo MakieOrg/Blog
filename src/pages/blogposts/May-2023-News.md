@@ -172,7 +172,7 @@ During MakieCon and before, lots of cool use cases have been opened up:
 
 ### [SegmentAnything.jl](https://github.com/rafaqz/SegmentAnything.jl)
 
-Simon Danisch has made an [initial demo](https://github.com/SimonDanisch/MakieSAM.jl) directly calling segment-anything via PyCall and integrating it with Tyler, to easily segment satellite data:
+Simon Danisch has made an [initial demo](https://github.com/SimonDanisch/MakieSAM.jl) directly calling [segment-anything](https://github.com/facebookresearch/segment-anything) via PyCall and integrating it with Tyler, to easily segment satellite data:
 
 ![tyler-sam](https://github.com/MakieOrg/Makie.jl/assets/1010467/2cf43375-cbea-4c9f-9d9f-df1ec670a5fe)
 
