@@ -41,7 +41,6 @@ end
 const GITHUB_OWNERS = Dict{String, GitHub.Owner}()
 function gh_owner(name)
     get!(GITHUB_OWNERS, name) do
-        println("api call")
         GitHub.owner(name)
     end
 end
