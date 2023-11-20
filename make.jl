@@ -1,12 +1,14 @@
 using Blog
 using Blog: Video
 using JSServe
+using JSServe: Link
 ENV["DATADEPS_ALWAYS_ACCEPT"] = true
 using TidierPlots, CairoMakie, DataFrames, PalmerPenguins
+using GLMakie, DataFrames
 penguins = dropmissing(DataFrame(PalmerPenguins.load()))
 # Blog.make("makie-news")
 
-
-# Blog.make("v0.19.7")
-rm(joinpath(Blog.site_path(), "jsserve"); recursive=true, force=true)
+using CairoMakie
+# rm(joinpath(Blog.site_path(), "jsserve"); recursive=true, force=true)
+Blog.make("v0.20", "index")
 Blog.make()
