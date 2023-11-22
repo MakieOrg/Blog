@@ -1,5 +1,5 @@
 using Blog
-using Blog: Video
+using Blog: Video, asset
 using JSServe
 using JSServe: Link
 ENV["DATADEPS_ALWAYS_ACCEPT"] = true
@@ -10,5 +10,5 @@ penguins = dropmissing(DataFrame(PalmerPenguins.load()))
 
 using CairoMakie
 # rm(joinpath(Blog.site_path(), "jsserve"); recursive=true, force=true)
-Blog.make("v0.20", "index")
+Blog.make("v0.20")
 Blog.make()
