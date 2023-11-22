@@ -29,5 +29,9 @@
 }
 
 p {
+    display: block;
+}
+
+li > p {
     display: inline;
 }
