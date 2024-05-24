@@ -5,7 +5,6 @@ using Markdown
 using Hyperscript
 using JSServe: Asset, ES6Module, AssetFolder, Routes
 using GitHub, Downloads
-using CairoMakie
 
 include("gh-utils.jl")
 

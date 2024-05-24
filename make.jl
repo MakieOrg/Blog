@@ -10,5 +10,6 @@ penguins = dropmissing(DataFrame(PalmerPenguins.load()))
 
 using CairoMakie
 # rm(joinpath(Blog.site_path(), "jsserve"); recursive=true, force=true)
-Blog.make("v0.20")
-Blog.make()
+Blog.make("v0.21")
+Blog.make("index")
+
