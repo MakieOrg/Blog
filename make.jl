@@ -33,7 +33,7 @@ Blog.make("index")
 # write(md_path, txt)
 
 using Blog, Pkg
-foreach(reverse(["v0.16.md", "v0.18.md", "makiecon.md", "May-2023-News.md",])) do entry #="v0.19.7.md", "v0.19.9-12.md", "v0.20.md", "v0.21.md"=#
+foreach(reverse(["v0.16.md", "v0.18.md", "makiecon.md", "May-2023-News.md", "v0.19.7.md", "v0.19.9-12.md", "v0.20.md", "v0.21.md"])) do entry #==#
     name, ext = splitext(basename(entry))
     path = Blog.markdown(basename(entry))
     backup = joinpath(dirname(path), "_" * name * ext)
@@ -41,8 +41,11 @@ foreach(reverse(["v0.16.md", "v0.18.md", "makiecon.md", "May-2023-News.md",])) d
     folder = joinpath(dirname(path), name)
     !isdir(folder) && mkdir(folder)
     Pkg.activate(folder)
-    Pkg.develop(path=@__DIR__)
+    # Pkg.develop(path=@__DIR__)
     if startswith(name, "v")
+        if name == "v0.19.9-12"
+            name = "v0.19.12"
+        end
         version = VersionNumber(name[2:end])
         Pkg.add(name="Makie", version=string(version))
         Pkg.add(name="GLMakie")

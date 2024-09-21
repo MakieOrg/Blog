@@ -5,6 +5,31 @@ using Markdown
 using Hyperscript
 using Bonito: Asset, ES6Module, AssetFolder, Routes
 using GitHub, Downloads
+using Malt
+
+function module_worker(project)
+    worker = Malt.Worker(exeflags="--project=$(project)")
+    M = Module()
+    @eval function $(M).eval(expr)
+        eval_expr = quote
+            result = $(expr)
+            if @isdefined(Makie) && result isa Makie.FigureLike
+                Makie.colorbuffer(result)
+            elseif @isdefined(Bonito) && result isa Bonito.Hyperscript.Node
+                HTML(sprint(io-> show(io, MIME"text/html"(), result)))
+            else
+                result
+            end
+        end
+        try
+            fetch(Malt.remote_eval($(worker), eval_expr))
+        catch e
+            @show expr
+            rethrow(e)
+        end
+    end
+    return M
+end
 
 include("gh-utils.jl")
 
@@ -20,9 +45,11 @@ function list(elements)
     return DOM.div(Bonito.jsrender.(elements)..., style=style)
 end
 
-function parse_markdown(session, file)
-    source = read(file, String)
-    md = Bonito.string_to_markdown(session, source; eval_julia_code=Main)
+function parse_markdown(session, folder)
+    mw = module_worker(folder)
+    file = first(filter(x-> endswith(x, ".md"), readdir(folder)))
+    source = read(joinpath(folder, file), String)
+    md = Bonito.string_to_markdown(session, source; eval_julia_code=mw)
     banner = DOM.a(DOM.img(src = asset("images", "bannermesh_gradient.png")), href="/")
     body = DOM.div(DOM.div(md, class="inner-page"), class="outer-page")
     return DOM.div(banner, body)
