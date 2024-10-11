@@ -41,7 +41,9 @@ version = "0.1.0"
 
 [[deps.Bonito]]
 deps = ["Base64", "CodecZlib", "Colors", "Dates", "Deno_jll", "HTTP", "Hyperscript", "LinearAlgebra", "Markdown", "MsgPack", "Observables", "RelocatableFolders", "SHA", "Sockets", "Tables", "ThreadPools", "URIs", "UUIDs", "WidgetsBase"]
-git-tree-sha1 = "91302336aa0c70d6eed21d6fbae6823168903b89"
+git-tree-sha1 = "14ccba100d69d5b6e3f94d956888c025db46da84"
+repo-rev = "sd/static-sites"
+repo-url = "https://github.com/SimonDanisch/Bonito.jl.git"
 uuid = "824d6782-a2ef-11e9-3a09-e5662e0c26f8"
 version = "3.2.2"
 
