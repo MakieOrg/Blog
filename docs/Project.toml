@@ -1,0 +1,4 @@
+[deps]
+Blog = "75363ec5-b184-4002-9572-26a7eb910f3c"
+Bonito = "824d6782-a2ef-11e9-3a09-e5662e0c26f8"
+BonitoSites = "8b3cd1a5-63d9-421b-9fde-46b64b830918"

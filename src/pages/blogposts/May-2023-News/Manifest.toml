@@ -83,7 +83,7 @@ uuid = "d1d4a3ce-64b1-5f1a-9ba4-7e7e69966f35"
 version = "0.1.9"
 
 [[deps.Blog]]
-deps = ["Bonito", "BonitoBlog"]
+deps = ["Bonito", "BonitoSites"]
 path = "../../../.."
 uuid = "75363ec5-b184-4002-9572-26a7eb910f3c"
 version = "0.1.0"
@@ -94,9 +94,9 @@ path = "../../../../../Bonito"
 uuid = "824d6782-a2ef-11e9-3a09-e5662e0c26f8"
 version = "3.2.2"
 
-[[deps.BonitoBlog]]
+[[deps.BonitoSites]]
 deps = ["Bonito", "Dates", "GitHub", "Malt", "OpenAI", "XML"]
-path = "../../../../../BonitoBlog"
+path = "../../../../../BonitoSites"
 uuid = "8b3cd1a5-63d9-421b-9fde-46b64b830918"
 version = "0.1.0"
 

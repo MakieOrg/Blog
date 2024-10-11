@@ -5,7 +5,7 @@ version = "0.1.0"
 
 [deps]
 Bonito = "824d6782-a2ef-11e9-3a09-e5662e0c26f8"
-BonitoBlog = "8b3cd1a5-63d9-421b-9fde-46b64b830918"
+BonitoSites = "8b3cd1a5-63d9-421b-9fde-46b64b830918"
 
 [compat]
 Bonito = "3.2.0"
