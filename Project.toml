@@ -9,6 +9,7 @@ BonitoSites = "8b3cd1a5-63d9-421b-9fde-46b64b830918"
 
 [compat]
 Bonito = "3.2.0"
+BonitoSites = "0.1.0"
 julia = "1"
 
 [extras]

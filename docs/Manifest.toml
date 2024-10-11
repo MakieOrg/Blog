@@ -33,7 +33,7 @@ version = "0.1.9"
 
 [[deps.Blog]]
 deps = ["Bonito", "BonitoSites"]
-git-tree-sha1 = "d078e5c0cda0e9f03f33ce37f1a7cd173e9fd16e"
+git-tree-sha1 = "9937e5e792cef3158333993f69542d117f5fd5c0"
 repo-rev = "sd/env-blogpost"
 repo-url = ".."
 uuid = "75363ec5-b184-4002-9572-26a7eb910f3c"
