@@ -12,9 +12,10 @@ We recorded all talks, which you can watch in the MakieCon playlist on youtube:
 
 ```julia
 # hide
-map(readdir(Blog.assetpath("images", "makiecon-cards"); join=true)) do img
- DOM.a(DOM.img(src=JSServe.Asset(img), style="height: 64px"), href="https://www.youtube.com/playlist?list=PLP8iPy9hna6TXEn99mhG5KaTgjsrCkDzQ")
-end
+using Blog, Bonito
+DOM.div(map(readdir(Blog.assetpath("images", "makiecon-cards"); join=true)) do img
+    DOM.a(DOM.img(src=Bonito.Asset(img), style="height: 64px"), href="https://www.youtube.com/playlist?list=PLP8iPy9hna6TXEn99mhG5KaTgjsrCkDzQ")
+end...)
 ```
 
 
@@ -25,6 +26,7 @@ At MakieCon, we successfully addressed the reliance of TopPlots on numerous Pyth
 
 ```julia
 # hide
+using Blog, Bonito
 Blog.gh_by("behinger", "fatteneder")
 ```
 
@@ -188,7 +190,7 @@ Blog.gh_by("rafaqz", "SimonDanisch")
 Alex S. Gardner has added [a great example](https://makieorg.github.io/Tyler.jl/dev/examples/generated/UserGuide/iceloss_ex/), visualizing ice loss in Greenland interactively:
 ```julia
 # hide
-Video("https://github-production-user-asset-6210df.s3.amazonaws.com/1010467/238302902-51fb905a-99a8-4627-9318-727eb2bb4455.mp4")
+Blog.Video("https://github-production-user-asset-6210df.s3.amazonaws.com/1010467/238302902-51fb905a-99a8-4627-9318-727eb2bb4455.mp4")
 ```
 
 ```julia
@@ -203,7 +205,7 @@ OSMMakie has been around for a while, but it's great to see that it smoothly int
 
 ```julia
 # hide
-Video("https://user-images.githubusercontent.com/1010467/212502607-640a2238-0f24-4efd-8ce9-fafba46f80bd.mp4")
+Blog.Video("https://user-images.githubusercontent.com/1010467/212502607-640a2238-0f24-4efd-8ce9-fafba46f80bd.mp4")
 ```
 
 ### [PyramidSchemes.jl](https://github.com/JuliaDataCubes/PyramidScheme.jl)
@@ -236,7 +238,7 @@ People have been looking for a ggplot equivalent in Julia for quite some time, a
 ```julia
 # hide
 using TidierPlots
-TidierPlots.autoplot[] = false
+ENV["DATADEPS_ALWAYS_ACCEPT"] = true
 nothing
 ```
 
@@ -244,12 +246,9 @@ nothing
 using CairoMakie; CairoMakie.activate!(type=:png)
 using TidierPlots, PalmerPenguins, DataFrames
 penguins = dropmissing(DataFrame(PalmerPenguins.load()))
-(@ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
-    @geom_point() +
-    @geom_smooth(method = "lm") +
-    @labs(x = "Bill Length (mm)", y = "Bill Width (mm)",
-        title = "Bill Length vs. Bill Width",
-        subtitle = "Using geom_point and geom_smooth")) |> draw_ggplot
+ggplot(data = penguins) +
+    geom_bar(@aes(x = species)) +
+    labs(x = "Species")
 ```
 
 ```julia

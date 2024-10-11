@@ -1,8 +1,8 @@
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.11.0-rc3"
+julia_version = "1.11.0-rc4"
 manifest_format = "2.0"
-project_hash = "a7b38e274f08b8ed84312ffa839d5f49b31f791d"
+project_hash = "a345d00f06ad32fbda3fb966a2e37fcba9a999da"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -127,6 +127,18 @@ deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
 git-tree-sha1 = "e329286945d0cfc04456972ea732551869af1cfc"
 uuid = "4e9b3aee-d8a1-5a3d-ad8b-7d824db253f0"
 version = "1.0.1+0"
+
+[[deps.Cairo]]
+deps = ["Cairo_jll", "Colors", "Glib_jll", "Graphics", "Libdl", "Pango_jll"]
+git-tree-sha1 = "7b6ad8c35f4bc3bca8eb78127c8b99719506a5fb"
+uuid = "159f3aea-2a34-519c-b102-8c37f9878175"
+version = "1.1.0"
+
+[[deps.CairoMakie]]
+deps = ["Base64", "Cairo", "Colors", "FFTW", "FileIO", "FreeType", "GeometryBasics", "LinearAlgebra", "Makie", "PrecompileTools", "SHA"]
+git-tree-sha1 = "5e21a254d82c64b1a4ed9dbdc7e87c5d9cf4a686"
+uuid = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+version = "0.10.12"
 
 [[deps.Cairo_jll]]
 deps = ["Artifacts", "Bzip2_jll", "CompilerSupportLibraries_jll", "Fontconfig_jll", "FreeType2_jll", "Glib_jll", "JLLWrappers", "LZO_jll", "Libdl", "Pixman_jll", "Xorg_libXext_jll", "Xorg_libXrender_jll", "Zlib_jll", "libpng_jll"]
@@ -460,6 +472,12 @@ deps = ["Artifacts", "Gettext_jll", "JLLWrappers", "Libdl", "Libffi_jll", "Libic
 git-tree-sha1 = "7c82e6a6cd34e9d935e9aa4051b66c6ff3af59ba"
 uuid = "7746bdde-850d-59dc-9ae8-88ece973131d"
 version = "2.80.2+0"
+
+[[deps.Graphics]]
+deps = ["Colors", "LinearAlgebra", "NaNMath"]
+git-tree-sha1 = "d61890399bc535850c4bf08e4e0d3a7ad0f21cbd"
+uuid = "a2bd30eb-e257-5431-a919-1863eab51364"
+version = "1.1.2"
 
 [[deps.Graphite2_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -796,6 +814,7 @@ version = "0.5.13"
 [[deps.Makie]]
 deps = ["Animations", "Base64", "CRC32c", "ColorBrewer", "ColorSchemes", "ColorTypes", "Colors", "Contour", "DelaunayTriangulation", "Distributions", "DocStringExtensions", "Downloads", "FFMPEG_jll", "FileIO", "FixedPointNumbers", "Formatting", "FreeType", "FreeTypeAbstraction", "GeometryBasics", "GridLayoutBase", "ImageIO", "InteractiveUtils", "IntervalSets", "Isoband", "KernelDensity", "LaTeXStrings", "LinearAlgebra", "MacroTools", "MakieCore", "Markdown", "MathTeXEngine", "Observables", "OffsetArrays", "Packing", "PlotUtils", "PolygonOps", "PrecompileTools", "Printf", "REPL", "Random", "RelocatableFolders", "Setfield", "ShaderAbstractions", "Showoff", "SignedDistanceFields", "SparseArrays", "StableHashTraits", "Statistics", "StatsBase", "StatsFuns", "StructArrays", "TriplotBase", "UnicodeFun"]
 git-tree-sha1 = "35fa3c150cd96fd77417a23965b7037b90d6ffc9"
+pinned = true
 uuid = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
 version = "0.19.12"
 
@@ -983,6 +1002,12 @@ deps = ["OffsetArrays"]
 git-tree-sha1 = "0fac6313486baae819364c52b4f483450a9d793f"
 uuid = "5432bcbf-9aad-5242-b902-cca2824c8663"
 version = "0.5.12"
+
+[[deps.Pango_jll]]
+deps = ["Artifacts", "Cairo_jll", "Fontconfig_jll", "FreeType2_jll", "FriBidi_jll", "Glib_jll", "HarfBuzz_jll", "JLLWrappers", "Libdl"]
+git-tree-sha1 = "e127b609fb9ecba6f201ba7ab753d5a605d53801"
+uuid = "36c8627f-9965-5494-a995-c6b170f724f3"
+version = "1.54.1+0"
 
 [[deps.Parameters]]
 deps = ["OrderedCollections", "UnPack"]

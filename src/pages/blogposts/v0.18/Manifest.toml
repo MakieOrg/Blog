@@ -1,6 +1,6 @@
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.11.0-rc3"
+julia_version = "1.11.0-rc4"
 manifest_format = "2.0"
 project_hash = "c8fa674a47580e0de7665f7dc6cf38cb930b37a8"
 
@@ -784,6 +784,7 @@ version = "0.5.13"
 [[deps.Makie]]
 deps = ["Animations", "Base64", "ColorBrewer", "ColorSchemes", "ColorTypes", "Colors", "Contour", "Distributions", "DocStringExtensions", "FFMPEG", "FileIO", "FixedPointNumbers", "Formatting", "FreeType", "FreeTypeAbstraction", "GeometryBasics", "GridLayoutBase", "ImageIO", "InteractiveUtils", "IntervalSets", "Isoband", "KernelDensity", "LaTeXStrings", "LinearAlgebra", "MakieCore", "Markdown", "Match", "MathTeXEngine", "MiniQhull", "Observables", "OffsetArrays", "Packing", "PlotUtils", "PolygonOps", "Printf", "Random", "RelocatableFolders", "Serialization", "Showoff", "SignedDistanceFields", "SnoopPrecompile", "SparseArrays", "Statistics", "StatsBase", "StatsFuns", "StructArrays", "TriplotBase", "UnicodeFun"]
 git-tree-sha1 = "51e40869d076fbff25ab61d0aa3e198d80176c75"
+pinned = true
 uuid = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
 version = "0.18.0"
 

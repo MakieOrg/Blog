@@ -1,137 +1,164 @@
 <!doctype html>
-<html data-jscall-id="5">
-  <head data-jscall-id="6">
-    <script src="..\../jsserve/js/JSServe.bundled.js" type="module"></script>
-    <meta charset="UTF-8" data-jscall-id="7" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" data-jscall-id="8" />
-    <link rel="icon" href="..\../jsserve/ico/favicon.ico" data-jscall-id="9" type="image/x-icon" />
+<html data-jscall-id="1">
+  <head data-jscall-id="2">
+    <script src="../../bonito/js/Bonito.bundled13649100837457452633.js" type="module"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-jscall-id="3" />
+    <meta charset="utf-8" data-jscall-id="4" />
+    <style>.style_2 {
+  list-style-type: disc;
+  list-style: inside;
+}
+</style>
     <div>
-      <link href="..\../jsserve/css/makie.css" rel="stylesheet" type="text/css" />
-      <link href="..\../jsserve/css/minimal-mistakes.css" rel="stylesheet" type="text/css" />
-      <link href="..\../jsserve/css/github.min.css" rel="stylesheet" type="text/css" />
-      <link href="..\../jsserve/css/style.css" rel="stylesheet" type="text/css" />
+      <script>    window.__define = window.define;
+    window.__require = window.require;
+    window.define = undefined;
+    window.require = undefined;
+</script>
+      <link href="../../bonito/css/site4174360100564830184.css" rel="stylesheet" type="text/css" />
+      <script src="https://cdn.tailwindcss.com/3.3.1"></script>
+      <script>    window.define = window.__define;
+    window.require = window.__require;
+    window.__define = undefined;
+    window.__require = undefined;
+</script>
     </div>
   </head>
-  <body data-jscall-id="10">
-    <script type="module">JSServe.lock_loading(() => JSServe.init_session('e2970475-c7bb-443d-8ee0-6ebdd35361ad', null, 'root'))</script>
-    <div data-jscall-id="11">
-      <a href="/" data-jscall-id="12">
-        <img src="..\../jsserve/png/bannermesh_gradient.png" data-jscall-id="13" />
-      </a>
-      <div class="outer-page" data-jscall-id="14">
-        <div class="inner-page" data-jscall-id="15">
+  <body data-jscall-id="5">
+    <script type="module">Bonito.lock_loading(() => Bonito.init_session('dcdf7493-e648-400c-82a7-7dcab0d5dae8', null, 'root'))</script>
+    <div data-jscall-id="6">
+      <link href="../../bonito/png/icon_transparent1037186205570625945.png" data-jscall-id="7" rel="icon" type="image/png" />
+      <img style="width: 100%" data-jscall-id="8" src="../../bonito/png/bannermesh_gradient12222907222071057261.png" />
+      <div class="flex navbar justify-center" data-jscall-id="9">
+        <div class="flex max-w-5xl w-full md:px-4 flex-wrap" data-jscall-id="10">
+          <a href="../../" data-jscall-id="11" target="">
+            <div class="text-white cursor-pointer py-1 px-2 hover:opacity-50 " data-jscall-id="12">Home</div>
+          </a>
+          <a href="../../team" data-jscall-id="13" target="">
+            <div class="text-white cursor-pointer py-1 px-2 hover:opacity-50 " data-jscall-id="14">Team</div>
+          </a>
+          <a href="../../support" data-jscall-id="15" target="">
+            <div class="text-white cursor-pointer py-1 px-2 hover:opacity-50 " data-jscall-id="16">Support</div>
+          </a>
+          <a href="../../contact" data-jscall-id="17" target="">
+            <div class="text-white cursor-pointer py-1 px-2 hover:opacity-50 " data-jscall-id="18">Contact</div>
+          </a>
+          <a href="http://docs.makie.org" data-jscall-id="19" target="_blank">
+            <div class="text-white cursor-pointer py-1 px-2 hover:opacity-50 " data-jscall-id="20">Docs</div>
+          </a>
+          <a href="https://github.com/MakieOrg/Makie.jl" data-jscall-id="21" target="_blank">
+            <div class="text-white cursor-pointer py-1 px-2 hover:opacity-50 " data-jscall-id="22">
+              <img style="height: 1.2rem; display: inline-block; vertical-align: text-bottom;" data-jscall-id="23" src="../../bonito/png/GitHub-Mark-Light-64px12574665218786438484.png" />
+            </div>
+          </a>
+        </div>
+      </div>
+      <div data-jscall-id="24">
+        <div class="markdown-body" data-jscall-id="25">
+          <h1 id="v0.19.9-12" data-jscall-id="26">v0.19.9-12</h1>
+          <h2 id="" data-jscall-id="27">Datashader 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/2883" data-jscall-id="28">#2883</a>
+          </h2>
+          <p data-jscall-id="29">Makie has its own 
+            <a href="https://docs.makie.org/stable/reference/plots/datashader/" data-jscall-id="30">datashader</a> plot type now. This is fast CPU-based binning algorithm that automatically adjusts the domain it&#39;s applied to to the current axis limits. It&#39;s useful to explore large datasets, such as this dataset with 14 million points
+          </p>
+          <div class="markdown-body" data-jscall-id="31"><video controls="true" muted="true" autoplay="true" loop="true"><source src="https://docs.makie.org/v0.21/assets/datashader-14million.Vl17VWzZ.mp4" type="video/mp4" /></video></div>
+          <p data-jscall-id="32">Or this one with 3.2 billion points</p>
+          <div class="markdown-body" data-jscall-id="33"><video controls="true" muted="true" autoplay="true" loop="true"><source src="https://docs.makie.org/v0.21/assets/datashader_2-7_billion.D1p2iTV4.mp4" type="video/mp4" /></video></div>
+          <p data-jscall-id="34">It can be customized with different aggregation functions as well as local and global transformations. The 
+            <code data-jscall-id="35">datashader</code> plot type is currently considered experimental and might experience API breakage in patch versions.
+          </p>
+          <h2 id="" data-jscall-id="36">PolarAxis improvements 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3154" data-jscall-id="37">#3154</a>
+          </h2>
+          <p data-jscall-id="38">PolarAxis has gotten a large number of changes, some of which are breaking. As we currently consider PolarAxis an experimental feature, we have pushed those changes through in a patch version.</p>
+          <p data-jscall-id="39">The most important breaking change is that the order of arguments has been reversed to be in line with other plotting packages. By default plots that use the Polar transform now take arguments 
+            <code data-jscall-id="40">&#40;theta, r&#41;</code>.  This can be reversed by setting 
+            <code data-jscall-id="41">theta_as_x &#61; false</code> in the transform or the PolarAxis.
+          </p>
           <div class="markdown-body" data-jscall-id="42">
-            <h1 id="v0.19.9-12" data-jscall-id="43">v0.19.9-12</h1>
-            <h2 id="" data-jscall-id="44">Datashader 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/2883" data-jscall-id="45">#2883</a>
-            </h2>
-            <p data-jscall-id="46">Makie has its own 
-              <a href="https://docs.makie.org/stable/reference/plots/datashader/" data-jscall-id="47">datashader</a> plot type now. This is fast CPU-based binning algorithm that automatically adjusts the domain it&#39;s applied to to the current axis limits. It&#39;s useful to explore large datasets, such as this dataset with 14 million points
-            </p>
-            <div class="markdown-body" data-jscall-id="16">
-              <video controls="true" data-jscall-id="1" muted="true" autoplay="true" loop="true">
-                <source src="https://docs.makie.org/stable/assets/datashader-14million.mp4" data-jscall-id="2" type="video/mp4" />
-              </video>
-            </div>
-            <p data-jscall-id="48">Or this one with 3.2 billion points</p>
-            <div class="markdown-body" data-jscall-id="17">
-              <video controls="true" data-jscall-id="3" muted="true" autoplay="true" loop="true">
-                <source src="https://docs.makie.org/stable/assets/datashader_2-7_billion.mp4" data-jscall-id="4" type="video/mp4" />
-              </video>
-            </div>
-            <p data-jscall-id="49">It can be customized with different aggregation functions as well as local and global transformations. The 
-              <code data-jscall-id="50">datashader</code> plot type is currently considered experimental and might experience API breakage in patch versions.
-            </p>
-            <h2 id="" data-jscall-id="51">PolarAxis improvements 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3154" data-jscall-id="52">#3154</a>
-            </h2>
-            <p data-jscall-id="53">PolarAxis has gotten a large number of changes, some of which are breaking. As we currently consider PolarAxis an experimental feature, we have pushed those changes through in a patch version.</p>
-            <p data-jscall-id="54">The most important breaking change is that the order of arguments has been reversed to be in line with other plotting packages. By default plots that use the Polar transform now take arguments 
-              <code data-jscall-id="55">&#40;theta, r&#41;</code>.  This can be reversed by setting 
-              <code data-jscall-id="56">theta_as_x &#61; false</code> in the transform or the PolarAxis.
-            </p>
-            <div class="markdown-body" data-jscall-id="19">
-              <pre data-jscall-id="20">
-                <code class="language-julia" data-jscall-id="21">fig &#61; Figure&#40;resolution &#61; &#40;800, 450&#41;&#41;
+            <pre data-jscall-id="43">
+              <code class="language-julia" data-jscall-id="44">using CairoMakie
+fig &#61; Figure&#40;resolution &#61; &#40;800, 450&#41;&#41;
 ax1 &#61; PolarAxis&#40;fig&#91;1, 1&#93;, theta_as_x &#61; true, title &#61; &#34;theta_as_x &#61; true &#40;default&#41;&#34;&#41;
 ax2 &#61; PolarAxis&#40;fig&#91;1, 2&#93;, theta_as_x &#61; false, title &#61; &#34;theta_as_x &#61; false&#34;&#41;
 lines&#33;&#40;ax1, 0:0.05:2.0, &#91;2 for _ in 1:41&#93;&#41;
 lines&#33;&#40;ax2, 0:0.05:2.0, &#91;2 for _ in 1:41&#93;&#41;
 rlims&#33;.&#40;&#40;ax1, ax2&#41;, 0, 2.5&#41;
 fig</code>
-              </pre>
-              <img src="..\../jsserve/png/f35dc0c5018dc7a43f05bfe28c8e5fe9457bf445-5210630927682932892.png" data-jscall-id="18" />
-            </div>
-            <p data-jscall-id="57">Most of the other changes revolve around plotting on sectors, i.e. limits where 
-              <p data-jscall-id="58">&#36;r_0 &#62; 0&#36;</p> and/or 
-              <p data-jscall-id="59">&#36;\theta&#36;</p> spans less than 2
-              <p data-jscall-id="60">&#36;\pi&#36;</p>. This means that PolarAxis now has 
-              <code data-jscall-id="61">thetalimits &#61; &#40;thetamin, thetamax&#41;</code> as a new attribute and that 
-              <code data-jscall-id="62">radius &#61; rmax</code> has been replaced by 
-              <code data-jscall-id="63">rlimits &#61; &#40;rmin, rmax&#41;</code>.
-            </p>
-            <div class="markdown-body" data-jscall-id="23">
-              <pre data-jscall-id="24">
-                <code class="language-julia" data-jscall-id="25">r &#61; range&#40;0.3pi, 0.7pi, length&#61;21&#41;
+            </pre>
+            <img data-jscall-id="45" src="../../bonito/png/cell_output_315645311670701431943.png" />
+          </div>
+          <p data-jscall-id="46">Most of the other changes revolve around plotting on sectors, i.e. limits where 
+            <p>&#36;r_0 &#62; 0&#36;</p> and/or 
+            <p>&#36;\theta&#36;</p> spans less than 2
+            <p>&#36;\pi&#36;</p>. This means that PolarAxis now has 
+            <code data-jscall-id="47">thetalimits &#61; &#40;thetamin, thetamax&#41;</code> as a new attribute and that 
+            <code data-jscall-id="48">radius &#61; rmax</code> has been replaced by 
+            <code data-jscall-id="49">rlimits &#61; &#40;rmin, rmax&#41;</code>.
+          </p>
+          <div class="markdown-body" data-jscall-id="50">
+            <pre data-jscall-id="51">
+              <code class="language-julia" data-jscall-id="52">r &#61; range&#40;0.3pi, 0.7pi, length&#61;21&#41;
 xs &#61; vcat&#40;r, &#91;r&#91;end&#93; for _ in 1:20&#93;, r&#91;end:-1:1&#93;, &#91;r&#91;1&#93; for _ in 1:20&#93;&#41;
 ys &#61; vcat&#40;&#91;r&#91;1&#93; for _ in 1:20&#93;, r, &#91;r&#91;end&#93; for _ in 1:20&#93;, r&#91;end:-1:1&#93;&#41;
 fig &#61; Figure&#40;resolution &#61; &#40;800, 500&#41;&#41;
 ax &#61; PolarAxis&#40;fig&#91;1, 1&#93;, rlimits &#61; &#40;r&#91;1&#93;-0.1, r&#91;end&#93;&#43;0.1&#41;, thetalimits &#61; &#40;r&#91;1&#93;-0.1, r&#91;end&#93;&#43;0.1&#41;&#41;
 lines&#33;&#40;ax, xs, ys&#41;
 fig</code>
-              </pre>
-              <img src="..\../jsserve/png/244c0e57253562006d029e12907f48fa782ab7b8-9979036432036465949.png" data-jscall-id="22" />
-            </div>
-            <p data-jscall-id="64">There are many other small changes related to making this work, such as changes to 
-              <code data-jscall-id="65">autolimits</code>, interactivity, tick placement and the behind-the-scenes rendering of the PolarAxis. You can find a summary of these changes in the pull request.
-            </p>
-            <h2 id="" data-jscall-id="66">Colorbar 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3090" data-jscall-id="67">#3090</a>
-            </h2>
-            <p data-jscall-id="68">Refactors Colorbar to use image and heatmap instead of the heavier poly &#43; image. Uses now ColorMapping, internally in Colorbar, to have a more consistent interface, while keeping construction of 
-              <code data-jscall-id="69">Colorbar&#40;colormap&#61;cmap, ...&#41;</code> still working.
-            </p>
-            <p data-jscall-id="70">Introduces 
-              <code data-jscall-id="71">extract_colormap</code>, which Colorbar now uses to extract the colormapping from any plot type. The function has a fallback for any recipe, which recursively searches the child plots. One can also directly overload it for a recipe, where this isn&#39;t a good default. Will error if multiple colormappings are found in a recipe. Introduced an experimental 
-              <code data-jscall-id="72">colormap&#61;Categorical&#40;colormap&#41;</code>, which creates a true categorical colormap:
-            </p>
-            <div class="markdown-body" data-jscall-id="27">
-              <pre data-jscall-id="28">
-                <code class="language-julia" data-jscall-id="29">f, ax, pl &#61; barplot&#40;1:3, color&#61;1:3, colormap&#61;Makie.Categorical&#40;:viridis&#41;&#41;
+            </pre>
+            <img data-jscall-id="53" src="../../bonito/png/cell_output_410761320311268937748.png" />
+          </div>
+          <p data-jscall-id="54">There are many other small changes related to making this work, such as changes to 
+            <code data-jscall-id="55">autolimits</code>, interactivity, tick placement and the behind-the-scenes rendering of the PolarAxis. You can find a summary of these changes in the pull request.
+          </p>
+          <h2 id="" data-jscall-id="56">Colorbar 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3090" data-jscall-id="57">#3090</a>
+          </h2>
+          <p data-jscall-id="58">Refactors Colorbar to use image and heatmap instead of the heavier poly &#43; image. Uses now ColorMapping, internally in Colorbar, to have a more consistent interface, while keeping construction of 
+            <code data-jscall-id="59">Colorbar&#40;colormap&#61;cmap, ...&#41;</code> still working.
+          </p>
+          <p data-jscall-id="60">Introduces 
+            <code data-jscall-id="61">extract_colormap</code>, which Colorbar now uses to extract the colormapping from any plot type. The function has a fallback for any recipe, which recursively searches the child plots. One can also directly overload it for a recipe, where this isn&#39;t a good default. Will error if multiple colormappings are found in a recipe. Introduced an experimental 
+            <code data-jscall-id="62">colormap&#61;Categorical&#40;colormap&#41;</code>, which creates a true categorical colormap:
+          </p>
+          <div class="markdown-body" data-jscall-id="63">
+            <pre data-jscall-id="64">
+              <code class="language-julia" data-jscall-id="65">f, ax, pl &#61; barplot&#40;1:3, color&#61;1:3, colormap&#61;Makie.Categorical&#40;:viridis&#41;&#41;
 Colorbar&#40;f&#91;1, 2&#93;, pl&#41;
 f</code>
-              </pre>
-              <img src="..\../jsserve/png/b58d7dac6badf8e1f459e1375e03d40aed703fe6-16808911977453860783.png" data-jscall-id="26" />
-            </div>
-            <h2 id="" data-jscall-id="73">ReversibleScale 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3095" data-jscall-id="74">#3095</a>
-            </h2>
-            <p data-jscall-id="75">Add and export ReversibleScale type, which makes it easier to create custom scale types, while still getting correct ticks in Colorbar and Axis.</p>
-            <h2 id="" data-jscall-id="76">Delaunay Recipes 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3102" data-jscall-id="77">#3102</a>, 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3159" data-jscall-id="78">#3159</a>
-            </h2>
-            <p data-jscall-id="79">Thanks to 
-              <a href="https://github.com/DanielVandH" data-jscall-id="80">Daniel VandenHeuvel</a> Makie now has two new plotting functions - 
-              <code data-jscall-id="81">triplot</code> and 
-              <code data-jscall-id="82">voronoiplot</code>. These have been moved from 
-              <a href="https://github.com/DanielVandH/DelaunayTriangulation.jl" data-jscall-id="83">DelaunayTriangulation.jl </a>. The former, 
-              <code data-jscall-id="84">triplot</code>, will generate a triangulation given an abitrary set of 2D points.
-            </p>
-            <div class="markdown-body" data-jscall-id="31">
-              <pre data-jscall-id="32">
-                <code class="language-julia" data-jscall-id="33">using Random
+            </pre>
+            <img data-jscall-id="66" src="../../bonito/png/cell_output_510729720122753113790.png" />
+          </div>
+          <h2 id="" data-jscall-id="67">ReversibleScale 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3095" data-jscall-id="68">#3095</a>
+          </h2>
+          <p data-jscall-id="69">Add and export ReversibleScale type, which makes it easier to create custom scale types, while still getting correct ticks in Colorbar and Axis.</p>
+          <h2 id="" data-jscall-id="70">Delaunay Recipes 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3102" data-jscall-id="71">#3102</a>, 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3159" data-jscall-id="72">#3159</a>
+          </h2>
+          <p data-jscall-id="73">Thanks to 
+            <a href="https://github.com/DanielVandH" data-jscall-id="74">Daniel VandenHeuvel</a> Makie now has two new plotting functions - 
+            <code data-jscall-id="75">triplot</code> and 
+            <code data-jscall-id="76">voronoiplot</code>. These have been moved from 
+            <a href="https://github.com/DanielVandH/DelaunayTriangulation.jl" data-jscall-id="77">DelaunayTriangulation.jl </a>. The former, 
+            <code data-jscall-id="78">triplot</code>, will generate a triangulation given an abitrary set of 2D points.
+          </p>
+          <div class="markdown-body" data-jscall-id="79">
+            <pre data-jscall-id="80">
+              <code class="language-julia" data-jscall-id="81">using Random
 grid &#61; shuffle&#40;&#91;Point2f&#40;x, y&#41; for x in 1:4 for y in 1:4&#93;&#41;
 f, a, p &#61; triplot&#40;grid, figure &#61; &#40;resolution &#61; &#40;500, 400&#41;,&#41;&#41;</code>
-              </pre>
-              <img src="..\../jsserve/png/03fc9e9f0b74b525b3d52a5bcad9414f70c049ae-8517129821030946956.png" data-jscall-id="30" />
-            </div>
-            <p data-jscall-id="85">The latter, 
-              <code data-jscall-id="86">voronoiplot</code>, will generate cells around points where the edges are halfway between neighboring points. These plots can be used as heatmaps for data that does not lie on a grid. As such they can be used as a replacement for heatmap in PolarAxis.
-            </p>
-            <div class="markdown-body" data-jscall-id="35">
-              <pre data-jscall-id="36">
-                <code class="language-julia" data-jscall-id="37">fig &#61; Figure&#40;&#41;
+            </pre>
+            <img data-jscall-id="82" src="../../bonito/png/cell_output_62349836177530172946.png" />
+          </div>
+          <p data-jscall-id="83">The latter, 
+            <code data-jscall-id="84">voronoiplot</code>, will generate cells around points where the edges are halfway between neighboring points. These plots can be used as heatmaps for data that does not lie on a grid. As such they can be used as a replacement for heatmap in PolarAxis.
+          </p>
+          <div class="markdown-body" data-jscall-id="85">
+            <pre data-jscall-id="86">
+              <code class="language-julia" data-jscall-id="87">fig &#61; Figure&#40;&#41;
 voronoiplot&#40;fig&#91;1, 1&#93;, rand&#40;100&#41;, rand&#40;100&#41;&#41;
 ax &#61; PolarAxis&#40;fig&#91;1, 2&#93;, theta_0 &#61; -pi/2&#41;
 xs &#61; range&#40;0, pi, length&#61;30&#41;
@@ -140,126 +167,125 @@ zs &#61; &#91;theta for theta in xs, _ in ys&#93;
 voronoiplot&#33;&#40;ax, xs, ys, zs, show_generators &#61; false, colormap &#61; &#91;:white, :lightgreen, :yellow, :darkred&#93;&#41;
 autolimits&#33;&#40;ax&#41;
 fig</code>
-              </pre>
-              <img src="..\../jsserve/png/bdc7d3eac6f0ccf12a22bcc737e19447f25e6734-2930592912321700166.png" data-jscall-id="34" />
-            </div>
-            <h2 id="" data-jscall-id="87">Bar label alignment 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3177" data-jscall-id="88">#3177</a>
-            </h2>
-            <p data-jscall-id="89">Improved the automatic barplot label alignment and added the attribute 
-              <code data-jscall-id="90">label_align</code> for custom placement.
-            </p>
-            <h2 id="" data-jscall-id="91">Tex theme 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3180" data-jscall-id="92">#3180</a>
-            </h2>
-            <p data-jscall-id="93">Added a theme 
-              <code data-jscall-id="94">theme_latexfonts</code> that uses the latex font family as default fonts
-            </p>
-            <div class="markdown-body" data-jscall-id="39">
-              <pre data-jscall-id="40">
-                <code class="language-julia" data-jscall-id="41">set_theme&#33;&#40;theme_latexfonts&#40;&#41;&#41;
+            </pre>
+            <img data-jscall-id="88" src="../../bonito/png/cell_output_72614475029299773262.png" />
+          </div>
+          <h2 id="" data-jscall-id="89">Bar label alignment 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3177" data-jscall-id="90">#3177</a>
+          </h2>
+          <p data-jscall-id="91">Improved the automatic barplot label alignment and added the attribute 
+            <code data-jscall-id="92">label_align</code> for custom placement.
+          </p>
+          <h2 id="" data-jscall-id="93">Tex theme 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3180" data-jscall-id="94">#3180</a>
+          </h2>
+          <p data-jscall-id="95">Added a theme 
+            <code data-jscall-id="96">theme_latexfonts</code> that uses the latex font family as default fonts
+          </p>
+          <div class="markdown-body" data-jscall-id="97">
+            <pre data-jscall-id="98">
+              <code class="language-julia" data-jscall-id="99">set_theme&#33;&#40;theme_latexfonts&#40;&#41;&#41;
 
 fig &#61; Figure&#40;&#41;
 Label&#40;fig&#91;1, 1&#93;, &#34;A standard Label&#34;, tellwidth &#61; false&#41;
 Label&#40;fig&#91;2, 1&#93;, L&#34;A LaTeXString with a small formula &#36;x^2&#36;&#34;, tellwidth &#61; false&#41;
 Axis&#40;fig&#91;3, 1&#93;, title &#61; &#34;An axis with matching font for the tick labels&#34;&#41;
 fig</code>
-              </pre>
-              <img src="..\../jsserve/png/766ce92f56de35842ce862865ad71ef7f54a5b02-16123644710700909670.png" data-jscall-id="38" />
-            </div>
-            <h2 id="" data-jscall-id="95">Docs improvements 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3183" data-jscall-id="96">#3183</a>, 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3185" data-jscall-id="97">#3185</a> &#38; 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3244" data-jscall-id="98">#3244</a>
-            </h2>
-            <p data-jscall-id="99">In the process of making the docs more structured, the 
-              <code data-jscall-id="100">Examples</code> section was renamed to 
-              <code data-jscall-id="101">Reference</code> and the 
-              <code data-jscall-id="102">Documentation</code> section to 
-              <code data-jscall-id="103">Explanations</code>, a how-to section was also recently added on master. In the future, it should become easier to find concrete information about what each plot and block does and how the attributes behave.
-            </p>
-            <p data-jscall-id="104">The docs style was overhauled a little as well. The page content overview on the right is now separate from the navigation on the left. This way, everything should stay more readable, especially on large pages with many sections. The docs now make better use of the available screen width.</p>
-            <p data-jscall-id="105">The static search plugin was changed from 
-              <a href="https://github.com/jameslittle230/stork" data-jscall-id="106">
-                <code data-jscall-id="107">stork</code>
-              </a> to 
-              <a href="https://pagefind.app/docs/" data-jscall-id="108">
-                <code data-jscall-id="109">pagefind</code>
-              </a> as 
-              <code data-jscall-id="110">stork</code> is not being maintained anymore. On desktop, the search should be easier to read as it lives in its own modal now.
-            </p>
-            <p data-jscall-id="111">
-              <img alt="Example search" src="https://user-images.githubusercontent.com/22495855/269546466-2198057f-1dc5-401f-9bed-f36cbb736a89.png" data-jscall-id="112" />
-            </p>
-            <h2 id="" data-jscall-id="113">Linestyle type 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3193" data-jscall-id="114">#3193</a>, 
-              <a href="https://github.com/MakieOrg/Makie.jl/pull/3135" data-jscall-id="115">#3135</a>
-            </h2>
-            <p data-jscall-id="116">Deprecates 
-              <code data-jscall-id="117">linestyle&#61;Vector&#123;&#60;:Real&#125;</code> for custom linestyles in favor of 
-              <code data-jscall-id="118">linestyle&#61;Linestyle&#40;value::Vector&#123;&#60;:Real&#125;&#41;</code>, to make it less ambigious if the attribute is per linepoint or for the whole line.
-            </p>
-            <h2 id="Smaller changes" data-jscall-id="119">Smaller changes</h2>
-            <ul style="list-style-type: disc; list-style: inside;" data-jscall-id="120">
-              <li data-jscall-id="121">
-                <p data-jscall-id="122">Fix deactivated scroll interactions still consuming event 
-                  <a href="https://github.com/MakieOrg/Makie.jl/pull/3272" data-jscall-id="123">#3272</a>
-                </p>
-              </li>
-              <li data-jscall-id="124">
-                <p data-jscall-id="125">Fix grouping of zero-height bar in barplot 
-                  <a href="https://github.com/MakieOrg/Makie.jl/pull/3058" data-jscall-id="126">#3058</a>
-                </p>
-              </li>
-              <li data-jscall-id="127">
-                <p data-jscall-id="128">Upgrade StableHashTraits 
-                  <a href="https://github.com/MakieOrg/Makie.jl/pull/3309" data-jscall-id="129">#3309</a>
-                </p>
-              </li>
-              <li data-jscall-id="130">
-                <p data-jscall-id="131">DataInspector: fix an attribute extraction bug for heatmaps &#38; images 
-                  <a href="https://github.com/MakieOrg/Makie.jl/pull/3260" data-jscall-id="132">#3260</a>
-                </p>
-              </li>
-              <li data-jscall-id="133">
-                <p data-jscall-id="134">Fix bezier construction for strings starting with m 
-                  <a href="https://github.com/MakieOrg/Makie.jl/pull/3313" data-jscall-id="135">#3313</a>
-                </p>
-              </li>
-              <li data-jscall-id="136">
-                <p data-jscall-id="137">Fix grouping of a zero-height bar in barplot. Now a zero-height bar shares the same properties of the previous bar, and if the bar is the first one, its height is treated as positive if and only if there exists a bar of positive height or all bars are zero-height 
-                  <a href="https://github.com/MakieOrg/Makie.jl/pull/3058" data-jscall-id="138">#3058</a>
-                </p>
-              </li>
-              <li data-jscall-id="139">
-                <p data-jscall-id="140">Fixed a bug where Axis still consumes scroll events when interactions are disabled 
-                  <a href="https://github.com/MakieOrg/Makie.jl/pull/3272" data-jscall-id="141">#3272</a>.
-                </p>
-              </li>
-              <li data-jscall-id="142">
-                <p data-jscall-id="143">Added cornerradius attribute to Box for rounded corners 
-                  <a href="https://github.com/MakieOrg/Makie.jl/pull/3308" data-jscall-id="144">#3308</a>
-                </p>
-              </li>
-              <li data-jscall-id="145">
-                <p data-jscall-id="146">Upgraded StableHashTraits from 1.0 to 1.1 
-                  <a href="https://github.com/MakieOrg/Makie.jl/pull/3309" data-jscall-id="147">#3309</a>
-                </p>
-              </li>
-            </ul>
+            </pre>
+            <img data-jscall-id="100" src="../../bonito/png/cell_output_88020899987481745101.png" />
           </div>
+          <h2 id="" data-jscall-id="101">Docs improvements 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3183" data-jscall-id="102">#3183</a>, 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3185" data-jscall-id="103">#3185</a> &#38; 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3244" data-jscall-id="104">#3244</a>
+          </h2>
+          <p data-jscall-id="105">In the process of making the docs more structured, the 
+            <code data-jscall-id="106">Examples</code> section was renamed to 
+            <code data-jscall-id="107">Reference</code> and the 
+            <code data-jscall-id="108">Documentation</code> section to 
+            <code data-jscall-id="109">Explanations</code>, a how-to section was also recently added on master. In the future, it should become easier to find concrete information about what each plot and block does and how the attributes behave.
+          </p>
+          <p data-jscall-id="110">The docs style was overhauled a little as well. The page content overview on the right is now separate from the navigation on the left. This way, everything should stay more readable, especially on large pages with many sections. The docs now make better use of the available screen width.</p>
+          <p data-jscall-id="111">The static search plugin was changed from 
+            <a href="https://github.com/jameslittle230/stork" data-jscall-id="112">
+              <code data-jscall-id="113">stork</code>
+            </a> to 
+            <a href="https://pagefind.app/docs/" data-jscall-id="114">
+              <code data-jscall-id="115">pagefind</code>
+            </a> as 
+            <code data-jscall-id="116">stork</code> is not being maintained anymore. On desktop, the search should be easier to read as it lives in its own modal now.
+          </p>
+          <p data-jscall-id="117">
+            <img alt="Example search" data-jscall-id="118" src="https://user-images.githubusercontent.com/22495855/269546466-2198057f-1dc5-401f-9bed-f36cbb736a89.png" />
+          </p>
+          <h2 id="" data-jscall-id="119">Linestyle type 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3193" data-jscall-id="120">#3193</a>, 
+            <a href="https://github.com/MakieOrg/Makie.jl/pull/3135" data-jscall-id="121">#3135</a>
+          </h2>
+          <p data-jscall-id="122">Deprecates 
+            <code data-jscall-id="123">linestyle&#61;Vector&#123;&#60;:Real&#125;</code> for custom linestyles in favor of 
+            <code data-jscall-id="124">linestyle&#61;Linestyle&#40;value::Vector&#123;&#60;:Real&#125;&#41;</code>, to make it less ambigious if the attribute is per linepoint or for the whole line.
+          </p>
+          <h2 id="Smaller changes" data-jscall-id="125">Smaller changes</h2>
+          <ul class=" style_2" style="" data-jscall-id="126">
+            <li data-jscall-id="127">
+              <p data-jscall-id="128">Fix deactivated scroll interactions still consuming event 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3272" data-jscall-id="129">#3272</a>
+              </p>
+            </li>
+            <li data-jscall-id="130">
+              <p data-jscall-id="131">Fix grouping of zero-height bar in barplot 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3058" data-jscall-id="132">#3058</a>
+              </p>
+            </li>
+            <li data-jscall-id="133">
+              <p data-jscall-id="134">Upgrade StableHashTraits 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3309" data-jscall-id="135">#3309</a>
+              </p>
+            </li>
+            <li data-jscall-id="136">
+              <p data-jscall-id="137">DataInspector: fix an attribute extraction bug for heatmaps &#38; images 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3260" data-jscall-id="138">#3260</a>
+              </p>
+            </li>
+            <li data-jscall-id="139">
+              <p data-jscall-id="140">Fix bezier construction for strings starting with m 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3313" data-jscall-id="141">#3313</a>
+              </p>
+            </li>
+            <li data-jscall-id="142">
+              <p data-jscall-id="143">Fix grouping of a zero-height bar in barplot. Now a zero-height bar shares the same properties of the previous bar, and if the bar is the first one, its height is treated as positive if and only if there exists a bar of positive height or all bars are zero-height 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3058" data-jscall-id="144">#3058</a>
+              </p>
+            </li>
+            <li data-jscall-id="145">
+              <p data-jscall-id="146">Fixed a bug where Axis still consumes scroll events when interactions are disabled 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3272" data-jscall-id="147">#3272</a>.
+              </p>
+            </li>
+            <li data-jscall-id="148">
+              <p data-jscall-id="149">Added cornerradius attribute to Box for rounded corners 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3308" data-jscall-id="150">#3308</a>
+              </p>
+            </li>
+            <li data-jscall-id="151">
+              <p data-jscall-id="152">Upgraded StableHashTraits from 1.0 to 1.1 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3309" data-jscall-id="153">#3309</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div data-jscall-id="154">c:\Users\sdani\Programmieren\SiteMakie\dev\BonitoBlog\src\assets\highlight\github.min.css
+          <script data-jscall-id="155" src="../../bonito/js/highlight.pack2035630124761927820.js"></script>
+          <script data-jscall-id="156">hljs.highlightAll()</script>
         </div>
       </div>
-    </div>
-    <div data-jscall-id="148">
-      <script src="..\../jsserve/js/highlight.pack.js" data-jscall-id="149"></script>
-      <script data-jscall-id="150">hljs.highlightAll()</script>
-    </div>
-    <div data-jscall-id="151">
-      <script async="true" defer="true" src="https://api.makie.org/latest.js" data-jscall-id="152"></script>
-      <noscript data-jscall-id="153">
-        <img alt="" src="https://api.makie.org/noscript.gif" data-jscall-id="154" referrerpolicy="no-referrer-when-downgrade" />
-      </noscript>
+      <div data-jscall-id="157">
+        <script async="true" defer="true" data-jscall-id="158" src="https://api.makie.org/latest.js"></script>
+        <noscript data-jscall-id="159">
+          <img alt="" data-jscall-id="160" src="https://api.makie.org/noscript.gif" referrerpolicy="no-referrer-when-downgrade" />
+        </noscript>
+      </div>
     </div>
   </body>
 </html>

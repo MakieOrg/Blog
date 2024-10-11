@@ -1,8 +1,8 @@
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.11.0-rc3"
+julia_version = "1.11.0"
 manifest_format = "2.0"
-project_hash = "d5e817e3390041af3b059486c6eb15d9f1cc1f7e"
+project_hash = "c00e05a18cb324cd81fb014715887995fe19065b"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -23,9 +23,15 @@ version = "0.1.9"
 
 [[deps.Bonito]]
 deps = ["Base64", "CodecZlib", "Colors", "Dates", "Deno_jll", "HTTP", "Hyperscript", "LinearAlgebra", "Markdown", "MsgPack", "Observables", "RelocatableFolders", "SHA", "Sockets", "Tables", "ThreadPools", "URIs", "UUIDs", "WidgetsBase"]
-git-tree-sha1 = "ad584468661d1c7d2d395759b227cfbc94ce8e22"
+git-tree-sha1 = "91302336aa0c70d6eed21d6fbae6823168903b89"
 uuid = "824d6782-a2ef-11e9-3a09-e5662e0c26f8"
-version = "3.2.0"
+version = "3.2.2"
+
+[[deps.BonitoBlog]]
+deps = ["Bonito", "Dates", "GitHub", "Malt", "OpenAI", "XML"]
+path = "../BonitoBlog"
+uuid = "8b3cd1a5-63d9-421b-9fde-46b64b830918"
+version = "0.1.0"
 
 [[deps.CodecZlib]]
 deps = ["TranscodingStreams", "Zlib_jll"]
@@ -33,29 +39,11 @@ git-tree-sha1 = "bce6804e5e6044c6daab27bb533d1295e4a2e759"
 uuid = "944b1d66-785c-5afd-91f1-9de20f533193"
 version = "0.7.6"
 
-[[deps.ColorSchemes]]
-deps = ["ColorTypes", "ColorVectorSpace", "Colors", "FixedPointNumbers", "PrecompileTools", "Random"]
-git-tree-sha1 = "b5278586822443594ff615963b0c09755771b3e0"
-uuid = "35d6a980-a343-548e-a6ea-1d62b119f2f4"
-version = "3.26.0"
-
 [[deps.ColorTypes]]
 deps = ["FixedPointNumbers", "Random"]
 git-tree-sha1 = "b10d0b65641d57b8b4d5e234446582de5047050d"
 uuid = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
 version = "0.11.5"
-
-[[deps.ColorVectorSpace]]
-deps = ["ColorTypes", "FixedPointNumbers", "LinearAlgebra", "Requires", "Statistics", "TensorCore"]
-git-tree-sha1 = "a1f44953f2382ebb937d60dafbe2deea4bd23249"
-uuid = "c3611d14-8923-5661-9e6a-0046d554d3a4"
-version = "0.10.0"
-
-    [deps.ColorVectorSpace.extensions]
-    SpecialFunctionsExt = "SpecialFunctions"
-
-    [deps.ColorVectorSpace.weakdeps]
-    SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 
 [[deps.Colors]]
 deps = ["ColorTypes", "FixedPointNumbers", "Reexport"]
@@ -89,12 +77,6 @@ deps = ["Printf"]
 uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
 version = "1.11.0"
 
-[[deps.DelimitedFiles]]
-deps = ["Mmap"]
-git-tree-sha1 = "9e2f36d3c96a820c678f2f1f1782582fcf685bae"
-uuid = "8bb1440f-4735-579b-a4ab-409b98df4dab"
-version = "1.9.1"
-
 [[deps.Deno_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
 git-tree-sha1 = "cd6756e833c377e0ce9cd63fb97689a255f12323"
@@ -116,12 +98,6 @@ deps = ["Test"]
 git-tree-sha1 = "dcb08a0d93ec0b1cdc4af184b26b591e9695423a"
 uuid = "460bff9d-24e4-43bc-9d9f-a8973cb893f4"
 version = "0.1.10"
-
-[[deps.FileIO]]
-deps = ["Pkg", "Requires", "UUIDs"]
-git-tree-sha1 = "82d8afa92ecf4b52d78d869f038ebfb881267322"
-uuid = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
-version = "1.16.3"
 
 [[deps.FileWatching]]
 uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
@@ -147,27 +123,9 @@ version = "1.10.8"
 
 [[deps.Hyperscript]]
 deps = ["Test"]
-git-tree-sha1 = "8d511d5b81240fc8e6802386302675bdf47737b9"
+git-tree-sha1 = "179267cfa5e712760cd43dcae385d7ea90cc25a4"
 uuid = "47d2ed2b-36de-50cf-bf87-49c2cf4b8b91"
-version = "0.0.4"
-
-[[deps.ImageBase]]
-deps = ["ImageCore", "Reexport"]
-git-tree-sha1 = "eb49b82c172811fd2c86759fa0553a2221feb909"
-uuid = "c817782e-172a-44cc-b673-b171935fbb9e"
-version = "0.1.7"
-
-[[deps.ImageCore]]
-deps = ["ColorVectorSpace", "Colors", "FixedPointNumbers", "MappedArrays", "MosaicViews", "OffsetArrays", "PaddedViews", "PrecompileTools", "Reexport"]
-git-tree-sha1 = "b2a7eaa169c13f5bcae8131a83bc30eff8f71be0"
-uuid = "a09fc81d-aa75-5fe9-8630-4744c3626534"
-version = "0.10.2"
-
-[[deps.ImageShow]]
-deps = ["Base64", "ColorSchemes", "FileIO", "ImageBase", "ImageCore", "OffsetArrays", "StackViews"]
-git-tree-sha1 = "3b5344bcdbdc11ad58f3b1956709b5b9345355de"
-uuid = "4e3cecfd-b093-5904-9786-8bbb286a6a31"
-version = "0.3.8"
+version = "0.0.5"
 
 [[deps.InteractiveUtils]]
 deps = ["Markdown"]
@@ -190,6 +148,18 @@ deps = ["Dates", "Mmap", "Parsers", "Unicode"]
 git-tree-sha1 = "31e996f0a15c7b280ba9f76636b3ff9e2ae58c9a"
 uuid = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 version = "0.21.4"
+
+[[deps.JSON3]]
+deps = ["Dates", "Mmap", "Parsers", "PrecompileTools", "StructTypes", "UUIDs"]
+git-tree-sha1 = "eb3edce0ed4fa32f75a0a11217433c31d56bd48b"
+uuid = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+version = "1.14.0"
+
+    [deps.JSON3.extensions]
+    JSON3ArrowExt = ["ArrowTypes"]
+
+    [deps.JSON3.weakdeps]
+    ArrowTypes = "31f734f8-188a-4ce0-8406-c8a06bd891cd"
 
 [[deps.LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
@@ -237,14 +207,9 @@ version = "1.0.3"
 
 [[deps.Malt]]
 deps = ["Distributed", "Logging", "RelocatableFolders", "Serialization", "Sockets"]
-git-tree-sha1 = "18cf4151e390fce29ca846b92b06baf9bc6e002e"
+git-tree-sha1 = "02a728ada9d6caae583a0f87c1dd3844f99ec3fd"
 uuid = "36869731-bdee-424d-aa32-cab38c994e3b"
-version = "1.1.1"
-
-[[deps.MappedArrays]]
-git-tree-sha1 = "2dab0221fe2b0f2cb6754eaa743cc266339f527e"
-uuid = "dbb5928d-eab1-5f90-85c2-b9b0edb7c900"
-version = "0.4.2"
+version = "1.1.2"
 
 [[deps.Markdown]]
 deps = ["Base64"]
@@ -266,12 +231,6 @@ version = "2.28.6+0"
 uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 version = "1.11.0"
 
-[[deps.MosaicViews]]
-deps = ["MappedArrays", "OffsetArrays", "PaddedViews", "StackViews"]
-git-tree-sha1 = "7b86a5d4d70a9f5cdf2dacb3cbe6d251d1a61dbe"
-uuid = "e94cdb99-869f-56ef-bcf0-1ae2bcbe0389"
-version = "0.3.4"
-
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
 version = "2023.12.12"
@@ -291,16 +250,11 @@ git-tree-sha1 = "7438a59546cf62428fc9d1bc94729146d37a7225"
 uuid = "510215fc-4207-5dde-b226-833fc4488ee2"
 version = "0.5.5"
 
-[[deps.OffsetArrays]]
-git-tree-sha1 = "1a27764e945a152f7ca7efa04de513d473e9542e"
-uuid = "6fe1bfb0-de20-5000-8ca7-80f57d26f881"
-version = "1.14.1"
-
-    [deps.OffsetArrays.extensions]
-    OffsetArraysAdaptExt = "Adapt"
-
-    [deps.OffsetArrays.weakdeps]
-    Adapt = "79e6a3ab-5dfb-504d-930d-738a2a938a0e"
+[[deps.OpenAI]]
+deps = ["Dates", "HTTP", "JSON3"]
+git-tree-sha1 = "e94116f4d4a49cf12704079ff91769792e48ad65"
+uuid = "e9f21f70-7185-4079-aca2-91159181367c"
+version = "0.10.0"
 
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
@@ -315,20 +269,14 @@ version = "1.4.3"
 
 [[deps.OpenSSL_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "1b35263570443fdd9e76c76b7062116e2f374ab8"
+git-tree-sha1 = "7493f61f55a6cce7325f197443aa80d32554ba10"
 uuid = "458c3c95-2e84-50aa-8efc-19380b2a3a95"
-version = "3.0.15+0"
+version = "3.0.15+1"
 
 [[deps.OrderedCollections]]
 git-tree-sha1 = "dfdf5519f235516220579f949664f1bf44e741c5"
 uuid = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
 version = "1.6.3"
-
-[[deps.PaddedViews]]
-deps = ["OffsetArrays"]
-git-tree-sha1 = "0fac6313486baae819364c52b4f483450a9d793f"
-uuid = "5432bcbf-9aad-5242-b902-cca2824c8663"
-version = "0.5.12"
 
 [[deps.Parsers]]
 deps = ["Dates", "PrecompileTools", "UUIDs"]
@@ -386,12 +334,6 @@ git-tree-sha1 = "ffdaf70d81cf6ff22c2b6e733c900c3321cab864"
 uuid = "05181044-ff0b-4ac5-8273-598c1e38db00"
 version = "1.0.1"
 
-[[deps.Requires]]
-deps = ["UUIDs"]
-git-tree-sha1 = "838a3a4188e2ded87a4f9f184b4b0d78a1e91cb7"
-uuid = "ae029012-a4dd-5104-9daa-d747884805df"
-version = "1.3.0"
-
 [[deps.SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
 version = "0.7.0"
@@ -407,9 +349,9 @@ uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
 version = "1.11.0"
 
 [[deps.SimpleBufferStream]]
-git-tree-sha1 = "874e8867b33a00e784c8a7e4b60afe9e037b74e1"
+git-tree-sha1 = "f305871d2f381d21527c770d4788c06c097c9bc1"
 uuid = "777ac1f9-54b0-4bf8-805c-2214025038e7"
-version = "1.1.0"
+version = "1.2.0"
 
 [[deps.Sockets]]
 uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
@@ -419,12 +361,6 @@ version = "1.11.0"
 deps = ["Base64", "Libdl", "libsodium_jll"]
 git-tree-sha1 = "80cef67d2953e33935b41c6ab0a178b9987b1c99"
 uuid = "2133526b-2bfb-4018-ac12-889fb3908a75"
-version = "0.1.1"
-
-[[deps.StackViews]]
-deps = ["OffsetArrays"]
-git-tree-sha1 = "46e589465204cd0c08b4bd97385e4fa79a0c770c"
-uuid = "cae243ae-269e-4f55-b966-ac2d0dc13c15"
 version = "0.1.1"
 
 [[deps.Statistics]]
@@ -438,6 +374,12 @@ version = "1.11.1"
 
     [deps.Statistics.weakdeps]
     SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+
+[[deps.StructTypes]]
+deps = ["Dates", "UUIDs"]
+git-tree-sha1 = "159331b30e94d7b11379037feeb9b690950cace8"
+uuid = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
+version = "1.11.0"
 
 [[deps.TOML]]
 deps = ["Dates"]
@@ -461,12 +403,6 @@ deps = ["ArgTools", "SHA"]
 uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
 version = "1.10.0"
 
-[[deps.TensorCore]]
-deps = ["LinearAlgebra"]
-git-tree-sha1 = "1feb45f88d133a655e001435632f019a9a1bcdb6"
-uuid = "62fd8b95-f654-4bbd-a8a5-9c27f68ccd50"
-version = "0.1.1"
-
 [[deps.Test]]
 deps = ["InteractiveUtils", "Logging", "Random", "Serialization"]
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
@@ -479,9 +415,9 @@ uuid = "b189fb0b-2eb5-4ed4-bc0c-d34c51242431"
 version = "2.1.1"
 
 [[deps.TranscodingStreams]]
-git-tree-sha1 = "e84b3a11b9bece70d14cce63406bbc79ed3464d2"
+git-tree-sha1 = "0c45878dcfdcfa8480052b6ab162cdd138781742"
 uuid = "3bb67fe8-82b1-5028-8e26-92a6c54297fa"
-version = "0.11.2"
+version = "0.11.3"
 
 [[deps.URIs]]
 git-tree-sha1 = "67db6cc7b3821e19ebe75791a9dd19c9b1188f2b"
@@ -503,6 +439,12 @@ git-tree-sha1 = "30a1d631eb06e8c868c559599f915a62d55c2601"
 uuid = "eead4739-05f7-45a1-878c-cee36b57321c"
 version = "0.1.4"
 
+[[deps.XML]]
+deps = ["Mmap", "OrderedCollections"]
+git-tree-sha1 = "360c178fdee6816bcc9d436c6f324d582e84f1d1"
+uuid = "72c71f33-b9b6-44de-8c94-c961784809e2"
+version = "0.3.4"
+
 [[deps.Zlib_jll]]
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
@@ -515,9 +457,9 @@ version = "5.11.0+0"
 
 [[deps.libsodium_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
-git-tree-sha1 = "848ab3d00fe39d6fbc2a8641048f8f272af1c51e"
+git-tree-sha1 = "f76d682d87eefadd3f165d8d9fda436464213142"
 uuid = "a9144af2-ca23-56d9-984f-0d03f7b5ccf8"
-version = "1.0.20+0"
+version = "1.0.20+1"
 
 [[deps.nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]

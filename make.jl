@@ -1,26 +1,33 @@
+using Blog, Bonito, BonitoBlog
 using Blog
-using Blog: Video, asset
-using Bonito, ImageShow
-using Bonito: Link
-ENV["DATADEPS_ALWAYS_ACCEPT"] = true
-using TidierPlots, CairoMakie, DataFrames, PalmerPenguins
-using GLMakie, DataFrames
-penguins = dropmissing(DataFrame(PalmerPenguins.load()))
-# Blog.make("makie-news")
 
-using CairoMakie
-# rm(joinpath(Blog.site_path(), "jsserve"); recursive=true, force=true)
-Blog.make("v0.21")
-Blog.make("index")
+# Example usage
+blog_title = "Makie Blog"
+blog_link = "https://blog.makie.org"
+blog_description = "A Blog about anything new in the Makie world"
+rss_path = "rss.xml"
 
-# Blog.make("v0.19.7")
-# rm(joinpath(Blog.site_path(), "jsserve"); recursive=true, force=true)
-# Blog.make()
+function make(f, page_folder, destination)
+    routes = Routes()
+    folders = filter(isdir, readdir(page_folder; join=true))
+    entries = map(folders) do dir
+        dir = normpath(dir)
+        path = joinpath(dir, "post.xml")
+        return dir => BonitoBlog.from_xml(path)
+    end
+    sort!(entries; by=x -> x[2].date, rev=true)
+    for (dir, entry) in entries
+        page = BonitoBlog.MarkdownPage(dir)
+        routes[entry.link] = f(page)
+    end
+    routes["/"] = f(Bonito.Col(map(x-> x[2], entries)...))
+    Bonito.export_static(destination, routes)
+end
 
 
-# ## Replace
-# md_path = joinpath(@__DIR__, "src", "pages", "blogposts", "v0.21.md")
-# txt = read(md_path, String)
+rm(Blog.site_path("bonito"); recursive=true)
+make(Blog.Page, Blog.markdown(), Blog.site_path())
+
 
 # matchi = Base.eachmatch(r"https://hackmd\.io/_uploads/(.*?)\.png", txt)
 
@@ -31,25 +38,3 @@ Blog.make("index")
 # end
 # replace(txt, r"https://hackmd\.io/_uploads/(.*?)\.png" => "/images/$1.png")
 # write(md_path, txt)
-
-using Blog, Pkg
-foreach(reverse(["v0.16.md", "v0.18.md", "makiecon.md", "May-2023-News.md", "v0.19.7.md", "v0.19.9-12.md", "v0.20.md", "v0.21.md"])) do entry #==#
-    name, ext = splitext(basename(entry))
-    path = Blog.markdown(basename(entry))
-    backup = joinpath(dirname(path), "_" * name * ext)
-    isfile(path) && !isfile(backup) && cp(path, backup)
-    folder = joinpath(dirname(path), name)
-    !isdir(folder) && mkdir(folder)
-    Pkg.activate(folder)
-    # Pkg.develop(path=@__DIR__)
-    if startswith(name, "v")
-        if name == "v0.19.9-12"
-            name = "v0.19.12"
-        end
-        version = VersionNumber(name[2:end])
-        Pkg.add(name="Makie", version=string(version))
-        Pkg.add(name="GLMakie")
-        Pkg.add(name="WGLMakie")
-        Pkg.add(name="CairoMakie")
-    end
-end
