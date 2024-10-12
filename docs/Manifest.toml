@@ -33,9 +33,7 @@ version = "0.1.9"
 
 [[deps.Blog]]
 deps = ["Bonito", "BonitoSites"]
-git-tree-sha1 = "9937e5e792cef3158333993f69542d117f5fd5c0"
-repo-rev = "sd/env-blogpost"
-repo-url = ".."
+path = "C:\\Users\\sdani\\Programmieren\\SiteMakie\\dev\\Blog"
 uuid = "75363ec5-b184-4002-9572-26a7eb910f3c"
 version = "0.1.0"
 
@@ -49,7 +47,7 @@ version = "3.2.2"
 
 [[deps.BonitoSites]]
 deps = ["Bonito", "Dates", "Documenter", "GitHub", "Malt", "OpenAI", "XML"]
-git-tree-sha1 = "30adb910236bfcd209868f6936353a5cf182c60c"
+git-tree-sha1 = "16cdfa5e256dbb06520c0dd1094d935189a04708"
 repo-rev = "main"
 repo-url = "https://github.com/SimonDanisch/BonitoSites.jl"
 uuid = "8b3cd1a5-63d9-421b-9fde-46b64b830918"
