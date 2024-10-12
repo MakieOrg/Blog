@@ -28,6 +28,7 @@ build = Blog.site_path("build")
 isdir(build) && rm(build; recursive=true)
 make(Blog.Page, Blog.markdown(), build)
 
+
 BonitoSites.deploy(
     "github.com/MakieOrg/Blog.git";
     push_preview = true,
