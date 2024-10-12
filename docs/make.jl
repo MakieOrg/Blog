@@ -23,7 +23,8 @@ function make(f, page_folder, destination)
     sort!(entries; by=x -> x[2].date, rev=true)
     for (dir, entry) in entries
         page = BonitoSites.MarkdownPage(dir)
-        routes[entry.link] = App(f(page))
+        route = replace(entry.link, "./" => "")
+        routes[route] = App(f(page))
     end
     site_entries = map(x -> x[2], entries)
     routes["/"] = App(f(Bonito.Col(site_entries...)))
