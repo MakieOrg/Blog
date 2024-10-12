@@ -30,7 +30,7 @@ function make(f, page_folder, destination)
     routes["/"] = App(f(Bonito.Col(site_entries...)))
     Bonito.export_static(destination, routes)
     rss_path = joinpath(destination, "rss.xml")
-    BonitoSites.generate_rss_feed(site_entries, rss_path; title, link, description)
+    BonitoSites.generate_rss_feed(site_entries, rss_path; title, link, description, relative_path="./website/")
 end
 
 build = Blog.site_path("build")
