@@ -1,3 +1,11 @@
+using Pkg
+Pkg.activate(@__DIR__)
+pkg"add Bonito#sd/static-sites"
+Pkg.add(url="https://github.com/SimonDanisch/BonitoSites.jl")
+blog = normpath(joinpath(@__DIR__, ".."))
+Pkg.develop(PackageSpec(path=blog))
+Pkg.instantiate()
+
 using Blog, Bonito, BonitoSites
 
 title = "Makie Blog"
