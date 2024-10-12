@@ -27,7 +27,7 @@ end
 build = Blog.site_path("build")
 isdir(build) && rm(build; recursive=true)
 make(Blog.Page, Blog.markdown(), build)
-
+cp(Blog.assetpath("images"), Blog.site_path("build", "images"))
 
 BonitoSites.deploy(
     "github.com/MakieOrg/Blog.git";
