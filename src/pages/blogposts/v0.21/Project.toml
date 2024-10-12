@@ -1,0 +1,8 @@
+[deps]
+Bonito = "824d6782-a2ef-11e9-3a09-e5662e0c26f8"
+BonitoSites = "8b3cd1a5-63d9-421b-9fde-46b64b830918"
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
+WGLMakie = "276b4fcb-3e11-5398-bf8b-a0c2d153d008"
