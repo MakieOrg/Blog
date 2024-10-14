@@ -44,17 +44,3 @@ BonitoSites.deploy(
     devbranch = "master",
     devurl = "website"
 )
-
-# using Pkg
-# folders = filter(isdir, readdir(Blog.markdown(); join=true))
-# for dir in folders
-#     dir = normpath(dir)
-#     path = joinpath(dir, "Project.toml")
-#     if isfile(path)
-#         try
-#             Pkg.activate(dir)
-#             pkg"add Bonito#sd/static-sites https://github.com/SimonDanisch/BonitoSites.jl"
-#         catch e
-#         end
-#     end
-# end
