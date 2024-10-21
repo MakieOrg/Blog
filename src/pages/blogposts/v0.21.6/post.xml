@@ -1,0 +1,9 @@
+<item>
+  <title>v0.21.6</title>
+  <link>blogposts/v0.21.6</link>
+  <description>Enhancements in Makie: Resolving projection and method ambiguity issues, improving documentation navigation, and introducing the `uv_transform` attribute for advanced texture handling.</description>
+  <pubDate>Mon, 21 Oct 2024 17:39:18</pubDate>
+  <image>
+    <url>images/img1.png</url>
+  </image>
+</item>
