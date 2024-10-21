@@ -24,13 +24,14 @@ function make(f, page_folder, destination)
     for (dir, entry) in entries
         page = BonitoSites.MarkdownPage(dir)
         route = replace(entry.link, "./" => "")
-        routes[route] = App(f(page))
+        routes[route] = Bonito.App(f(page))
     end
     site_entries = map(x -> x[2], entries)
-    routes["/"] = App(f(Bonito.Col(site_entries...)))
+    routes["/"] = Bonito.App(f(Bonito.Col(site_entries...)))
     Bonito.export_static(destination, routes)
     rss_path = joinpath(destination, "rss.xml")
     BonitoSites.generate_rss_feed(site_entries, rss_path; title, link, description, relative_path="./website/")
+
 end
 
 build = Blog.site_path("build")
