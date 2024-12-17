@@ -6,7 +6,7 @@ The largest part of this release is a refactor of GeoemtryBasics. The main goal 
 
 ![benchmark](https://gist.githubusercontent.com/MakieBot/acb50b133a32f9e1958696b81c662d07/raw/GLMakie.svg)
 
-### `meta` Removal
+### Removed meta
 
 We removed the `meta` infrastructure used for per-vertex and per-face data in GeometryBasics. It generated a lot of type complexity, which you may have noticed before if you looked at the full type of a mesh. Instead a `GeometryBasics.Mesh` now simply holds a `NamedTuple` of array-like data, called `vertex_attributes`. Each array is interpreted as per-vertex data.
 
@@ -17,6 +17,7 @@ A (raw) GeometryBasics mesh is now constructed as:
 new_mesh = GeometryBasics.mesh(positions, faces, normal = normals, uv = uvs)
 ```
 Note as well that `normals` is now called `normal` to match `uv`
+
 ### FaceView
 
 For per-face data, or more generally data which uses a different set of indices from other vertex attributes, we introduced the `Faceview` object. It contains some data and a vector of faces which replaces the meshes faces to index the data.
@@ -32,6 +33,7 @@ Mesh{3, Float32, QuadFace{Int64}}
 ```
 The mesh has a different number of positions and normals. If we investigate further, we find that normals are represented by a `FaceView`.
 ```julia
+# no-eval
 julia> m.normal
 FaceView{Vec{3, Float32}, Vector{Vec{3, Float32}}, Vector{QuadFace{Int64}}}:
  [-1.0, 0.0, 0.0]
@@ -95,9 +97,6 @@ Note that Makie can currently only handle a very limited subset of the material 
 
 ![sponza](https://gist.github.com/user-attachments/assets/af1bd4d2-59aa-440f-b29f-13c83fd751dc)
 
-### Changelog
-
-See https://github.com/JuliaGeometry/GeometryBasics.jl/releases/tag/v0.5.0
 ## Axis3 Controls
 
 With version 0.22 we have introduced a few new controls to Axis3:
@@ -120,13 +119,13 @@ You can center the Axis3 on the data under the cursor by pressing left alt and t
 
 ## Smaller Changes
 
-### Scatter `marker_offset`
+### Scatter marker_offset behaviour change
 
 In previous versions `marker_offset` was used to center scatter markers, but it could also be set by the user to specify some other offset. This was somewhat confusing as `marker_offset = Vec2f(0)` did not result in a centered marker. It also did not work with `BezierPath` markers, which have become the default.
 
 In this release we separated the centering into an internal attribute, so that `marker_offset` is a pure user attribute. With this `marker_offset = 0` now results in the same centered marker as not specifying it would. It also now works consistently for all marker types and is no longer affected by the `rotation` attribute.
 
-### MeshScatter `transform_marker`
+### MeshScatter transform_marker
 
 `Scatter` has a `transform_marker::Bool` attribute which controls whether the model matrix (i.e. `translate!()`, `rotate!()`, `zoom!()`) affects the marker. `MeshScatter` now also has this attribute. It is set to `false` by default, which changes the behaviour from the previous version. Most notably this will affect the shape of meshscatter objects in an Axis3. Where previously they were scaled based on the limits of the Axis they now preserve their shape and size.
 
@@ -138,12 +137,16 @@ The second is the `scatter` pipeline. It was previously built with `markerspace 
 
 ## [Fullbox](https://github.com/MakieOrg/Makie.jl/pull/4305)
 
-Introduces an option to close an Axis3's outline box with a new `fullbox` feature, enhancing the visualization of 3D plots by drawing the box spines in front. ![example](./images/img1.png)
+Introduces an option to close an Axis3's outline box with a new `fullbox` feature, enhancing the visualization of 3D plots by drawing the box spines in front.
 
-## [Enable curvilinear `contour` plots](https://github.com/MakieOrg/Makie.jl/pull/4670)
+![example](./images/img1.png)
 
-Curvilinear contour plots are enabled using Contour.jl's capabilities, now supporting grids for more flexible contour visualizations. ![Curvilinear Contour Plot Example](./images/img2.png)
+## [Enable curvilinear contour plots](https://github.com/MakieOrg/Makie.jl/pull/4670)
 
-## [`empty!` the GLMakie screen for reuse instead of `close`ing and reopening](https://github.com/MakieOrg/Makie.jl/pull/3881)
+Curvilinear contour plots are enabled using Contour.jl's capabilities, now supporting grids for more flexible contour visualizations.
+
+![Curvilinear Contour Plot Example](./images/img2.png)
+
+## [Fix Screen re-opening issue](https://github.com/MakieOrg/Makie.jl/pull/3881)
 
 Implements screen reusability by using `empty!` instead of closing and reopening, solving a window behavior issue on Linux when reusing GLMakie's singleton screen.
