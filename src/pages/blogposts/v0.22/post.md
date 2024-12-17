@@ -142,6 +142,7 @@ The second is the `scatter` pipeline. It was previously built with `markerspace 
 Introduces an option to close an Axis3's outline box with a new `front_spines` feature, enhancing the visualization of 3D plots by drawing the box spines in front.
 
 ```julia
+# no-eval
 using GLMakie, FileIO
 
 fig = Figure()
@@ -164,3 +165,67 @@ Curvilinear contour plots are enabled using Contour.jl's capabilities, now suppo
 ## [Fix Screen re-opening issue](https://github.com/MakieOrg/Makie.jl/pull/3881)
 
 Implements screen reusability by using `empty!` instead of closing and reopening, solving a window behavior issue on Linux when reusing GLMakie's singleton screen.
+
+
+
+## Backlog - picking ([#4082](https://github.com/MakieOrg/Makie.jl/pull/4082), [#4136](https://github.com/MakieOrg/Makie.jl/pull/4136), [#4137](https://github.com/MakieOrg/Makie.jl/pull/4137), [#4459](https://github.com/MakieOrg/Makie.jl/pull/4459), [#4488](https://github.com/MakieOrg/Makie.jl/pull/4488), [#4604](https://github.com/MakieOrg/Makie.jl/pull/4604))
+
+Since the last breaking release we had a bunch of fixes for picking in WGMakie and  GLMakie.
+We added tests and also updated the indices produced by image, heatmap and surface to correspond to the matrix indices of the given data.
+
+## Backlog - [Tick Event](https://github.com/MakieOrg/Makie.jl/pull/3948)
+
+In version 0.21.6 we introduced a `events(fig).tick` event.
+The event triggers once per frame in GLMakie, CairoMakie and `record()`, and on a timer in WGLMakie.
+It can be used for anything that should happen synchronized with rendering, e.g. animation.
+The tick event contains the number of frames rendered `tick.count`, the time since rendering started `tick.time` and the time since the last tick `tick.delta_time`.
+
+## Backlog - [uv_transform](https://github.com/MakieOrg/Makie.jl/pull/1406)
+
+In version 0.21.6 we added the `uv_transform` attribute to `image`, `surface`, `mesh` and `meshscatter`.
+It acts as a transformation matrix on texture coordinates similar to how model transforms coordinates.
+The attribute accept 2x3 and 3x3 matrices (which will get truncated to 2x3), a `Symbol` for named transformations, `LinearAlgebra.I`, a `Vec2f` representing scaling, a `Tuple{Vec2f, Vec2f}` representing translation and scaling or a tuple of the containing multiple operations which will get chained (last operation applies first).
+See `?Makie.uv_transform` for more information.
+
+```julia
+# no-eval
+using LinearAlgebra, GeometryBasics, FileIO, GLMakie, ColorSchemes
+
+cow = load(assetpath("cow.png"))
+f = Figure()
+image(f[1, 1], cow, uv_transform = :transpose)
+
+meshscatter(
+    f[2, 1],
+    [Point2f(x, y) for x in 1:10 for y in 10:-1:1],
+    color = cow,   # first (translate, scale), then :transpose
+    uv_transform = [(:transpose, (Vec2f(x, y), Vec2f(0.1, 0.1))) for x in 0.0:0.1:0.9 for y in 0.0:0.1:0.9],
+    markersize = Vec3f(0.9, 0.85, 1),
+    marker = uv_normal_mesh(Rect2f(-0.5, -0.5, 1, 1))
+)
+
+texture = reshape(get(colorschemes[:Spectral_11], 0:0.01:1), 101, 1)
+
+# create fitting mesh
+r = Rect3f(Point3f(-0.5, -0.5, 0), Vec3f(1, 1, 1))
+uvs = [Vec2f(p[3], 0) for p in coordinates(r)]
+rect_mesh = GeometryBasics.mesh(r, normal = normals(r), uv = uvs)
+
+z = rand(10,10)
+meshscatter(
+    f[1:2, 2], [Point3f(i, j, 0) for i in 1:10 for j in 1:10],
+    markersize = Vec3f.(1, 1, 10z[:]),
+    uv_transform = Vec2f.(z[:], 1), # scale only
+    marker = rect_mesh, color = texture, shading = NoShading
+)
+
+f
+```
+
+![example](./images/uv-transform.png)
+
+## Backlog - [Line Loops](https://github.com/MakieOrg/Makie.jl/pull/3907)
+
+After reworking our line shaders in 0.21 we added code for rendering closed line loops in version 0.21.4.
+If the start and end point of a line is the same and it has at least 4 points, it is detected as a loop.
+In that case the line doesn't draw a linecap at the start and end point, but instead another joint, closing the loop.
