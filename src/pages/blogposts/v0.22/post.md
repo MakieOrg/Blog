@@ -1,6 +1,6 @@
 # Makie v0.22
 
-## GeometryBasics 0.5
+## GeometryBasics 0.5 ([GeometryBasics#173](https://github.com/JuliaGeometry/GeometryBasics.jl/pull/173), [GeometryBasics#219](https://github.com/JuliaGeometry/GeometryBasics.jl/pull/219), [#4319](https://github.com/MakieOrg/Makie.jl/pull/4319))
 
 The largest part of this release is a refactor of GeometryBasics.
 The main goal was to simplify the package, both from a user perspective and a compiler perspective. Even if you don't interact with GeometryBasics directly you should see some improvements to ttfp (specifically using and first display time).
@@ -71,7 +71,7 @@ To combine the per-face normals with positions, our mesh requires 3 copies of ea
 
 Note that we also added a convenience function `face_normals(points, faces)` to GeometryBasics to generate a `FaceView` for per-face normals. In the docs you can also find an example of how to use `FaceView` to set per-face colors.
 
-### MetaMesh & MeshIO
+### MetaMesh & MeshIO ([MeshIO#98](https://github.com/JuliaIO/MeshIO.jl/pull/98), [#4368](https://github.com/MakieOrg/Makie.jl/pull/4368), [#4496](https://github.com/MakieOrg/Makie.jl/pull/4496))
 
 We have introduced a `MetaMesh` type, which allows you to bundle arbitrary data with a `GeometryBasics.Mesh`. Any data (that does not correspond to vertices or faces) can be shipped with this type. It is now used by MeshIO when loading an `obj` file that includes a material template library (i.e. an .mtl file).
 ```julia
@@ -99,7 +99,7 @@ Note that Makie can currently only handle a very limited subset of the material 
 
 ![sponza](https://gist.github.com/user-attachments/assets/af1bd4d2-59aa-440f-b29f-13c83fd751dc)
 
-## Axis3 Controls
+## [Axis3 Controls](https://github.com/MakieOrg/Makie.jl/pull/4131)
 
 With version 0.22 we have introduced a few new controls to Axis3:
 
@@ -121,17 +121,17 @@ You can center the Axis3 on the data under the cursor by pressing left alt and t
 
 ## Smaller Changes
 
-### Scatter marker_offset behavior change
+### [Scatter marker_offset behavior change](https://github.com/MakieOrg/Makie.jl/pull/4594)
 
 In previous versions `marker_offset` was used to center scatter markers, but it could also be set by the user to specify some other offset. This was somewhat confusing as `marker_offset = Vec2f(0)` did not result in a centered marker. It also did not work with `BezierPath` markers, which have become the default.
 
 In this release we separated the centering into an internal attribute, so that `marker_offset` is a pure user attribute. With this `marker_offset = 0` now results in the same centered marker as not specifying it would. It also now works consistently for all marker types and is no longer affected by the `rotation` attribute.
 
-### MeshScatter transform_marker
+### [MeshScatter transform_marker](https://github.com/MakieOrg/Makie.jl/pull/4606)
 
 `Scatter` has a `transform_marker::Bool` attribute which controls whether the model matrix (i.e. `translate!()`, `rotate!()`, `zoom!()`) affects the marker. `MeshScatter` now also has this attribute. It is set to `false` by default, which changes the behavior from the previous version. Most notably this will affect the shape of meshscatter objects in an Axis3. Where previously they were scaled based on the limits of the Axis they now preserve their shape and size.
 
-### CairoMakie
+### CairoMakie ([#4606](https://github.com/MakieOrg/Makie.jl/pull/4606), [#4663](https://github.com/MakieOrg/Makie.jl/pull/4663))
 
 We have cleaned up two rendering pipelines in CairoMakie. The first is the meshscatter/voxel/surface/mesh pipeline. It previously handled transformations incorrectly, always applying transform_func and model to (generated) mesh vertices. This is correct for `mesh` and `surface` but not `meshscatter` and `voxel`. It also didn't allow for meshes without normals.
 
