@@ -1,3 +1,5 @@
+# Makie v0.21.17
+
 ### [Add second example to "boxes around subfigures how-to page"](https://github.com/MakieOrg/Makie.jl/pull/4578)
 An additional example has been added to the "boxes around subfigures" how-to page to enhance the documentation.
 
