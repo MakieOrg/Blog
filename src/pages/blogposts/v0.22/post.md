@@ -135,11 +135,23 @@ We have cleaned up two rendering pipelines in CairoMakie. The first is the meshs
 
 The second is the `scatter` pipeline. It was previously built with `markerspace = :pixel` in mind, which caused various rendering issues when `markerspace != :pixel`, `transform_marker != false` and/or `rotation` was involved. These issues include silent corruption of Cairo state which causes no more plots to be drawn. These issues have now been resolved and you should get the same results from CairoMakie as you get from GLMakie and WGLMakie when these attributes are involved. (Up to some smaller differences due to perspective projection in 3D.)
 
-## [Fullbox](https://github.com/MakieOrg/Makie.jl/pull/4305)
+## [Front Spines in Axis3](https://github.com/MakieOrg/Makie.jl/pull/4305)
 
-Introduces an option to close an Axis3's outline box with a new `fullbox` feature, enhancing the visualization of 3D plots by drawing the box spines in front.
+Introduces an option to close an Axis3's outline box with a new `front_spines` feature, enhancing the visualization of 3D plots by drawing the box spines in front.
 
-![example](./images/img1.png)
+```julia
+using GLMakie, FileIO
+
+fig = Figure()
+brain = load(assetpath("brain.stl"))
+ax = Axis3(fig[1, 1], front_spines = true) # see also x/y/zspinecolor_4
+
+mesh!(ax, brain, color = :gray80)
+
+fig
+```
+
+![example](./images/fullbox.png)
 
 ## [Enable curvilinear contour plots](https://github.com/MakieOrg/Makie.jl/pull/4670)
 
