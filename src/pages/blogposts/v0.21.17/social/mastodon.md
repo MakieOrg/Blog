@@ -1,0 +1,1 @@
+Explore enhanced functionality in Makie.jl: 3D plotting with corrected z-sorting, improved performance of line projections, and error fixes for CairoMakie rendering issues.
