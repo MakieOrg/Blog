@@ -12,6 +12,7 @@ We removed the `meta` infrastructure used for per-vertex and per-face data in Ge
 
 A (raw) GeometryBasics mesh is now constructed as:
 ```julia
+# no-eval
 # old_mesh = GeometryBasics.mesh(meta(positions, normals = normals, uv = uvs), faces)
 new_mesh = GeometryBasics.mesh(positions, faces, normal = normals, uv = uvs)
 ```
@@ -22,6 +23,7 @@ For per-face data, or more generally data which uses a different set of indices 
 
 As an example let's look at the mesh generated for `Rect3f`, which wants per-face normals to avoid smooth shading across it's edges and corners. (`facetype` is only set to shorten the output a bit.)
 ```julia
+# no-eval
 julia> m = normal_mesh(Rect(0,0,0, 1,1,1), facetype = QuadFace{Int64})
 Mesh{3, Float32, QuadFace{Int64}}
     faces: 6
@@ -41,6 +43,7 @@ FaceView{Vec{3, Float32}, Vector{Vec{3, Float32}}, Vector{QuadFace{Int64}}}:
 ```
 The `FaceView` contains 6 normal vectors as data, which is shown above. The number of normals the mesh reports refers to them. The FaceView also contains 6 faces, which correspond to the 6 faces in the mesh.
 ```julia
+# no-eval
 julia> m.normal.faces
 6-element Vector{QuadFace{Int64}}:
  QuadFace{Int64}(1, 1, 1, 1)
@@ -54,6 +57,7 @@ Each of these faces refers to just one index in `m.normal.data`, making that dat
 
 You can convert a mesh with `FaceView`s to one without by calling `expand_faceviews(mesh)`. This will directly return the mesh if it does not contain FaceViews. Otherwise it will build a new mesh without them, remapping indices and separating faces as needed.
 ```julia
+# no-eval
 julia> expand_faceviews(m)
 Mesh{3, Float32, QuadFace{Int64}}
     faces: 6
@@ -67,6 +71,7 @@ Note that we also added a convenience function `face_normals(points, faces)` to 
 
 We have introduced a `MetaMesh` type, which allows you to bundle arbitrary data with a `GeometryBasics.Mesh`. Any data (that does not correspond to vertices or faces) can be shipped with this type. It is now used by MeshIO when loading an `obj` file that includes a material template library (i.e. an .mtl file).
 ```julia
+# no-eval
 julia> using FileIO, Makie
 julia> m = load(Makie.assetpath("sponza/sponza.obj"))
 MetaMesh{3, Float32, NgonFace{3, OffsetInteger{-1, UInt32}}}
@@ -79,6 +84,7 @@ The material data ends up in `m[:materials]` as a nested `Dict`, where the first
 
 Makie can directly plot a `MetaMesh` as it is constructed by `MeshIO`, applying the material properties it knows how to handle. This includes textures referred to by the mtl file.
 ```julia
+# no-eval
 using FileIO, GLMakie
 m = load(Makie.assetpath("sponza/sponza.obj"))
 f,a,p = Makie.mesh(m)
