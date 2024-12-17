@@ -148,19 +148,26 @@ using GLMakie, FileIO
 fig = Figure()
 brain = load(assetpath("brain.stl"))
 ax = Axis3(fig[1, 1], front_spines = true) # see also x/y/zspinecolor_4
-
 mesh!(ax, brain, color = :gray80)
-
 fig
 ```
 
-![example](./images/fullbox.png)
-
 ## [Enable curvilinear contour plots](https://github.com/MakieOrg/Makie.jl/pull/4670)
 
-Curvilinear contour plots are enabled using Contour.jl's capabilities, now supporting grids for more flexible contour visualizations.
-
-![Curvilinear Contour Plot Example](./images/img2.png)
+Curvilinear contour plots are enabled using Contour.jl's capabilities, now supporting grids for more flexible contour visualizations:
+```julia
+using GLMakie
+x = -10:10
+y = -10:10
+# The curvilinear grid:
+xs = [x + 0.01y^3 for x in x, y in y]
+ys = [y + 10cos(x/40) for x in x, y in y]
+zs = sqrt.(xs .^ 2 .+ (ys .- 10) .^ 2)
+levels = 0:4:20
+fig, ax, srf = surface(xs, ys, fill(0f0, size(zs)); color=zs, shading = NoShading, axis = (; type = Axis, aspect = DataAspect()))
+ctr = contour!(ax, xs, ys, zs; color = :orange, levels = levels, labels = true, labelfont = :bold, labelsize = 12)
+fig
+```
 
 ## [Fix Screen re-opening issue](https://github.com/MakieOrg/Makie.jl/pull/3881)
 
