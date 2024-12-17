@@ -1,0 +1,1 @@
+Explore Makie.jl 0.22's breaking changes: enhanced rendering, curvilinear contour plots, and `fullbox` feature for improved 3D visuals.
