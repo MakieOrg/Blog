@@ -33,11 +33,13 @@ function make(f, page_folder, destination)
     BonitoSites.generate_rss_feed(site_entries, rss_path; title, link, description, relative_path="./website/")
 end
 
+##
 build = Blog.site_path("build")
 isdir(build) && rm(build; recursive=true)
 make(Blog.Page, Blog.markdown(), build)
 cp(Blog.assetpath("images"), Blog.site_path("build", "images"))
 
+##
 BonitoSites.deploy(
     "github.com/MakieOrg/Blog.git";
     push_preview = true,
