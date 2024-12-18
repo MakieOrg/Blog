@@ -14,7 +14,7 @@
     </div>
   </head>
   <body data-jscall-id="7">
-    <script type="module">Bonito.lock_loading(() => Bonito.init_session('a84672c7-ac3f-4c11-924a-9819c3fde7cc', null, 'root'))</script>
+    <script type="module">Bonito.lock_loading(() => Bonito.init_session('04102c71-c131-4a5d-8188-f511e28f484c', null, 'root'))</script>
     <div data-jscall-id="8">
       <a href="/" data-jscall-id="9">
         <img data-jscall-id="10" src="../../bonito/png/bannermesh_gradient10002001459189426229.png" width="100%" />
@@ -234,24 +234,24 @@ update_cam&#33;&#40;a.scene, Vec3f&#40;-15, 7, 1&#41;, Vec3f&#40;3, 5, 0&#41;, V
               </p>
               <table data-jscall-id="149">
                 <tr data-jscall-id="150">
-                  <th data-jscall-id="151" align="right">
+                  <th data-jscall-id="151" align="center">
                     <strong data-jscall-id="152">GLMakie</strong>
                   </th>
-                  <th data-jscall-id="153" align="right">
+                  <th data-jscall-id="153" align="center">
                     <strong data-jscall-id="154">CairoMakie before</strong>
                   </th>
-                  <th data-jscall-id="155" align="right">
+                  <th data-jscall-id="155" align="center">
                     <strong data-jscall-id="156">CairoMakie after</strong>
                   </th>
                 </tr>
                 <tr data-jscall-id="157">
-                  <td data-jscall-id="158" align="right">
+                  <td data-jscall-id="158" align="center">
                     <img alt="GLMakie" data-jscall-id="159" src="../../bonito/png/GLMakie_transform_marker15594842360273442278.png" />
                   </td>
-                  <td data-jscall-id="160" align="right">
+                  <td data-jscall-id="160" align="center">
                     <img alt="CairoMakie before" data-jscall-id="161" src="../../bonito/png/CairoMakie_transform_marker_before17499417893629454440.png" />
                   </td>
-                  <td data-jscall-id="162" align="right">
+                  <td data-jscall-id="162" align="center">
                     <img alt="CairoMakie after" data-jscall-id="163" src="../../bonito/png/CairoMakie_transform_marker_after10903051031105726376.png" />
                   </td>
                 </tr>
@@ -308,42 +308,60 @@ fig</code>
               <p data-jscall-id="188">
                 <a href="https://github.com/MakieOrg/Makie.jl/pull/3881" data-jscall-id="189">#3881</a>
               </p>
-              <h3 id="Picking Improvements" data-jscall-id="190">Picking Improvements</h3>
-              <p data-jscall-id="191">Since the last breaking release, we had a bunch of fixes for picking in WGMakie and GLMakie. We added tests and also updated the indices produced by image, heatmap, and surface to correspond to the matrix indices of the given data.</p>
-              <p data-jscall-id="192">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4082" data-jscall-id="193">#4082</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4136" data-jscall-id="194">#4136</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4137" data-jscall-id="195">#4137</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4459" data-jscall-id="196">#4459</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4488" data-jscall-id="197">#4488</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4604" data-jscall-id="198">#4604</a>
+              <h3 id="Toggle Rotation" data-jscall-id="190">Toggle Rotation</h3>
+              <p data-jscall-id="191">Version 0.21.17 added the ability to rotate 
+                <code data-jscall-id="192">Toggle</code> blocks using the 
+                <code data-jscall-id="193">orientation</code> attribute.
               </p>
-              <h3 id="Tick Event" data-jscall-id="199">Tick Event</h3>
-              <p data-jscall-id="200">In version 0.21.6, we introduced a 
-                <code data-jscall-id="201">events&#40;fig&#41;.tick</code> event. The event triggers once per frame in GLMakie, CairoMakie, and 
-                <code data-jscall-id="202">record&#40;&#41;</code>, and on a timer in WGLMakie. It can be used for anything that should happen synchronized with rendering, e.g., animation. The tick event contains the number of frames rendered 
-                <code data-jscall-id="203">tick.count</code>, the time since rendering started 
-                <code data-jscall-id="204">tick.time</code>, and the time since the last tick 
-                <code data-jscall-id="205">tick.delta_time</code>.
+              <div class="markdown-body" data-jscall-id="194">
+                <pre data-jscall-id="195">
+                  <code class="language-julia" data-jscall-id="196">using GLMakie
+f &#61; Figure&#40;size &#61; &#40;400, 100&#41;&#41;
+Toggle&#40;f&#91;1, 1&#93;, orientation &#61; :horizontal&#41; # default
+Toggle&#40;f&#91;1, 2&#93;, orientation &#61; :vertical&#41;
+for i in 3:8
+    Toggle&#40;f&#91;1, i&#93;, orientation &#61; &#40;i-2&#41; * 2pi/7&#41;
+end
+f</code>
+                </pre>
+                <img data-jscall-id="197" src="../../bonito/png/cell_output_317419269381185457289.png" />
+              </div>
+              <h3 id="Picking Improvements" data-jscall-id="198">Picking Improvements</h3>
+              <p data-jscall-id="199">Since the last breaking release we merged a bunch of fixes for picking in WGMakie and GLMakie. We added tests and also updated the indices produced for image, heatmap and surface plots to correspond to the matrix indices of the given data.</p>
+              <p data-jscall-id="200">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4082" data-jscall-id="201">#4082</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4136" data-jscall-id="202">#4136</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4137" data-jscall-id="203">#4137</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4459" data-jscall-id="204">#4459</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4488" data-jscall-id="205">#4488</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4604" data-jscall-id="206">#4604</a>
               </p>
-              <p data-jscall-id="206">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/3948" data-jscall-id="207">#3948</a>
+              <h3 id="Tick Event" data-jscall-id="207">Tick Event</h3>
+              <p data-jscall-id="208">In version 0.21.6 we introduced 
+                <code data-jscall-id="209">events&#40;fig&#41;.tick</code>. The event triggers once per frame in GLMakie, CairoMakie, and 
+                <code data-jscall-id="210">record&#40;&#41;</code>, and on a timer in WGLMakie. It can be used for anything that should happen synchronized with rendering, e.g., animation. The tick event contains the number of frames rendered 
+                <code data-jscall-id="211">tick.count</code>, the time since rendering started 
+                <code data-jscall-id="212">tick.time</code>, and the time since the last tick 
+                <code data-jscall-id="213">tick.delta_time</code>.
               </p>
-              <h3 id="uv_transform" data-jscall-id="208">uv_transform</h3>
-              <p data-jscall-id="209">In version 0.21.6, we added the 
-                <code data-jscall-id="210">uv_transform</code> attribute to 
-                <code data-jscall-id="211">image</code>, 
-                <code data-jscall-id="212">surface</code>, 
-                <code data-jscall-id="213">mesh</code>, and 
-                <code data-jscall-id="214">meshscatter</code>. It acts as a transformation matrix on texture coordinates similar to how model transforms coordinates. The attribute accepts 2x3 and 3x3 matrices &#40;which will get truncated to 2x3&#41;, a 
-                <code data-jscall-id="215">Symbol</code> for named transformations, 
-                <code data-jscall-id="216">LinearAlgebra.I</code>, a 
-                <code data-jscall-id="217">Vec2f</code> representing scaling, a 
-                <code data-jscall-id="218">Tuple&#123;Vec2f, Vec2f&#125;</code> representing translation and scaling, or a tuple containing multiple operations which will get chained &#40;last operation applies first&#41;. See 
-                <code data-jscall-id="219">?Makie.uv_transform</code> for more information.
+              <p data-jscall-id="214">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3948" data-jscall-id="215">#3948</a>
               </p>
-              <pre data-jscall-id="220">
-                <code class="language-julia" data-jscall-id="221">
+              <h3 id="uv_transform" data-jscall-id="216">uv_transform</h3>
+              <p data-jscall-id="217">In version 0.21.6 we added the 
+                <code data-jscall-id="218">uv_transform</code> attribute to 
+                <code data-jscall-id="219">image</code>, 
+                <code data-jscall-id="220">surface</code>, 
+                <code data-jscall-id="221">mesh</code>, and 
+                <code data-jscall-id="222">meshscatter</code>. It acts as a transformation matrix on texture coordinates similar to how model transforms coordinates. The attribute accepts 2x3 and 3x3 matrices &#40;which will get truncated to 2x3&#41;, a 
+                <code data-jscall-id="223">Symbol</code> for named transformations, 
+                <code data-jscall-id="224">LinearAlgebra.I</code>, a 
+                <code data-jscall-id="225">Vec2f</code> representing scaling, a 
+                <code data-jscall-id="226">Tuple&#123;Vec2f, Vec2f&#125;</code> representing translation and scaling, or a tuple containing multiple operations which will get chained &#40;last operation applies first&#41;. See 
+                <code data-jscall-id="227">?Makie.uv_transform</code> for more information.
+              </p>
+              <pre data-jscall-id="228">
+                <code class="language-julia" data-jscall-id="229">
 using LinearAlgebra, GeometryBasics, FileIO, GLMakie, ColorSchemes
 
 cow &#61; load&#40;assetpath&#40;&#34;cow.png&#34;&#41;&#41;
@@ -374,27 +392,58 @@ meshscatter&#40;
 &#41;
 f</code>
               </pre>
-              <p data-jscall-id="222">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/1406" data-jscall-id="223">#1406</a>
+              <p data-jscall-id="230">
+                <img alt="uv_transform0" data-jscall-id="231" src="../../bonito/png/uv-transform2377058446562819010.png" />
               </p>
-              <h3 id="Line Loops" data-jscall-id="224">Line Loops</h3>
-              <p data-jscall-id="225">After reworking our line shaders in 0.21, we added code for rendering closed line loops in version 0.21.4. If the start and end point of a line is the same and it has at least 4 points, it is detected as a loop. In that case, the line doesn&#39;t draw a linecap at the start and end point, but instead another joint, closing the loop.</p>
-              <p data-jscall-id="226">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/3907" data-jscall-id="227">#3907</a>
+              <p data-jscall-id="232">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/1406" data-jscall-id="233">#1406</a>
+              </p>
+              <h3 id="Pie Position and Radial Offsets" data-jscall-id="234">Pie Position and Radial Offsets</h3>
+              <p data-jscall-id="235">In version 0.21.6 an optional position argument and the 
+                <code data-jscall-id="236">offset_radius</code> attribute were added to pie plots. The position argument can be used to translate the whole plot or each sector individually and the 
+                <code data-jscall-id="237">offset radius</code> can be used to translate sectors along radial direction.
+              </p>
+              <div class="markdown-body" data-jscall-id="238">
+                <pre data-jscall-id="239">
+                  <code class="language-julia" data-jscall-id="240">fig &#61; Figure&#40;size &#61; &#40;400, 400&#41;&#41;
+ax &#61; Axis&#40;fig&#91;1, 1&#93;; autolimitaspect&#61;1&#41;
+
+vs &#61; cumsum&#40;4:10&#41; ./ 35
+off &#61; &#91;0, 0.3, 0, 0, 0.2, 0.0, 0.0&#93;
+cs &#61; Makie.wong_colors&#40;&#41;
+
+pie&#33;&#40;ax, vs; color&#61;cs, normalize&#61;false&#41;
+pie&#33;&#40;ax, Point2f&#40;2.5, 0&#41;, vs; color&#61;cs, offset_radius&#61;off, normalize&#61;false, offset&#61;π/2&#41;
+pie&#33;&#40;ax, 0, -2.5, vs; color&#61;cs, normalize&#61;false, offset&#61;π/2, inner_radius&#61;0.3&#41;
+xs &#61;  2.5 .&#43; &#91;0.0, 0.0, -0.2, -0.2, -0.2,  0.0, 0.2&#93;
+ys &#61; -2.5 .&#43; &#91;0.2, 0.2,  0.2,  0.0,  0.0, -0.2, 0.0&#93;
+pie&#33;&#40;ax, xs, ys, vs; color&#61;cs, normalize&#61;false, offset&#61;π/2, inner_radius&#61;0.3&#41;
+
+fig</code>
+                </pre>
+                <img data-jscall-id="241" src="../../bonito/png/cell_output_414323222314388686459.png" />
+              </div>
+              <p data-jscall-id="242">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4027" data-jscall-id="243">#4027</a>
+              </p>
+              <h3 id="Line Loops" data-jscall-id="244">Line Loops</h3>
+              <p data-jscall-id="245">After reworking our line shaders in 0.21, we added code for rendering closed line loops in version 0.21.4. If the start and end point of a line is the same and it has at least 4 points, it is detected as a loop. In that case, the line doesn&#39;t draw a linecap at the start and end point, but instead another joint, closing the loop.</p>
+              <p data-jscall-id="246">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3907" data-jscall-id="247">#3907</a>
               </p>
             </div>
-            <div data-jscall-id="228">
-              <script data-jscall-id="229" src="../../bonito/js/highlight.pack13102628173626074447.js"></script>
-              <script data-jscall-id="230">hljs.highlightAll()</script>
+            <div data-jscall-id="248">
+              <script data-jscall-id="249" src="../../bonito/js/highlight.pack13102628173626074447.js"></script>
+              <script data-jscall-id="250">hljs.highlightAll()</script>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div data-jscall-id="231">
-      <script async="true" defer="true" data-jscall-id="232" src="https://api.makie.org/latest.js"></script>
-      <noscript data-jscall-id="233">
-        <img alt="" data-jscall-id="234" src="https://api.makie.org/noscript.gif" referrerpolicy="no-referrer-when-downgrade" />
+    <div data-jscall-id="251">
+      <script async="true" defer="true" data-jscall-id="252" src="https://api.makie.org/latest.js"></script>
+      <noscript data-jscall-id="253">
+        <img alt="" data-jscall-id="254" src="https://api.makie.org/noscript.gif" referrerpolicy="no-referrer-when-downgrade" />
       </noscript>
     </div>
   </body>
