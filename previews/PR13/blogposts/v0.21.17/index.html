@@ -1,0 +1,156 @@
+<!doctype html>
+<html data-jscall-id="1">
+  <head data-jscall-id="2">
+    <script src="../../bonito/js/Bonito.bundled3046859427437497252.js" type="module"></script>
+    <meta charset="UTF-8" data-jscall-id="3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" data-jscall-id="4" />
+    <link rel="alternate" data-jscall-id="5" href="./rss.xml" title="Makie Blog rss feed" type="application/rss+xml" />
+    <link rel="icon" data-jscall-id="6" href="../../bonito/ico/favicon7600468465817277261.ico" type="image/x-icon" />
+    <style></style>
+    <div>
+      <link href="../../bonito/css/makie3804115995239873387.css" rel="stylesheet" type="text/css" />
+      <link href="../../bonito/css/style3103408506044813217.css" rel="stylesheet" type="text/css" />
+    </div>
+  </head>
+  <body data-jscall-id="7">
+    <script type="module">Bonito.lock_loading(() => Bonito.init_session('1d72e941-834a-44ae-a309-4c377bfe8146', null, 'root'))</script>
+    <div data-jscall-id="8">
+      <a href="/" data-jscall-id="9">
+        <img data-jscall-id="10" src="../../bonito/png/bannermesh_gradient10002001459189426229.png" width="100%" />
+      </a>
+      <div class="outer-page" data-jscall-id="11">
+        <div class="inner-page" data-jscall-id="12">
+          <div data-jscall-id="13">
+            <div class="markdown-body" data-jscall-id="14">
+              <h1 id="Makie v0.21.17" data-jscall-id="15">Makie v0.21.17</h1>
+              <h3 id="" data-jscall-id="16">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4578" data-jscall-id="17">Add second example to &#34;boxes around subfigures how-to page&#34;</a>
+              </h3>
+              <p data-jscall-id="18">An additional example has been added to the &#34;boxes around subfigures&#34; how-to page to enhance the documentation.</p>
+              <h3 id="" data-jscall-id="19">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4587" data-jscall-id="20">Don&#39;t force triangle mesh in crossbar with notch to avoid CairoMakie artifacts</a>
+              </h3>
+              <p data-jscall-id="21">The code now avoids creating triangle meshes in crossbars with notches to prevent seam artifacts in CairoMakie.</p>
+              <h3 id="" data-jscall-id="22">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4585" data-jscall-id="23">Fix 2D assumption in point-based convert_args for lines</a>
+              </h3>
+              <p data-jscall-id="24">This change removes the 2D assumption, enabling 3D polygons to be plotted via 
+                <code data-jscall-id="25">lines</code> and 
+                <code data-jscall-id="26">scatter</code> functions.
+              </p>
+              <h3 id="" data-jscall-id="27">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4591" data-jscall-id="28">Fix Axis3 frameline z-sorting in CairoMakie</a>
+              </h3>
+              <p data-jscall-id="29">Corrects the z-sorting for Axis3 framelines in CairoMakie by adjusting translations specifically for CairoMakie.</p>
+              <h3 id="" data-jscall-id="30">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4577" data-jscall-id="31">Add an example of using jupyter-server-proxy with WGLMakie</a>
+              </h3>
+              <p data-jscall-id="32">An example demonstrating the use of jupyter-server-proxy with WGLMakie has been added to the documentation.</p>
+              <h3 id="" data-jscall-id="33">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4602" data-jscall-id="34">Prevent more default actions when canvas has focus</a>
+              </h3>
+              <p data-jscall-id="35">The update stops certain default actions when the canvas is in focus, addressing issues such as losing focus when arrow keys are pressed.</p>
+              <h3 id="" data-jscall-id="36">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4601" data-jscall-id="37">Improve performance of project
+                  <em data-jscall-id="38">line</em>points
+                </a>
+              </h3>
+              <p data-jscall-id="39">Significantly improved the performance of the 
+                <code data-jscall-id="40">project_line_points</code> function in CairoMakie, reducing allocation and execution time.
+              </p>
+              <h3 id="" data-jscall-id="41">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4604" data-jscall-id="42">Fix uint16 overflow for over ~65k elements in picking</a>
+              </h3>
+              <p data-jscall-id="43">The picking functionality now correctly handles cases with more than 65,000 elements by fixing a uint16 overflow issue.</p>
+              <h3 id="" data-jscall-id="44">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4612" data-jscall-id="45">Add informative error if invalid side is used for violin</a>
+              </h3>
+              <p data-jscall-id="46">Adds an error message clarification when an invalid side is specified for a violin plot, avoiding silent fallbacks to default values.</p>
+              <h3 id="" data-jscall-id="47">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4629" data-jscall-id="48">Fix RPRMakie EnvironmentLight orientation</a>
+              </h3>
+              <p data-jscall-id="49">The orientation of the EnvironmentLight in RPRMakie has been corrected for better accuracy and usability.</p>
+              <h3 id="" data-jscall-id="50">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4631" data-jscall-id="51">Fix incorrect comparison in CairoMakie line projections</a>
+              </h3>
+              <p data-jscall-id="52">Addresses an issue in CairoMakie where an incorrect comparison in line projections caused rendering problems.</p>
+              <h3 id="" data-jscall-id="53">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4574" data-jscall-id="54">Fix colorbuffer&#40;axis&#41; for px
+                  <em data-jscall-id="55">per</em>unit
+                </a>
+              </h3>
+              <p data-jscall-id="56">This change addresses an unspecified issue related to 
+                <code data-jscall-id="57">colorbuffer</code> and 
+                <code data-jscall-id="58">px_per_unit</code>.
+              </p>
+              <h3 id="" data-jscall-id="59">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4618" data-jscall-id="60">Fix misaligned colors in colorbar</a>
+              </h3>
+              <p data-jscall-id="61">Adjustments have been made to ensure colorbars built from contour plots are aligned correctly, preventing miscoloration.</p>
+              <h3 id="" data-jscall-id="62">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4633" data-jscall-id="63">Fix CairoMakie heatmap offsets</a>
+              </h3>
+              <p data-jscall-id="64">Corrects the offset of heatmap cells in CairoMakie by adjusting pixel padding, closing gaps, and improving cell alignment.</p>
+              <h3 id="" data-jscall-id="65">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4471" data-jscall-id="66">Add kwarg to rotate Toggle</a>
+              </h3>
+              <p data-jscall-id="67">Introduces the 
+                <code data-jscall-id="68">orientation</code> keyword argument for the 
+                <code data-jscall-id="69">Toggle</code> widget to allow rotation of the toggle in radians.
+              </p>
+              <h3 id="" data-jscall-id="70">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4583" data-jscall-id="71">Only use automatic unit conversion for simple units &#40;not compound units&#41;</a>
+              </h3>
+              <p data-jscall-id="72">Automatic unit conversion is restricted to simple units, leaving compound units unchanged to ensure accuracy. 
+                <img alt="image" data-jscall-id="73" src="../../bonito/png/img13660504195525559573.png" />
+              </p>
+              <h3 id="" data-jscall-id="74">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4642" data-jscall-id="75">Maximum auto ticklabelspace</a>
+              </h3>
+              <p data-jscall-id="76">Implemented an 
+                <code data-jscall-id="77">:max_auto</code> for tick label space in Axis and Colorbar, to always just grow the tick space, which reduces jitter.
+              </p>
+              <h3 id="" data-jscall-id="78">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4645" data-jscall-id="79">Show a &#34;Did you mean:&#34; suggestion for thrown InvalidAttributeErrors via levenshtein distance</a>
+              </h3>
+              <p data-jscall-id="80">This change introduces suggestions for InvalidAttributeErrors using Levenshtein distance for possible typos.</p>
+              <h3 id="" data-jscall-id="81">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4643" data-jscall-id="82">Add linkaxes to S.GridLayout and make sure limits don&#39;t reset for axis links</a>
+              </h3>
+              <p data-jscall-id="83">Introduces 
+                <code data-jscall-id="84">xaxislinks</code> and 
+                <code data-jscall-id="85">yaxislinks</code> to 
+                <code data-jscall-id="86">S.GridLayout</code> and maintain zoom states when axes are swapped.
+              </p>
+              <h3 id="" data-jscall-id="87">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4599" data-jscall-id="88">Some convert_argument fixes</a>
+              </h3>
+              <h3 id="" data-jscall-id="89">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4392" data-jscall-id="90">Provide suggestions for unknown kwargs passed to blocks</a>
+              </h3>
+              <h3 id="" data-jscall-id="91">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4343" data-jscall-id="92">Fix exception when WGLMakie is initialized after element removal</a>
+              </h3>
+              <h3 id="" data-jscall-id="93">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4639" data-jscall-id="94">Fix bounds error for record in wglmakie</a>
+              </h3>
+              <h3 id="" data-jscall-id="95">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4558" data-jscall-id="96">Add backend and update keyword to show</a>
+              </h3>
+            </div>
+            <div data-jscall-id="97">/home/runner/.julia/packages/BonitoSites/R2njz/src/assets/highlight/github.min.css
+              <script data-jscall-id="98" src="../../bonito/js/highlight.pack13102628173626074447.js"></script>
+              <script data-jscall-id="99">hljs.highlightAll()</script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-jscall-id="100">
+      <script async="true" defer="true" data-jscall-id="101" src="https://api.makie.org/latest.js"></script>
+      <noscript data-jscall-id="102">
+        <img alt="" data-jscall-id="103" src="https://api.makie.org/noscript.gif" referrerpolicy="no-referrer-when-downgrade" />
+      </noscript>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,280 @@
+<!doctype html>
+<html data-jscall-id="1">
+  <head data-jscall-id="2">
+    <script src="../../bonito/js/Bonito.bundled3046859427437497252.js" type="module"></script>
+    <meta charset="UTF-8" data-jscall-id="3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" data-jscall-id="4" />
+    <link rel="alternate" data-jscall-id="5" href="./rss.xml" title="Makie Blog rss feed" type="application/rss+xml" />
+    <link rel="icon" data-jscall-id="6" href="../../bonito/ico/favicon7600468465817277261.ico" type="image/x-icon" />
+    <style>.style_2 {
+  list-style-type: disc;
+  list-style: inside;
+}
+</style>
+    <div>
+      <link href="../../bonito/css/makie3804115995239873387.css" rel="stylesheet" type="text/css" />
+      <link href="../../bonito/css/style3103408506044813217.css" rel="stylesheet" type="text/css" />
+    </div>
+  </head>
+  <body data-jscall-id="7">
+    <script type="module">Bonito.lock_loading(() => Bonito.init_session('996b02a4-6be9-41ca-957d-cb490f4d4640', null, 'root'))</script>
+    <div data-jscall-id="8">
+      <a href="/" data-jscall-id="9">
+        <img data-jscall-id="10" src="../../bonito/png/bannermesh_gradient10002001459189426229.png" width="100%" />
+      </a>
+      <div class="outer-page" data-jscall-id="11">
+        <div class="inner-page" data-jscall-id="12">
+          <div data-jscall-id="13">
+            <div class="markdown-body" data-jscall-id="14">
+              <h1 id="Makie v0.18" data-jscall-id="15">Makie v0.18</h1>
+              <p data-jscall-id="16">We&#39;re happy to announce Makie&#39;s latest feature release: 
+                <strong data-jscall-id="17">v0.18</strong>&#33; A lot of effort has gone into this version, the longest standing PR saw 1.5 years of continued work&#33; We have added exciting new features, fixed many issues, and made important improvements to the backends which are going to increase performance and stability going forward.
+              </p>
+              <p data-jscall-id="18">Below is a short summary of the most relevant changes in no particular order:</p>
+              <h2 id="Tricontourf" data-jscall-id="19">Tricontourf</h2>
+              <p data-jscall-id="20">The new 
+                <code data-jscall-id="21">tricontourf</code> plot can be used to plot contour bands for points in arbitrary configuration, compared to 
+                <code data-jscall-id="22">contourf</code> which requires a grid. You can pass your own triangulation data or use the default Delaunay triangulation.
+              </p>
+              <div class="markdown-body" data-jscall-id="23">
+                <img data-jscall-id="24" src="../../bonito/png/cell_output_117161715342549347308.png" />
+              </div>
+              <h2 id="Hexbin" data-jscall-id="25">Hexbin</h2>
+              <p data-jscall-id="26">The new 
+                <code data-jscall-id="27">hexbin</code> plot allows to visualize the density of points in hexagonal cells. Compared to 
+                <code data-jscall-id="28">heatmap</code> etc., the hexagonal layout helps to break up horizontal and vertical lines that can be misleading when interpreting the data.
+              </p>
+              <div class="markdown-body" data-jscall-id="29">
+                <img data-jscall-id="30" src="../../bonito/png/cell_output_210585194576485686362.png" />
+              </div>
+              <h2 id="Bezier path markers" data-jscall-id="31">Bezier path markers</h2>
+              <p data-jscall-id="32">You can now use arbitrary shapes as scatter markers, which can be defined using the 
+                <code data-jscall-id="33">BezierPath</code> object. For convenience, such paths can also be constructed from svg path strings.
+              </p>
+              <p data-jscall-id="34">This change allowed us to improve the default set of markers, which previously relied on the glyphs supplied by Makie&#39;s default fonts and which have been chosen to match better visually.</p>
+              <div class="markdown-body" data-jscall-id="35">
+                <img data-jscall-id="36" src="../../bonito/png/cell_output_34532354283169984454.png" />
+              </div>
+              <p data-jscall-id="37">One possible real-world application are wind barb plots which are common in geography. Here&#39;s a not-so-real-world example where we plot bat symbols read from an svg path string.</p>
+              <div class="markdown-body" data-jscall-id="38">
+                <pre data-jscall-id="39">
+                  <code class="language-julia" data-jscall-id="40">using CairoMakie
+
+batsymbol_string &#61; &#34;M96.84 141.998c-4.947-23.457-20.359-32.211-25.862-13.887-11.822-22.963-37.961-16.135-22.041 6.289-3.005-1.295-5.872-2.682-8.538-4.191-8.646-5.318-15.259-11.314-19.774-17.586-3.237-5.07-4.994-10.541-4.994-16.229 0-19.774 21.115-36.758 50.861-43.694.446-.078.909-.154 1.372-.231-22.657 30.039 9.386 50.985 15.258 24.645l2.528-24.367 5.086 6.52H103.205l5.07-6.52 2.543 24.367c5.842 26.278 37.746 5.502 15.414-24.429 29.777 6.951 50.891 23.936 50.891 43.709 0 15.136-12.406 28.651-31.609 37.267 14.842-21.822-10.867-28.266-22.549-5.549-5.502-18.325-21.147-9.341-26.125 13.886z&#34;
+
+batsymbol &#61; BezierPath&#40;batsymbol_string, fit &#61; true, flipy &#61; true&#41;
+
+scatter&#40;1:10, marker &#61; batsymbol, markersize &#61; 50, color &#61; :black&#41;</code>
+                </pre>
+                <img data-jscall-id="41" src="../../bonito/png/cell_output_5717385180745243264.png" />
+              </div>
+              <p data-jscall-id="42">Another common requirement are custom arrows and other shapes used to annotate plots. These can be constructed using path primitives including arcs and bezier curves, or specified as simple polygons made from line segments.</p>
+              <div class="markdown-body" data-jscall-id="43">
+                <pre data-jscall-id="44">
+                  <code class="language-julia" data-jscall-id="45">using CairoMakie
+
+arrow_path &#61; BezierPath&#40;&#91;
+    MoveTo&#40;Point&#40;0, 0&#41;&#41;,
+    LineTo&#40;Point&#40;0.3, -0.3&#41;&#41;,
+    LineTo&#40;Point&#40;0.15, -0.3&#41;&#41;,
+    LineTo&#40;Point&#40;0.3, -1&#41;&#41;,
+    LineTo&#40;Point&#40;0, -0.9&#41;&#41;,
+    LineTo&#40;Point&#40;-0.3, -1&#41;&#41;,
+    LineTo&#40;Point&#40;-0.15, -0.3&#41;&#41;,
+    LineTo&#40;Point&#40;-0.3, -0.3&#41;&#41;,
+    ClosePath&#40;&#41;
+&#93;&#41;
+
+scatter&#40;1:5,
+    marker &#61; arrow_path,
+    markersize &#61; range&#40;20, 50, length &#61; 5&#41;,
+    rotations &#61; range&#40;0, 2pi, length &#61; 6&#41;&#91;1:end-1&#93;,
+&#41;</code>
+                </pre>
+                <img data-jscall-id="46" src="../../bonito/png/cell_output_612259908162683026743.png" />
+              </div>
+              <h2 id="Rework of text drawing for compatibility with MathTeXEngine v0.5" data-jscall-id="47">Rework of text drawing for compatibility with MathTeXEngine v0.5</h2>
+              <p data-jscall-id="48">In the past, MathTeXEngine.jl could not use some commonly required glyphs, because these were not representable using Unicode 
+                <code data-jscall-id="49">Char</code>s. By reworking Makie&#39;s backend to specify glyphs directly with their integer offsets, we gained the ability to use the full breadth of available characters. The new capabilities are available from MathTeXEngine v0.5 on.
+              </p>
+              <h2 id="" data-jscall-id="50">Updates to DataInspector &#40;
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/2095" data-jscall-id="51">#2095</a>&#41;
+              </h2>
+              <p data-jscall-id="52">
+                <code data-jscall-id="53">DataInspector</code> got a refactor to simplify future updates. Along the way we cleaned up and moved the tooltip code to a 
+                <code data-jscall-id="54">tooltip&#40;pos, text&#41;</code> recipe. Many of the attributes of 
+                <code data-jscall-id="55">tooltip</code> can also be passed to 
+                <code data-jscall-id="56">DataInspector</code>.
+              </p>
+              <div class="markdown-body" data-jscall-id="57">
+                <pre data-jscall-id="58">
+                  <code class="language-julia" data-jscall-id="59">using CairoMakie
+
+fig, ax, p &#61; scatter&#40;Point2f&#40;0&#41;, marker &#61; &#39;x&#39;, markersize &#61; 20&#41;
+tooltip&#33;&#40;Point2f&#40;0&#41;, &#34;This is a tooltip pointing at x&#34;&#41;
+fig</code>
+                </pre>
+                <img data-jscall-id="60" src="../../bonito/png/cell_output_715348691643577415632.png" />
+              </div>
+              <p data-jscall-id="61">We also added a commonly requested feature - being able to adjust the displayed text on a per-plot basis. 
+                <code data-jscall-id="62">DataInspector</code> will now check if a hovered plot has a 
+                <code data-jscall-id="63">inspector_label</code> attribute and call 
+                <code data-jscall-id="64">plot.inspector_label&#91;&#93;&#40;plot, index, position&#41;</code> to get text to display if it is available. For example:
+              </p>
+              <pre data-jscall-id="65">
+                <code class="language-julia" data-jscall-id="66">labels &#61; &#91;&#34;first&#34;, &#34;second&#34;, &#34;third&#34;&#93;
+fig, ax, p &#61; scatter&#40;rand&#40;3&#41;, inspector_label &#61; &#40;plot, i, pos&#41; -&#62; labels&#91;i&#93;&#41;
+DataInspector&#40;fig&#41;
+nothing</code>
+              </pre>
+              <p data-jscall-id="67">Another small change is that tooltips now persist when alt-tabbing out of the Makie window. This should make it a bit easier to copy or compare data.</p>
+              <h2 id="" data-jscall-id="68">Display refactor &#40;
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/2306" data-jscall-id="69">#2306</a>&#41;
+              </h2>
+              <h3 id="GLMakie Bug fixes" data-jscall-id="70">GLMakie Bug fixes</h3>
+              <ul class=" style_2" style="" data-jscall-id="71">
+                <li data-jscall-id="72">
+                  <p data-jscall-id="73">Fix Heisenbug for multiple windows, where shaders got compiled for the wrong window &#40;OpenGL context&#41;, which works fine on most nvidia hardware but may crash other OpenGL implementations.</p>
+                </li>
+                <li data-jscall-id="74">
+                  <p data-jscall-id="75">Due to the above fix, it became clear that the scene clean up after displaying on a screen wasn&#39;t happening correctly, which got fixed</p>
+                </li>
+                <li data-jscall-id="76">
+                  <p data-jscall-id="77">
+                    <code data-jscall-id="78">enable_SSAO</code>/
+                    <code data-jscall-id="79">enable_FXAA</code>/
+                    <code data-jscall-id="80">transparency_weight_scale</code> were a global, which was fine until we got multi window support. Now, ssao/fxaa/oit are screen options, which you can set via e.g. 
+                    <code data-jscall-id="81">GLMakie.activate&#33;&#40;ssao&#61;true&#41;</code> or per screen via 
+                    <code data-jscall-id="82">GLMakie.Screen&#40;ssao&#61;true&#41;</code>.
+                  </p>
+                </li>
+              </ul>
+              <h3 id="Saving + record" data-jscall-id="83">Saving &#43; record</h3>
+              <ul class=" style_2" style="" data-jscall-id="84">
+                <li data-jscall-id="85">
+                  <p data-jscall-id="86">new backend argument, allowing one to save a file with a specific backend &#40;
+                    <code data-jscall-id="87">save&#40;&#34;plot.png&#34;, figure; backend&#61;GLMakie&#41;</code>&#41;. Applies also to 
+                    <code data-jscall-id="88">record</code>, 
+                    <code data-jscall-id="89">display</code> and 
+                    <code data-jscall-id="90">colorbuffer</code>.
+                  </p>
+                </li>
+                <li data-jscall-id="91">
+                  <p data-jscall-id="92">
+                    <code data-jscall-id="93">record</code>, 
+                    <code data-jscall-id="94">display</code>, 
+                    <code data-jscall-id="95">colorbuffer</code> and 
+                    <code data-jscall-id="96">save</code> now support forwarding all 
+                    <code data-jscall-id="97">Backend.Screen</code> options, which enables you to use 
+                    <code data-jscall-id="98">record&#40;...; px_per_unit&#61;2.0&#41;</code> for higher resolution videos with CairoMakie, or e.g. 
+                    <code data-jscall-id="99">save&#40;...; backend&#61;GLMakie, ssao&#61;true&#41;</code>.
+                  </p>
+                </li>
+                <li data-jscall-id="100">
+                  <p data-jscall-id="101">All backend screen types have been renamed to 
+                    <code data-jscall-id="102">Backend.Screen</code>, which was previously not the case. This shouldn&#39;t break too much code, since the only backend where one was interacting with 
+                    <code data-jscall-id="103">Screen</code> is GLMakie, which was already named 
+                    <code data-jscall-id="104">Screen</code>. In the future, it will be more common to interact with 
+                    <code data-jscall-id="105">Screen</code> directly for all backends. Use 
+                    <code data-jscall-id="106">?Backend.Screen</code> to see all screen options.
+                  </p>
+                </li>
+              </ul>
+              <h3 id="Speed and allocation improvements for record" data-jscall-id="107">Speed and allocation improvements for record</h3>
+              <p data-jscall-id="108">We gained some substantial speed improvements for 
+                <code data-jscall-id="109">record</code>, by reusing more screen state and directly writing out to a file via ffmpeg 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/2231" data-jscall-id="110">#2231</a>.
+              </p>
+              <h4 id="GLMakie" data-jscall-id="111">GLMakie</h4>
+              <pre data-jscall-id="112">
+                <code data-jscall-id="113">PR:     171.387 ms &#40;57775 allocations: 4.93 MiB&#41;
+master: 322.244 ms &#40;50714 allocations: 32.58 MiB&#41;</code>
+              </pre>
+              <h4 id="CairoMakie" data-jscall-id="114">CairoMakie</h4>
+              <pre data-jscall-id="115">
+                <code data-jscall-id="116">PR:     647.093 ms &#40;3076666 allocations: 174.11 MiB&#41;
+master: 807.175 ms &#40;3070484 allocations: 335.48 MiB&#41;</code>
+              </pre>
+              <h4 id="WGLMakie" data-jscall-id="117">WGLMakie</h4>
+              <pre data-jscall-id="118">
+                <code data-jscall-id="119">PR:     1.450 s &#40;2200125 allocations: 189.61 MiB&#41;
+master: 1.628 s &#40;2192751 allocations: 279.25 MiB&#41;</code>
+              </pre>
+              <h3 id="Other" data-jscall-id="120">Other</h3>
+              <ul class=" style_2" style="" data-jscall-id="121">
+                <li data-jscall-id="122">
+                  <p data-jscall-id="123">adding more tests for display / record</p>
+                </li>
+                <li data-jscall-id="124">
+                  <p data-jscall-id="125">CairoMakie now opens a browser/os-image-viewer when plotpane is disabled or 
+                    <code data-jscall-id="126">display&#40;fig&#41;</code> is called explicitely.
+                  </p>
+                </li>
+                <li data-jscall-id="127">
+                  <p data-jscall-id="128">deprecation of 
+                    <code data-jscall-id="129">Makie.inline&#33;&#40;false/true&#41;</code> which was only disabling show, which isn&#39;t very helpful &#40;can just be done by 
+                    <code data-jscall-id="130">fig;</code> or 
+                    <code data-jscall-id="131">return nothing</code>&#41; and was instead making trouble accidantely disabling show.
+                  </p>
+                </li>
+                <li data-jscall-id="132">
+                  <p data-jscall-id="133">deprecating 
+                    <code data-jscall-id="134">GLMakie.set_window_config&#33;&#40;; screen_config...&#41;</code> in favor of 
+                    <code data-jscall-id="135">GLMakie.activate&#33;&#40;; screen_config...&#41;</code>.
+                  </p>
+                </li>
+                <li data-jscall-id="136">
+                  <p data-jscall-id="137">deprecating internal function 
+                    <code data-jscall-id="138">backend_display</code> in favor of 
+                    <code data-jscall-id="139">display</code>.
+                  </p>
+                </li>
+                <li data-jscall-id="140">
+                  <p data-jscall-id="141">cleaning up 
+                    <code data-jscall-id="142">colorbuffer&#40;figlike&#41;</code> and 
+                    <code data-jscall-id="143">colorbuffer&#40;screen&#41;</code>, making it faster and more consistent across backends.
+                  </p>
+                </li>
+                <li data-jscall-id="144">
+                  <p data-jscall-id="145">clean up of unused code and making code more consistent between backends</p>
+                </li>
+                <li data-jscall-id="146">
+                  <p data-jscall-id="147">backend is now registered as module not it&#39;s own 
+                    <code data-jscall-id="148">GLMakieBackend</code> struct. Deprecated internal global 
+                    <code data-jscall-id="149">current_backend</code> in favor of 
+                    <code data-jscall-id="150">CURRENT_BACKEND</code> and renaming 
+                    <code data-jscall-id="151">register_backend&#33;</code> to 
+                    <code data-jscall-id="152">set_active_backend&#33;</code>. One can now query the current backend via 
+                    <code data-jscall-id="153">Makie.current_backend&#40;&#41;::Module</code>
+                  </p>
+                </li>
+                <li data-jscall-id="154">
+                  <p data-jscall-id="155">
+                    <code data-jscall-id="156">Backend.activate&#33;&#40;; screen_config...&#41;</code> now always accepts attributes for the backends screen config, and writes it to the theme. Alternatively, one can use 
+                    <code data-jscall-id="157">set_theme&#33;&#40;Backend&#61;&#40;screen_config...,&#41;&#41;</code>
+                  </p>
+                </li>
+                <li data-jscall-id="158">
+                  <p data-jscall-id="159">better warnings for wrong ffmpeg flags in 
+                    <code data-jscall-id="160">record</code>/
+                    <code data-jscall-id="161">Record</code>
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div data-jscall-id="162">/home/runner/.julia/packages/BonitoSites/R2njz/src/assets/highlight/github.min.css
+              <script data-jscall-id="163" src="../../bonito/js/highlight.pack13102628173626074447.js"></script>
+              <script data-jscall-id="164">hljs.highlightAll()</script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-jscall-id="165">
+      <script async="true" defer="true" data-jscall-id="166" src="https://api.makie.org/latest.js"></script>
+      <noscript data-jscall-id="167">
+        <img alt="" data-jscall-id="168" src="https://api.makie.org/noscript.gif" referrerpolicy="no-referrer-when-downgrade" />
+      </noscript>
+    </div>
+  </body>
+</html>

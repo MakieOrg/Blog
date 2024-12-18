@@ -1,0 +1,495 @@
+<!doctype html>
+<html data-jscall-id="1">
+  <head data-jscall-id="2">
+    <script src="../../bonito/js/Bonito.bundled3046859427437497252.js" type="module"></script>
+    <meta charset="UTF-8" data-jscall-id="3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" data-jscall-id="4" />
+    <link rel="alternate" data-jscall-id="5" href="./rss.xml" title="Makie Blog rss feed" type="application/rss+xml" />
+    <link rel="icon" data-jscall-id="6" href="../../bonito/ico/favicon7600468465817277261.ico" type="image/x-icon" />
+    <style>.style_2 {
+  list-style-type: disc;
+  list-style: inside;
+}
+</style>
+    <div>
+      <link href="../../bonito/css/makie3804115995239873387.css" rel="stylesheet" type="text/css" />
+      <link href="../../bonito/css/style3103408506044813217.css" rel="stylesheet" type="text/css" />
+    </div>
+  </head>
+  <body data-jscall-id="7">
+    <script type="module">Bonito.lock_loading(() => Bonito.init_session('6b57e795-6d02-42b1-a710-984cf032bacf', null, 'root'))</script>
+    <div data-jscall-id="8">
+      <a href="/" data-jscall-id="9">
+        <img data-jscall-id="10" src="../../bonito/png/bannermesh_gradient10002001459189426229.png" width="100%" />
+      </a>
+      <div class="outer-page" data-jscall-id="11">
+        <div class="inner-page" data-jscall-id="12">
+          <div data-jscall-id="13">
+            <div class="markdown-body" data-jscall-id="14">
+              <h1 id="Makie v0.21" data-jscall-id="15">Makie v0.21</h1>
+              <p data-jscall-id="16">We&#39;re happy to announce Makie&#39;s next minor version - v0.21&#33;</p>
+              <p data-jscall-id="17">Makie&#39;s community has been growing steadily over the last years, and we hope this new update will allow you all to create more and better visualizations than ever&#33;</p>
+              <p data-jscall-id="18">&#40;Here&#39;s a small chart that reflects how Makie&#39;s usage is increasing, showing citations over time as indicated by google scholar alerts for our 
+                <a href="https://joss.theoj.org/papers/10.21105/joss.03349" data-jscall-id="19">JOSS paper</a>&#41;
+              </p>
+              <p data-jscall-id="20">
+                <img alt="citations" data-jscall-id="21" src="../../images/makie-citations.png" />
+              </p>
+              <p data-jscall-id="22">We&#39;re also excited to show off the redesign of our documentation using 
+                <a href="https://github.com/LuxDL/DocumenterVitepress.jl" data-jscall-id="23">DocumenterVitepress.jl</a> which improves overall clarity, benefits from new Documenter.jl features and has a better search functionality than our old custom Franklin.jl setup. We are determined to keep improving the documentation more and more, to really enable our users to tap into the vast range of features Makie offers today.
+              </p>
+              <p data-jscall-id="24">
+                <img alt="image" data-jscall-id="25" src="../../images/makie-docs.png" />
+              </p>
+              <p data-jscall-id="26">With that said, let&#39;s dive into the most important changes and additions in v0.21&#33;</p>
+              <h2 id="Unit and Categorical support" data-jscall-id="27">Unit and Categorical support</h2>
+              <p data-jscall-id="28">This feature has been requested countless times over the last years and has been finally implemented. It required a lot of work, due to Observables allowing anything to update dynamically at any time, the complex interaction of plot object creation with Axes and the feature itself being quite complex with lots of corner cases. But now, as of Makie 0.21, types like units, categorical values and dates are supported natively and we added an interface that can be extended for custom units.</p>
+              <p data-jscall-id="29">Any type is converted to a plottable representation by the new 
+                <code data-jscall-id="30">dim_converts</code> function, which changes a dimension of the axis to a new unit space. Once the conversion is set for a dimension, it can&#39;t be changed anymore to prohibit mixing units in that dimension. This is implemented by the 
+                <code data-jscall-id="31">Scene</code> carrying a new 
+                <code data-jscall-id="32">DimConversions</code> object, which tracks the conversions for each dimension, which it forwards to the Plot and Axis objects. While this is a more complex approach, it guarantees that these conversions are really treated as new unit spaces for the axis, rather than just a recipe which changes axis tick labels.
+              </p>
+              <p data-jscall-id="33">The basic usage is as easy as replacing numbers with any supported type, e.g. 
+                <code data-jscall-id="34">Dates.Second</code>:
+              </p>
+              <div class="markdown-body" data-jscall-id="35">
+                <pre data-jscall-id="36">
+                  <code class="language-julia" data-jscall-id="37">using CairoMakie, Makie.Dates
+using Makie.Unitful
+
+f, ax, pl &#61; lines&#40;Second&#40;1&#41;:Second&#40;60&#41;:Second&#40;20*60&#41;, u&#34;m&#34; .* cumsum&#40;randn&#40;20&#41;&#41;&#41;
+data &#61; cumsum&#40;randn&#40;4, 100&#41;, dims&#61;2&#41;
+barplot&#40;f&#91;1, 2&#93;, Categorical&#40;&#91;&#34;a&#34;, &#34;b&#34;, &#34;c&#34;&#93;&#41;, 1:3&#41;
+series&#40;f&#91;2, :&#93;, now&#40;&#41; .&#43; Second.&#40;1:100&#41;, data&#41;
+f</code>
+                </pre>
+                <img data-jscall-id="38" src="../../bonito/png/cell_output_25445247396067497152.png" />
+              </div>
+              <h3 id="Integration with the conversion pipeline" data-jscall-id="39">Integration with the conversion pipeline</h3>
+              <p data-jscall-id="40">One of the complications to implement dim converts was to enable 
+                <code data-jscall-id="41">convert_arguments</code> to be able to return units and also make it work with the new 
+                <code data-jscall-id="42">SpecApi</code>:
+              </p>
+              <div class="markdown-body" data-jscall-id="43">
+                <pre data-jscall-id="44">
+                  <code class="language-julia" data-jscall-id="45">import Makie.SpecApi as S
+struct DateStruct end
+function Makie.convert_arguments&#40;::PointBased, ::DateStruct&#41;
+    return &#40;1:5, DateTime.&#40;1:5&#41;&#41;
+end
+f, ax, pl &#61; scatter&#40;DateStruct&#40;&#41;&#41;
+bplot &#61; S.BarPlot&#40;Categorical&#40;&#91;&#34;a&#34;, &#34;b&#34;, &#34;c&#34;&#93;&#41;, 1:3; bar_labels&#61;:y&#41;
+spec &#61; S.GridLayout&#40;&#91;S.Axis&#40;; plots&#61;&#91;bplot&#93;&#41;&#93;&#41;
+plot&#40;f&#91;1, 2&#93;, spec&#41;
+f</code>
+                </pre>
+                <img data-jscall-id="46" src="../../bonito/png/cell_output_39408832459106409018.png" />
+              </div>
+              <h3 id="Current limitations" data-jscall-id="47">Current limitations</h3>
+              <ul class=" style_2" style="" data-jscall-id="48">
+                <li data-jscall-id="49">
+                  <p data-jscall-id="50">For now, dim conversions only works for vectors with supported types for the x and y arguments for the standard 2D Axis. It&#39;s setup to generalize to other Axis types, but the full integration hasn&#39;t been done yet.</p>
+                </li>
+                <li data-jscall-id="51">
+                  <p data-jscall-id="52">Keywords like 
+                    <code data-jscall-id="53">direction&#61;:y</code> in e.g. Barplot will not propagate to the Axis correctly, since the first argument is currently always x and second always y. We&#39;re still trying to figure out how to solve this properly
+                  </p>
+                </li>
+                <li data-jscall-id="54">
+                  <p data-jscall-id="55">Categorical values need to be wrapped in 
+                    <code data-jscall-id="56">Categorical</code>, since it&#39;s hard to find a good type that isn&#39;t ambiguous when defaulting to a categorical conversion. You can find a work around in the docs.
+                  </p>
+                </li>
+                <li data-jscall-id="57">
+                  <p data-jscall-id="58">Date Time ticks simply use 
+                    <code data-jscall-id="59">PlotUtils.optimize_datetime_ticks</code> which is also used by Plots.jl. It doesn&#39;t generate optimally readable ticks yet and can generate overlaps and goes out of axis bounds quickly. This will need more polish to create readable ticks as default.
+                  </p>
+                </li>
+                <li data-jscall-id="60">
+                  <p data-jscall-id="61">To properly apply dim conversions only when applicable, one needs to use the new undocumented 
+                    <code data-jscall-id="62">&#64;recipe</code> macro and define a conversion target type. This means user recipes only work if they pass through the arguments to any basic plotting type without conversion.
+                  </p>
+                </li>
+              </ul>
+              <h2 id="Plot Attribute Validation" data-jscall-id="63">Plot Attribute Validation</h2>
+              <p data-jscall-id="64">One of Makie&#39;s biggest footguns has always been that you could pass arbitrary wrong keyword arguments to plotting functions without getting an error. For example, the following call would happily display a scatter plot, but not with the intended visual attributes - because none of them are defined for 
+                <code data-jscall-id="65">Scatter</code>:
+              </p>
+              <pre data-jscall-id="66">
+                <code data-jscall-id="67">scatter&#40;x, y; colour &#61; :red, marker_size &#61; 3, stroke &#61; :black&#41;</code>
+              </pre>
+              <p data-jscall-id="68">It took a lot of work to remedy this situation, but we finally got it done. In v0.21, we have introduced a second internal variant of the 
+                <code data-jscall-id="69">&#64;recipe</code> macro and rewritten all our recipes to use it. This variant allows to declare at compile time which attributes are valid for a given plotting function, and also documenting these attributes in-place. We can now throw a helpful error for the example above:
+              </p>
+              <p data-jscall-id="70">
+                <img alt="grafik" data-jscall-id="71" src="../../images/HJ42WmcM0.png" />
+              </p>
+              <p data-jscall-id="72">There are more improvements to be made in this area, but this refactor is a big step forward in making Makie more robust and user-friendly.</p>
+              <div class="markdown-body" data-jscall-id="73"><div class="admonition warning" data-jscall-id="1"><p class="title" data-jscall-id="2">Warning&#33;</p>    Note that the new &#96;&#64;recipe&#96; syntax is undocumented and considered internal for now. It could experience breaking changes in patch versions as we  make further improvements to it. This also means that third party recipes written with the old &#96;&#64;recipe&#96; syntax will continue to work as they are and not automatically receive the benefits of the new system.
+</div></div>
+              <p data-jscall-id="74">Now that we have solidified how we deal with plot attributes internally, we also want to improve their public-facing documentation. In the future, we want to have visual examples for each plot attribute of each plot, so that users can more easily navigate what options are available to them. Once this process starts, we hope to get the community involved, too. The amount of examples to be written is large but at the same time requires no deep understanding of the code base, so this could be a fun way to contribute and get your feet wet in open source development&#33;</p>
+              <h2 id="Voxel" data-jscall-id="75">Voxel</h2>
+              <p data-jscall-id="76">With this new release we are adding a new &#40;primitive&#41; plot type - 
+                <code data-jscall-id="77">voxels</code>. A voxel is the 3D equivalent of a pixel, i.e. a small cube of a constant size placed into a regular 3D grid. Given those restrictions 
+                <code data-jscall-id="78">voxels</code> is generally much more efficient than 
+                <code data-jscall-id="79">meshscatter&#40;pos, marker &#61; Rect3f&#40;Point3f&#40;-0.5&#41;, Vec3f&#40;1&#41;&#41;, markersize &#61; 1, color &#61; colors&#41;</code>, both with respect to computational cost &#40;i.e. geometry rendered&#41; and memory usage &#40;i.e. data transfered to the GPU&#41;. The plot type currently has a dedicated implementation in GLMakie and WGLMakie, though WGLMakie still has some rendering issues.
+              </p>
+              <p data-jscall-id="80">A 
+                <code data-jscall-id="81">voxels</code> plot takes an 
+                <code data-jscall-id="82">Array&#123;3&#125;</code> as an input and optionally three intervals to specify the range of the voxel grid. Here is an example using 
+                <code data-jscall-id="83">voxels</code> to show an isosurface by manipulating the visible colorrange:
+              </p>
+              <div class="markdown-body" data-jscall-id="84">
+                <pre data-jscall-id="85">
+                  <code class="language-julia" data-jscall-id="86">using GLMakie; GLMakie.activate&#33;&#40;&#41;
+r &#61; range&#40;-2pi, 2pi, length &#61; 101&#41;
+func&#40;x, y, z&#41; &#61; exp&#40;cos&#40;x&#41;&#41; / &#40;1 &#43; abs&#40;sin&#40;y&#41;&#41;&#41; * cos&#40;0.25 * z&#41;
+chunk &#61; &#91;func&#40;x, y, z&#41; for x in r, y in r, z in r&#93;
+
+fig &#61; Figure&#40;figure_size &#61; &#40;400, 400&#41;&#41;
+ax &#61; LScene&#40;fig&#91;1, 1&#93;&#41;
+voxels&#33;&#40;ax, -2..2, -2..2, -2..2, chunk, colorrange &#61; &#40;0.1, 0.2&#41;, lowclip &#61; :transparent, highclip &#61; :transparent&#41;
+fig</code>
+                </pre>
+                <img data-jscall-id="87" src="../../bonito/png/cell_output_58388208939953453484.png" />
+              </div>
+              <p data-jscall-id="88">If you are interested in what&#39;s below the surface you can add transparency &#40;via the 
+                <code data-jscall-id="89">colormap</code> or 
+                <code data-jscall-id="90">alpha</code> with 
+                <code data-jscall-id="91">transparency &#61; true</code>&#41; or reduce the size of voxels by setting 
+                <code data-jscall-id="92">1 &#62; gap &#62; 0</code>:
+              </p>
+              <table data-jscall-id="93">
+                <tr data-jscall-id="94">
+                  <th data-jscall-id="95" align="center">transparency</th>
+                  <th data-jscall-id="96" align="center">gap</th>
+                </tr>
+                <tr data-jscall-id="97">
+                  <td data-jscall-id="98" align="center">
+                    <img alt="voxel_isosurface_transparent" data-jscall-id="99" src="../../images/rJYi3UN1C.png" />
+                  </td>
+                  <td data-jscall-id="100" align="center">
+                    <img alt="voxel_isosurface_gapped" data-jscall-id="101" src="../../images/Bkyh2UEy0.png" />
+                  </td>
+                </tr>
+              </table>
+              <p data-jscall-id="102">You can also render voxels with textures. Currently voxels are represented by 
+                <code data-jscall-id="103">UInt8</code> with 
+                <code data-jscall-id="104">0x00</code> strictly being an invisible air block. This leaves you with 255 voxel ids to map to textures. This is done by specifying a 
+                <code data-jscall-id="105">uvmap</code> as either a Vector 
+                <code data-jscall-id="106">uvs&#91;id&#93; &#61; uv::Vec4f</code> or Matrix 
+                <code data-jscall-id="107">uvs&#91;id, side&#93; &#61; uv::Vec4f</code>. Here is an example using https://www.kenney.nl/assets/voxel-pack:
+              </p>
+              <div class="markdown-body" data-jscall-id="108">
+                <pre data-jscall-id="109">
+                  <code class="language-julia" data-jscall-id="110">using FileIO
+# 9 wide, 10 tall
+texture &#61; FileIO.load&#40;Makie.assetpath&#40;&#34;voxel_spritesheet.png&#34;&#41;&#41;
+uv_map &#61; &#91;
+    Vec4f&#40;x, x&#43;1/10, y, y&#43;1/9&#41;
+    for x in range&#40;0.0, 1.0, length &#61; 11&#41;&#91;1:end-1&#93;
+    for y in range&#40;0.0, 1.0, length &#61; 10&#41;&#91;1:end-1&#93;
+&#93;
+
+# all air
+chunk &#61; fill&#40;0x00, 64, 64, 32&#41;
+
+# fill with other block types
+for x in axes&#40;chunk, 1&#41;, y in axes&#40;chunk, 2&#41;
+    # fill columns bottom to top with stone, rocky dirt, dirt and grass
+    height &#61; floor&#40;Int, 15 &#43; 8 * sin&#40;0.1 * x&#41; * cos&#40;0.1 * y&#41;&#41;
+    for z in 1:height
+        rock, rocky_dirt, dirt &#61; 1.3 .* abs.&#40;1 .- randn&#40;3&#41;&#41;
+        rock -&#61; abs&#40;height - 7 - z&#41;
+        rocky_dirt -&#61; abs&#40;height - 4 - z&#41;
+        dirt -&#61; abs&#40;height - 1 - z&#41;
+
+        choice &#61; if rock &#62; rocky_dirt
+            rock &#62; dirt ? UInt8&#40;40&#41; : UInt8&#40;53&#41;
+        else
+            rocky_dirt &#62; dirt ? UInt8&#40;7&#41; : UInt8&#40;53&#41;
+        end
+        chunk&#91;x, y, z&#93; &#61; choice
+    end
+
+    choice &#61; randn&#40;&#41; &#43; 0.2 * &#40;height - 15&#41;
+    chunk&#91;x, y, height&#43;1&#93; &#61; choice &#62; 0 ? UInt8&#40;16&#41; : UInt8&#40;15&#41; # light, dark grass
+end
+
+fig &#61; Figure&#40;&#41;
+ax &#61; LScene&#40;fig&#91;1, 1&#93;, show_axis &#61; false&#41;
+voxels&#33;&#40;ax, chunk, uvmap &#61; uv_map, color &#61; texture&#41;
+
+# set camera position
+cameracontrols&#40;ax.scene&#41;.settings.center &#61; false
+update_cam&#33;&#40;ax.scene, Vec3f&#40;35, 55, 10&#41;, Vec3f&#40;2, 7, -9&#41;&#41;
+fig</code>
+                </pre>
+                <img data-jscall-id="111" src="../../bonito/png/cell_output_610623256900113795830.png" />
+              </div>
+              <h2 id="Lines" data-jscall-id="112">Lines</h2>
+              <h4 id="Internal/Backend changes" data-jscall-id="113">Internal/Backend changes</h4>
+              <p data-jscall-id="114">The line rendering code for GLMakie and WGLMakie has been reworked to bring both backends to the same standard. The major changes are that WGLMakie now renders line joints and supports linestyles. Here is a quick before and after:</p>
+              <table data-jscall-id="115">
+                <tr data-jscall-id="116">
+                  <th data-jscall-id="117" align="center">Before</th>
+                  <th data-jscall-id="118" align="center">After</th>
+                </tr>
+                <tr data-jscall-id="119">
+                  <td data-jscall-id="120" align="center">
+                    <img alt="lines_master" data-jscall-id="121" src="../../images/B1CBlrN1R.png" />
+                  </td>
+                  <td data-jscall-id="122" align="center">
+                    <img alt="lines_21" data-jscall-id="123" src="../../images/HJX8erVyA.png" />
+                  </td>
+                </tr>
+              </table>
+              <p data-jscall-id="124">As part of this GLMakie had some changes to its colormap and color interpolation. It used to sample the colormap at line points and then interpolate the result to color the line. This can lead to unexpected colors appearing along a segment. Now GLMakie interpolates the 
+                <code data-jscall-id="125">plot.color</code> values and samples the actual colors from the colormap in the fragment shader. In some cases this change can be very obvious, e.g. in the example below. On the other hand, the color interpolation change &#40;i.e. 
+                <code data-jscall-id="126">plot.color::Vector&#123;RGBAf&#125;</code>&#41; is subtle. Rather than interpolating 
+                <code data-jscall-id="127">plot.color</code> on the triangles making up a line segment we now interpolate based on segment length. This cleans up the purple spike you can see in the top left segment in the example.
+              </p>
+              <div class="markdown-body" data-jscall-id="128">
+                <pre data-jscall-id="129">
+                  <code class="language-julia" data-jscall-id="130">fig &#61; Figure&#40;size &#61; &#40;400, 400&#41;&#41;
+a, p &#61; lines&#40;
+    fig&#91;1, 1&#93;, &#91;-1, -1, 0, 0, 1, 1&#93;, &#91;0, 1, 0.8, 0.25, 0, 1&#93;, linewidth &#61; 40,
+    color &#61; &#91;0, 1, 0, 1, 0, 1&#93;,
+    colormap &#61; &#91;:red, :yellow, :blue&#93;
+&#41;
+hidedecorations&#33;&#40;a&#41;
+xlims&#33;&#40;a, -1.2, 1.2&#41;
+ylims&#33;&#40;a, -0.1, 1.15&#41;
+fig</code>
+                </pre>
+                <img data-jscall-id="131" src="../../bonito/png/cell_output_74288702218056017226.png" />
+              </div>
+              <table data-jscall-id="132">
+                <tr data-jscall-id="133">
+                  <th data-jscall-id="134" align="center">Before</th>
+                  <th data-jscall-id="135" align="center">After</th>
+                  <th data-jscall-id="136" align="center">without yellow</th>
+                </tr>
+                <tr data-jscall-id="137">
+                  <td data-jscall-id="138" align="center">
+                    <img alt="lines_colormap_master" data-jscall-id="139" src="../../images/rkkVSS41A.png" />
+                  </td>
+                  <td data-jscall-id="140" align="center">
+                    <img alt="lines_colormap_21" data-jscall-id="141" src="../../images/SkwEHHN1C.png" />
+                  </td>
+                  <td data-jscall-id="142" align="center">
+                    <img alt="lines_color_21" data-jscall-id="143" src="../../images/BkxSSH4JR.png" />
+                  </td>
+                </tr>
+              </table>
+              <p data-jscall-id="144">Tangentially to these changes we also fixed issue where lines would invert in a 3D LScene &#40;i.e. with perspective projection&#41; when zooming in too far.</p>
+              <h4 id="Linecaps and joinstyles" data-jscall-id="145">Linecaps and joinstyles</h4>
+              <p data-jscall-id="146">We have added support for different line caps and join styles across CairoMakie, GLMakie and WGLMakie. Line caps can be set with the 
+                <code data-jscall-id="147">linecap</code> attribute for 
+                <code data-jscall-id="148">lines</code> and 
+                <code data-jscall-id="149">linesegments</code> to either 
+                <code data-jscall-id="150">:butt</code> &#40;default&#41;, 
+                <code data-jscall-id="151">:square</code> or 
+                <code data-jscall-id="152">:round</code>. Join styles apply only to 
+                <code data-jscall-id="153">lines</code> and use the 
+                <code data-jscall-id="154">joinstyle</code> attribute which can be either 
+                <code data-jscall-id="155">:miter</code>, 
+                <code data-jscall-id="156">:bevel</code> or 
+                <code data-jscall-id="157">:round</code>. 
+                <code data-jscall-id="158">joinstyle &#61; :miter</code> further depends on 
+                <code data-jscall-id="159">miter_limit</code> which sets the minimum corner angle below which 
+                <code data-jscall-id="160">:bevel</code> joints are used.
+              </p>
+              <p data-jscall-id="161">
+                <img alt="linecap_jointstyle" data-jscall-id="162" src="../../bonito/svg/69804999f48614ba1ecbfc9b1246deca4021aadd-7205625804942798829.svg" />
+              </p>
+              <h2 id="Float64 Precision in Axis" data-jscall-id="163">Float64 Precision in Axis</h2>
+              <p data-jscall-id="164">The first Makie backend was GLMakie, and because GPUs are much more efficient working in 32 bit floating point this influenced the early design of Makie to favor 32 bit precision in its conversion pipeline.</p>
+              <p data-jscall-id="165">This resulted in some unfortunate limitations when plotting data which could not be resolved well enough in 
+                <code data-jscall-id="166">Float32</code>. For example, note how this line of scatter dots was quantized very visibly in Makie 0.20 because the values are close together relative to their magnitude:
+              </p>
+              <pre data-jscall-id="167">
+                <code data-jscall-id="168">data &#61; 10_000 .&#43; range&#40;0, 0.01, length &#61; 50&#41;
+scatter&#40;data&#41;</code>
+              </pre>
+              <p data-jscall-id="169">
+                <img alt="image" data-jscall-id="170" src="../../images/SynFsTaXA.png" />
+              </p>
+              <p data-jscall-id="171">In Makie 0.21, an additional step was inserted in the conversion pipeline for 
+                <code data-jscall-id="172">Axis</code> which rescales data before handing it off to the backends in reduced precision, thereby mostly circumventing quantization problems. The same plot in Makie 0.21 shows a nice straight line and the limits are also not shifted incorrectly anymore:
+              </p>
+              <p data-jscall-id="173">
+                <img alt="image" data-jscall-id="174" src="../../images/ByXe2apmC.png" />
+              </p>
+              <p data-jscall-id="175">In a large amount of internal code, we could move from 
+                <code data-jscall-id="176">Float32</code> by default to 
+                <code data-jscall-id="177">Float64</code> which also removed some common sources of errors, for example if axis limits were too close together in 
+                <code data-jscall-id="178">Float32</code>. Supporting 
+                <code data-jscall-id="179">Float64</code> precision also made it easier to implement support for 
+                <code data-jscall-id="180">DateTime</code> because typical timestamps suffer from quantization when converted to numbers as they become large numbers that are very close to each other.
+              </p>
+              <h4 id="For Developers" data-jscall-id="181">For Developers</h4>
+              <p data-jscall-id="182">The changes should be mostly isolated from custom plot recipes and 
+                <code data-jscall-id="183">convert_arguments&#40;&#41;</code> methods. You should be fine as long as you don&#39;t convert arguments to 
+                <code data-jscall-id="184">Float32</code> types &#40;e.g. use 
+                <code data-jscall-id="185">Point2d</code> or 
+                <code data-jscall-id="186">Point2</code> over 
+                <code data-jscall-id="187">Point2f</code>&#41;. If you have a custom 
+                <code data-jscall-id="188">data_limits&#40;&#41;</code> method you should follow the points outlined below. If you still have issues after this you can check 
+                <code data-jscall-id="189">plot.input_args</code> and 
+                <code data-jscall-id="190">plot.converted</code> &#40;including for child plots in 
+                <code data-jscall-id="191">plot.plots</code>&#41; to find out when/if a 
+                <code data-jscall-id="192">Float32</code> conversion occurs.
+              </p>
+              <p data-jscall-id="193">If you are projecting data yourself and, for example, plot in 
+                <code data-jscall-id="194">:pixel</code> space things get a bit more complicated. To deal with Float64 precision we have added a linear transformation 
+                <code data-jscall-id="195">scene.float32convert</code> acting after 
+                <code data-jscall-id="196">plot.model&#91;&#93;</code> or before 
+                <code data-jscall-id="197">Makie.patch_model&#40;scene plot.model&#91;&#93;&#41;</code>. This step is likely to be missing and will cause wrong results when the conversion takes effect. You currently have a few options:
+              </p>
+              <ul class=" style_2" style="" data-jscall-id="198">
+                <li data-jscall-id="199">
+                  <p data-jscall-id="200">Use 
+                    <code data-jscall-id="201">Makie.plot_to_screen&#40;plot, data&#41;</code> which transforms a point of vector points from 
+                    <code data-jscall-id="202">plot.space&#91;&#93;</code> to 
+                    <code data-jscall-id="203">:pixel</code> space using the information contained in the given plot &#40;or scene&#41;.
+                  </p>
+                </li>
+                <li data-jscall-id="204">
+                  <p data-jscall-id="205">Use 
+                    <code data-jscall-id="206">project&#40;scene, input_space, output_space, point&#41;</code> to project between any two spaces. Note that you will need to handle 
+                    <code data-jscall-id="207">transform_func</code> yourself here.
+                  </p>
+                </li>
+                <li data-jscall-id="208">
+                  <p data-jscall-id="209">Handle it yourself. If you can&#39;t use 
+                    <code data-jscall-id="210">plot_to_screen&#40;&#41;</code> &#40;i.e. your target space is not 
+                    <code data-jscall-id="211">:pixel</code>&#41; you will see better performance by adapting 
+                    <code data-jscall-id="212">plot_to_screen&#40;&#41;</code> than by using 
+                    <code data-jscall-id="213">project&#40;&#41;</code> repeatedly. You can check &#34;basic
+                    <em data-jscall-id="214">recipes/error</em>and
+                    <em data-jscall-id="215">rangebars.jl&#34; and &#34;camera/projection</em>math.jl&#34; for the definitions of these functions.
+                  </p>
+                </li>
+              </ul>
+              <h3 id="data_limits and boundingbox changes" data-jscall-id="216">data_limits and boundingbox changes</h3>
+              <p data-jscall-id="217">As part of dealing with 
+                <code data-jscall-id="218">Float32</code> precision issues we have updated the 
+                <code data-jscall-id="219">data_limits</code> and 
+                <code data-jscall-id="220">boundingbox</code> functions.
+              </p>
+              <p data-jscall-id="221">Previously 
+                <code data-jscall-id="222">data_limits&#40;&#41;</code> considered 
+                <code data-jscall-id="223">Mat3f&#40;plot.model&#91;&#93;&#41;</code>, i.e. rotation and scaling applied to a plot, while ignoring the plots transform
+                <em data-jscall-id="224">func and translation. With that the result is in an unnatural coordinate system. 
+                  <code data-jscall-id="225">boundingbox&#40;x&#41;</code> was given by &#96;parent
+                </em>transform&#40;x&#41; * data
+                <em data-jscall-id="226">limits&#40;x&#41;&#96;, where parent</em>transform is the model matrix of the parent plot or scene, with 
+                <code data-jscall-id="227">boundingbox&#40;p::Text&#41;</code> being an exception producing limits in 
+                <code data-jscall-id="228">p.markerspace&#91;&#93;</code>.
+              </p>
+              <p data-jscall-id="229">After the changes 
+                <code data-jscall-id="230">data_limits&#40;&#41;</code> is now strictly in input space, i.e. it applies no transformations. It is however allowed to consider the size of markers if the markers are in the same space as the user data. So for example, 
+                <code data-jscall-id="231">meshscatter</code> considers the size of the scattered mesh and 
+                <code data-jscall-id="232">text</code> considers the size of the string if 
+                <code data-jscall-id="233">space&#91;&#93; &#61;&#61; markerspace&#91;&#93;</code>.
+              </p>
+              <p data-jscall-id="234">
+                <code data-jscall-id="235">boundingbox&#40;&#41;</code> on the other hand considers a full transformation to world space, i.e. it applies 
+                <code data-jscall-id="236">transform_func&#40;plot&#41;</code> and the full 
+                <code data-jscall-id="237">plot.model&#91;&#93;</code> matrix. For the future we have also added a &#40;target&#41; 
+                <code data-jscall-id="238">space</code> argument here which is largely ignored for now. The exception being 
+                <code data-jscall-id="239">boundingbox&#40;p::Text, space&#41;</code> which requires the argument to differentiate the new functionality &#40;
+                <code data-jscall-id="240">space &#61; :data</code>&#41; from the old &#40;
+                <code data-jscall-id="241">space &#61; p.markerspace&#91;&#93;</code>&#41;.
+              </p>
+              <h4 id="For Developers" data-jscall-id="242">For Developers</h4>
+              <p data-jscall-id="243">By default 
+                <code data-jscall-id="244">boundingbox&#40;plot&#41;</code> is derived from the 
+                <code data-jscall-id="245">data_limits&#40;plot&#41;</code> using 
+                <code data-jscall-id="246">apply_transform&#40;func, bbox::Rect3d&#41;</code>, and 
+                <code data-jscall-id="247">data_limits&#40;plot&#41;</code> default to the combined limits of the child plots. This will usually be enough to calculate reasonable limits, but there are some edge cases which may need your attention:
+              </p>
+              <ul class=" style_2" style="" data-jscall-id="248">
+                <li data-jscall-id="249">
+                  <p data-jscall-id="250">If you a define a plot with child plots in different spaces, then you must implement 
+                    <code data-jscall-id="251">data_limits&#40;plot&#41;</code> and 
+                    <code data-jscall-id="252">boundingbox&#40;plot, space &#61; :data&#41;</code> to get the correct limits. Some examples of this are 
+                    <a href="https://github.com/MakieOrg/Makie.jl/blob/dd64632f07e5c3f630c64968f5d0c6eeef2f15c4/src/basic_recipes/error_and_rangebars.jl#L305-L307" data-jscall-id="253">errorbars</a> which use pixel space for whiskers, 
+                    <a href="https://github.com/MakieOrg/Makie.jl/blob/dd64632f07e5c3f630c64968f5d0c6eeef2f15c4/src/basic_recipes/hvlines.jl#L88-L98" data-jscall-id="254">h/vlines</a> which are partially in relative scale and 
+                    <a href="https://github.com/MakieOrg/Makie.jl/blob/dd64632f07e5c3f630c64968f5d0c6eeef2f15c4/src/basic_recipes/voronoiplot.jl#L158-L169" data-jscall-id="255">voronoiplot</a> which applies 
+                    <code data-jscall-id="256">transform_func</code> internally.
+                  </p>
+                </li>
+                <li data-jscall-id="257">
+                  <p data-jscall-id="258">If you define a custom 
+                    <code data-jscall-id="259">transform_func</code> which does not correctly transform a 
+                    <code data-jscall-id="260">Rect3d</code> by transforming its vertices, then you should implement a 
+                    <code data-jscall-id="261">apply_transform&#40;my_transform_func, bbox::Rect3d&#41;</code> method that does.
+                  </p>
+                </li>
+              </ul>
+              <h2 id="Breaking Changes" data-jscall-id="262">Breaking Changes</h2>
+              <ul class=" style_2" style="" data-jscall-id="263">
+                <li data-jscall-id="264">
+                  <p data-jscall-id="265">
+                    <code data-jscall-id="266">data_limits&#40;plot&#41;</code> no longer considers part of the plots model matrix
+                  </p>
+                </li>
+                <li data-jscall-id="267">
+                  <p data-jscall-id="268">
+                    <code data-jscall-id="269">boundingbox&#40;plot&#41;</code> now considers the plots 
+                    <code data-jscall-id="270">transform_func</code> and full model matrix
+                  </p>
+                </li>
+                <li data-jscall-id="271">
+                  <p data-jscall-id="272">
+                    <code data-jscall-id="273">boundingbox&#40;p::Text&#41;</code> has been deprecated in favor of 
+                    <code data-jscall-id="274">boundingbox&#40;p, p.markerspace&#91;&#93;&#41;</code> with 
+                    <code data-jscall-id="275">boundingbox&#40;p, :data&#41;</code> following the new 
+                    <code data-jscall-id="276">boundingbox&#40;&#41;</code> logic
+                  </p>
+                </li>
+                <li data-jscall-id="277">
+                  <p data-jscall-id="278">
+                    <code data-jscall-id="279">data_limits&#40;&#41;</code> and 
+                    <code data-jscall-id="280">boundingbox&#40;&#41;</code> now return 
+                    <code data-jscall-id="281">Rect&#123;3, Float64&#125;</code> types
+                  </p>
+                </li>
+                <li data-jscall-id="282">
+                  <p data-jscall-id="283">
+                    <code data-jscall-id="284">project&#40;cam, input_space, output_space, pos&#41;</code> is no longer save to use for plots in an 
+                    <code data-jscall-id="285">Axis</code>. Use 
+                    <code data-jscall-id="286">project&#40;scene, input_space, output_space, pos&#41;</code> instead.
+                  </p>
+                </li>
+                <li data-jscall-id="287">
+                  <p data-jscall-id="288">deprecated 
+                    <code data-jscall-id="289">rotations</code> Attribute for 
+                    <code data-jscall-id="290">rotation</code> in 
+                    <code data-jscall-id="291">scatter</code> and 
+                    <code data-jscall-id="292">meshscatter</code> plots &#40;both were valid before&#41;
+                  </p>
+                </li>
+                <li data-jscall-id="293">
+                  <p data-jscall-id="294">invalid attributes that were previously not checked will break</p>
+                </li>
+              </ul>
+            </div>
+            <div data-jscall-id="295">/home/runner/.julia/packages/BonitoSites/R2njz/src/assets/highlight/github.min.css
+              <script data-jscall-id="296" src="../../bonito/js/highlight.pack13102628173626074447.js"></script>
+              <script data-jscall-id="297">hljs.highlightAll()</script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-jscall-id="298">
+      <script async="true" defer="true" data-jscall-id="299" src="https://api.makie.org/latest.js"></script>
+      <noscript data-jscall-id="300">
+        <img alt="" data-jscall-id="301" src="https://api.makie.org/noscript.gif" referrerpolicy="no-referrer-when-downgrade" />
+      </noscript>
+    </div>
+  </body>
+</html>

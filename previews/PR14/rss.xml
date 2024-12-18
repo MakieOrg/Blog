@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Makie Blog</title>
+    <link>https://blog.makie.org</link>
+    <description>A Blog about anything new in the Makie world</description>
+    <item>
+      <title>v0.22</title>
+      <link>./blogposts/v0.22</link>
+      <description>Makie.jl 0.22's is out: Better Geometry handling, curvilinear contour plots, and `fullbox` feature for Axis3.</description>
+      <pubDate>Tue, 17 Dec 2024 17:4:43</pubDate>
+    </item>
+    <item>
+      <title>v0.21</title>
+      <link>./blogposts/v0.21</link>
+      <description>Updates in Makie version v0.21</description>
+      <pubDate>Fri, 24 May 2024 11:52:10</pubDate>
+    </item>
+    <item>
+      <title>v0.20</title>
+      <link>./blogposts/v0.20</link>
+      <description>Updates in Makie version v0.20</description>
+      <pubDate>Mon, 20 Nov 2023 15:48:54</pubDate>
+    </item>
+    <item>
+      <title>v0.19.9-12</title>
+      <link>./blogposts/v0.19.9-12</link>
+      <description>Updates in Makie version v0.19.9-12</description>
+      <pubDate>Mon, 30 Oct 2023 17:42:2</pubDate>
+    </item>
+    <item>
+      <title>v0.19.7</title>
+      <link>./blogposts/v0.19.7</link>
+      <description>Updates in Makie version v0.19.7</description>
+      <pubDate>Wed, 26 Jul 2023 12:13:20</pubDate>
+    </item>
+    <item>
+      <title>May 2024 News</title>
+      <link>./blogposts/May-2023-News</link>
+      <description>News from MakieCon and updates about Makie</description>
+      <pubDate>Mon, 15 May 2023 14:37:22</pubDate>
+    </item>
+    <item>
+      <title>v0.18</title>
+      <link>./blogposts/v0.18</link>
+      <description>Updates in Makie version v0.18</description>
+      <pubDate>Wed, 12 Oct 2022 15:4:50</pubDate>
+    </item>
+    <item>
+      <title>v0.16</title>
+      <link>./blogposts/v0.16</link>
+      <description>Updates in Makie version v0.16</description>
+      <pubDate>Wed, 16 Mar 2022 19:55:25</pubDate>
+    </item>
+    <item>
+      <title>MakieCon 2022</title>
+      <link>./blogposts/makiecon</link>
+      <description>Updates From MakieCon</description>
+      <pubDate>Thu, 19 Dec 2 19:16:47</pubDate>
+    </item>
+  </channel>
+</rss>
