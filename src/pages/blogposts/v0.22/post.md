@@ -233,15 +233,18 @@ Since the last breaking release we merged a bunch of fixes for picking in WGMaki
 
 ### Tick Event
 
-In version 0.21.6, we introduced a `events(fig).tick` event. The event triggers once per frame in GLMakie, CairoMakie, and `record()`, and on a timer in WGLMakie. It can be used for anything that should happen synchronized with rendering, e.g., animation. The tick event contains the number of frames rendered `tick.count`, the time since rendering started `tick.time`, and the time since the last tick `tick.delta_time`.
+In version 0.21.6 we introduced `events(fig).tick`.
+The event triggers once per frame in GLMakie, CairoMakie, and `record()`, and on a timer in WGLMakie. It can be used for anything that should happen synchronized with rendering, e.g., animation. The tick event contains the number of frames rendered `tick.count`, the time since rendering started `tick.time`, and the time since the last tick `tick.delta_time`.
 
 [#3948](https://github.com/MakieOrg/Makie.jl/pull/3948)
 
 ### uv_transform
 
-In version 0.21.6, we added the `uv_transform` attribute to `image`, `surface`, `mesh`, and `meshscatter`. It acts as a transformation matrix on texture coordinates similar to how model transforms coordinates. The attribute accepts 2x3 and 3x3 matrices (which will get truncated to 2x3), a `Symbol` for named transformations, `LinearAlgebra.I`, a `Vec2f` representing scaling, a `Tuple{Vec2f, Vec2f}` representing translation and scaling, or a tuple containing multiple operations which will get chained (last operation applies first). See `?Makie.uv_transform` for more information.
+In version 0.21.6 we added the `uv_transform` attribute to `image`, `surface`, `mesh`, and `meshscatter`.
+It acts as a transformation matrix on texture coordinates similar to how model transforms coordinates. The attribute accepts 2x3 and 3x3 matrices (which will get truncated to 2x3), a `Symbol` for named transformations, `LinearAlgebra.I`, a `Vec2f` representing scaling, a `Tuple{Vec2f, Vec2f}` representing translation and scaling, or a tuple containing multiple operations which will get chained (last operation applies first). See `?Makie.uv_transform` for more information.
 
 ```julia
+# no-eval
 using LinearAlgebra, GeometryBasics, FileIO, GLMakie, ColorSchemes
 
 cow = load(assetpath("cow.png"))
@@ -273,7 +276,34 @@ meshscatter(
 f
 ```
 
+![uv_transform0](./images/uv-transform.png)
+
 [#1406](https://github.com/MakieOrg/Makie.jl/pull/1406)
+
+### Pie Position and Radial Offsets
+
+In version 0.21.6 an optional position argument and the `offset_radius` attribute were added to pie plots.
+The position argument can be used to translate the whole plot or each sector individually and the `offset radius` can be used to translate sectors along radial direction.
+
+```julia
+fig = Figure(size = (400, 400))
+ax = Axis(fig[1, 1]; autolimitaspect=1)
+
+vs = cumsum(4:10) ./ 35
+off = [0, 0.3, 0, 0, 0.2, 0.0, 0.0]
+cs = Makie.wong_colors()
+
+pie!(ax, vs; color=cs, normalize=false)
+pie!(ax, Point2f(2.5, 0), vs; color=cs, offset_radius=off, normalize=false, offset=π/2)
+pie!(ax, 0, -2.5, vs; color=cs, normalize=false, offset=π/2, inner_radius=0.3)
+xs =  2.5 .+ [0.0, 0.0, -0.2, -0.2, -0.2,  0.0, 0.2]
+ys = -2.5 .+ [0.2, 0.2,  0.2,  0.0,  0.0, -0.2, 0.0]
+pie!(ax, xs, ys, vs; color=cs, normalize=false, offset=π/2, inner_radius=0.3)
+
+fig
+```
+
+[#4027](https://github.com/MakieOrg/Makie.jl/pull/4027)
 
 ### Line Loops
 
