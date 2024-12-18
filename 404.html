@@ -7,8 +7,10 @@
     <script>
         window.onload = function () {
             const pathname = window.location.pathname;
+            console.log(pathname)
             if (pathname.startsWith("/blogposts")) {
-              const new_pathname = "./website" + pathname;
+              const new_pathname = "/website" + pathname;
+                console.log(new_pathname)
               // change url without history
               window.location.replace(new_pathname);
             }
