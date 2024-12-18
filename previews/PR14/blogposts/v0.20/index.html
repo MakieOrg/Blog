@@ -14,10 +14,11 @@
     <div>
       <link href="../../bonito/css/makie3804115995239873387.css" rel="stylesheet" type="text/css" />
       <link href="../../bonito/css/style3103408506044813217.css" rel="stylesheet" type="text/css" />
+      <link href="../../bonito/css/github.min8213811099958948332.css" rel="stylesheet" type="text/css" />
     </div>
   </head>
   <body data-jscall-id="7">
-    <script type="module">Bonito.lock_loading(() => Bonito.init_session('9d7d973f-0e23-4abc-8fbc-4baf01f87a7d', null, 'root'))</script>
+    <script type="module">Bonito.lock_loading(() => Bonito.init_session('64118b34-6c84-4600-8c71-4b7770f8e888', null, 'root'))</script>
     <div data-jscall-id="8">
       <a href="/" data-jscall-id="9">
         <img data-jscall-id="10" src="../../bonito/png/bannermesh_gradient10002001459189426229.png" width="100%" />
@@ -692,7 +693,7 @@ fig</code>
               </ul>
               <p data-jscall-id="311">Ironically, this refactor removed the reliance on the first plots boundingbox for deciding which axis to use. Instead we now use this overloadable interface:</p>
               <pre data-jscall-id="312">
-                <code class="language-julia" data-jscall-id="313"># no-eval
+                <code class="language-julia" data-jscall-id="313">
 
 Makie.args_preferred_axis&#40;&#91;PlotType&#93;, plot_arguments...&#41; &#61; PreferredAxisType
 Makie.preferred_axis_type&#40;plot::PlotType&#41; &#61; PreferredAxisType
@@ -707,7 +708,7 @@ preferred_axis_type&#40;::Volume&#41; &#61; LScene</code>
                 <code data-jscall-id="316">AbstractAxis</code>, which Blocks can inherit from to get all the basic functionality most axes will need &#40;e.g. plotting into them&#41;. The default behaviour is defined with these fallbacks &#40;which can be overloaded of course&#41;:
               </p>
               <pre data-jscall-id="317">
-                <code class="language-julia" data-jscall-id="318"># no-eval
+                <code class="language-julia" data-jscall-id="318">
 # falls back to resetting limits
 update_state_before_display&#33;&#40;ax::AbstractAxis&#41; &#61; reset_limits&#33;&#40;ax&#41;
 Makie.can_be_current_axis&#40;ax::AbstractAxis&#41; &#61; true
@@ -873,7 +874,7 @@ figurelike_return&#40;ax::AbstractAxis, plot::AbstractPlot&#41; &#61; AxisPlot&#
                 </li>
               </ul>
             </div>
-            <div data-jscall-id="417">/home/runner/.julia/packages/BonitoSites/R2njz/src/assets/highlight/github.min.css
+            <div data-jscall-id="417">
               <script data-jscall-id="418" src="../../bonito/js/highlight.pack13102628173626074447.js"></script>
               <script data-jscall-id="419">hljs.highlightAll()</script>
             </div>
