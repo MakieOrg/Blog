@@ -244,6 +244,7 @@ In version 0.21.6 we added the `uv_transform` attribute to `image`, `surface`, `
 It acts as a transformation matrix on texture coordinates similar to how model transforms coordinates. The attribute accepts 2x3 and 3x3 matrices (which will get truncated to 2x3), a `Symbol` for named transformations, `LinearAlgebra.I`, a `Vec2f` representing scaling, a `Tuple{Vec2f, Vec2f}` representing translation and scaling, or a tuple containing multiple operations which will get chained (last operation applies first). See `?Makie.uv_transform` for more information.
 
 ```julia
+# no-eval
 using LinearAlgebra, GeometryBasics, FileIO, GLMakie, ColorSchemes
 
 cow = load(assetpath("cow.png"))
@@ -274,6 +275,8 @@ meshscatter(
 )
 f
 ```
+
+![uv_transform0](./images/uv-transform.png)
 
 [#1406](https://github.com/MakieOrg/Makie.jl/pull/1406)
 
