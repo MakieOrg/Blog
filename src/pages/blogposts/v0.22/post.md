@@ -137,12 +137,15 @@ We have cleaned up two rendering pipelines in CairoMakie. The first is the meshs
 
 The second is the `scatter` pipeline. It was previously built with `markerspace = :pixel` in mind, which caused various rendering issues when `markerspace != :pixel`, `transform_marker != false` and/or `rotation` was involved. These issues include silent corruption of Cairo state which causes no more plots to be drawn. These issues have now been resolved and you should get the same results from CairoMakie as you get from GLMakie and WGLMakie when these attributes are involved. (Up to some smaller differences due to perspective projection in 3D.)
 
+| GLMakie | CairoMakie before | CairoMakie after |
+| ------- | ----------------- | ---------------- |
+| ![example](./images/GLMakie_transform_marker.png) | ![example](./images/CairoMakie_transform_marker_before.png) | ![example](./images/CairoMakie_transform_marker_after.png) |
+
 ## [Front Spines in Axis3](https://github.com/MakieOrg/Makie.jl/pull/4305)
 
 Introduces an option to close an Axis3's outline box with a new `front_spines` feature, enhancing the visualization of 3D plots by drawing the box spines in front.
 
 ```julia
-# no-eval
 using GLMakie, FileIO
 
 fig = Figure()
@@ -203,8 +206,7 @@ f = Figure()
 image(f[1, 1], cow, uv_transform = :transpose)
 
 meshscatter(
-    f[2, 1],
-    [Point2f(x, y) for x in 1:10 for y in 10:-1:1],
+    f[2, 1], [Point2f(x, y) for x in 1:10 for y in 10:-1:1],
     color = cow,   # first (translate, scale), then :transpose
     uv_transform = [(:transpose, (Vec2f(x, y), Vec2f(0.1, 0.1))) for x in 0.0:0.1:0.9 for y in 0.0:0.1:0.9],
     markersize = Vec3f(0.9, 0.85, 1),
