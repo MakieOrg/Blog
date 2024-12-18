@@ -210,9 +210,24 @@ Implements screen reusability by using `empty!` instead of closing and reopening
 
 [#3881](https://github.com/MakieOrg/Makie.jl/pull/3881)
 
+### Toggle Rotation
+
+Version 0.21.17 added the ability to rotate `Toggle` blocks using the `orientation` attribute.
+
+```julia
+using GLMakie
+f = Figure(size = (400, 100))
+Toggle(f[1, 1], orientation = :horizontal) # default
+Toggle(f[1, 2], orientation = :vertical)
+for i in 3:8
+    Toggle(f[1, i], orientation = (i-2) * 2pi/7)
+end
+f
+```
+
 ### Picking Improvements
 
-Since the last breaking release, we had a bunch of fixes for picking in WGMakie and GLMakie. We added tests and also updated the indices produced by image, heatmap, and surface to correspond to the matrix indices of the given data.
+Since the last breaking release we merged a bunch of fixes for picking in WGMakie and GLMakie. We added tests and also updated the indices produced for image, heatmap and surface plots to correspond to the matrix indices of the given data.
 
 [#4082](https://github.com/MakieOrg/Makie.jl/pull/4082), [#4136](https://github.com/MakieOrg/Makie.jl/pull/4136), [#4137](https://github.com/MakieOrg/Makie.jl/pull/4137), [#4459](https://github.com/MakieOrg/Makie.jl/pull/4459), [#4488](https://github.com/MakieOrg/Makie.jl/pull/4488), [#4604](https://github.com/MakieOrg/Makie.jl/pull/4604)
 
