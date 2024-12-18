@@ -161,7 +161,7 @@ We have cleaned up two rendering pipelines in CairoMakie. The first is the meshs
 The second is the `scatter` pipeline. It was previously built with `markerspace = :pixel` in mind, which caused various rendering issues when `markerspace != :pixel`, `transform_marker != false`, and/or `rotation` was involved. These issues include silent corruption of Cairo state which causes no more plots to be drawn. These issues have now been resolved, and you should get the same results from CairoMakie as you get from GLMakie and WGLMakie when these attributes are involved. (Up to some smaller differences due to perspective projection in 3D.)
 
 | **GLMakie**                                     | **CairoMakie before**                                 | **CairoMakie after**                                  |
-|-------------------------------------------------|-----------------------------------------------------|-----------------------------------------------------|
+|:-----------------------------------------------:|:---------------------------------------------------:|:---------------------------------------------------:|
 | ![GLMakie](./images/GLMakie_transform_marker.png) | ![CairoMakie before](./images/CairoMakie_transform_marker_before.png) | ![CairoMakie after](./images/CairoMakie_transform_marker_after.png) |
 
 [#4606](https://github.com/MakieOrg/Makie.jl/pull/4606), [#4663](https://github.com/MakieOrg/Makie.jl/pull/4663)
