@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Error 404 - Page not found</title>
+    <script>
+        window.onload = function () {
+            const pathname = window.location.pathname;
+            if (pathname.startsWith("/blogposts")) {
+              const new_pathname = "./website" + pathname;
+              // change url without history
+              window.location.replace(new_pathname);
+            }
+        }
+    </script>
+</head>
+
+<body id="body" style="text-align: center">
+    Page not found.<br>
+    If you tried to access a blogpost from rss and you have disabled javascript, try putting blog.makie.org/website/* infront of the post link (so just insert a /website after makie.org) <br>
+</body>
+
+</html>
