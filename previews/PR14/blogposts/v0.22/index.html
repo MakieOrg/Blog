@@ -14,7 +14,7 @@
     </div>
   </head>
   <body data-jscall-id="7">
-    <script type="module">Bonito.lock_loading(() => Bonito.init_session('fe633dc0-5bdd-4009-ad69-e1c6d70e7cb6', null, 'root'))</script>
+    <script type="module">Bonito.lock_loading(() => Bonito.init_session('a84672c7-ac3f-4c11-924a-9819c3fde7cc', null, 'root'))</script>
     <div data-jscall-id="8">
       <a href="/" data-jscall-id="9">
         <img data-jscall-id="10" src="../../bonito/png/bannermesh_gradient10002001459189426229.png" width="100%" />
@@ -25,7 +25,7 @@
             <div class="markdown-body" data-jscall-id="14">
               <h1 id="Makie v0.22" data-jscall-id="15">Makie v0.22</h1>
               <h2 id="GeometryBasics 0.5" data-jscall-id="16">GeometryBasics 0.5</h2>
-              <p data-jscall-id="17">The largest part of this release is a refactor of GeometryBasics. The main goal was to simplify the package, both from a user perspective and a compiler perspective. Even if you don&#39;t interact with GeometryBasics directly you should see some improvements to ttfp &#40;specifically using and first display time&#41;.</p>
+              <p data-jscall-id="17">The largest part of this release is a refactor of GeometryBasics. The main goal was to simplify the package, both from a user perspective and a compiler perspective. Even if you don&#39;t interact with GeometryBasics directly, you should see some improvements to TTFP &#40;specifically using and first display time&#41;.</p>
               <p data-jscall-id="18">
                 <img alt="benchmark" data-jscall-id="19" src="../../bonito/svg/bd1c143cab2d59bf0752f7166952446a7793fe4c-1751495864469549726.svg" />
               </p>
@@ -34,9 +34,9 @@
                 <a href="https://github.com/JuliaGeometry/GeometryBasics.jl/pull/219" data-jscall-id="22">#219</a>, 
                 <a href="https://github.com/MakieOrg/Makie.jl/pull/4319" data-jscall-id="23">#4319</a>
               </p>
-              <h3 id="Removed meta" data-jscall-id="24">Removed meta</h3>
+              <h3 id="Removed Meta" data-jscall-id="24">Removed Meta</h3>
               <p data-jscall-id="25">We removed the 
-                <code data-jscall-id="26">meta</code> infrastructure used for per-vertex and per-face data in GeometryBasics. It generated a lot of type complexity, which you may have noticed before if you looked at the full type of a mesh. Instead a 
+                <code data-jscall-id="26">meta</code> infrastructure used for per-vertex and per-face data in GeometryBasics. It generated a lot of type complexity, which you may have noticed before if you looked at the full type of a mesh. Instead, a 
                 <code data-jscall-id="27">GeometryBasics.Mesh</code> now simply holds a 
                 <code data-jscall-id="28">NamedTuple</code> of array-like data, called 
                 <code data-jscall-id="29">vertex_attributes</code>. Each array is interpreted as per-vertex data.
@@ -47,17 +47,17 @@
 # old_mesh &#61; GeometryBasics.mesh&#40;meta&#40;positions, normals &#61; normals, uv &#61; uvs&#41;, faces&#41;
 new_mesh &#61; GeometryBasics.mesh&#40;positions, faces, normal &#61; normals, uv &#61; uvs&#41;</code>
               </pre>
-              <p data-jscall-id="33">Note as well that 
+              <p data-jscall-id="33">Note that 
                 <code data-jscall-id="34">normals</code> is now called 
                 <code data-jscall-id="35">normal</code> to match 
-                <code data-jscall-id="36">uv</code>
+                <code data-jscall-id="36">uv</code>.
               </p>
               <h3 id="FaceView" data-jscall-id="37">FaceView</h3>
               <p data-jscall-id="38">For per-face data, or more generally data which uses a different set of indices from other vertex attributes, we introduced the 
-                <code data-jscall-id="39">Faceview</code> object. It contains some data and a vector of faces which replaces the meshes faces to index the data.
+                <code data-jscall-id="39">FaceView</code> object. It contains some data and a vector of faces which replaces the mesh&#39;s faces to index the data.
               </p>
-              <p data-jscall-id="40">As an example let&#39;s look at the mesh generated for 
-                <code data-jscall-id="41">Rect3f</code>, which wants per-face normals to avoid smooth shading across it&#39;s edges and corners. &#40;
+              <p data-jscall-id="40">As an example, let&#39;s look at the mesh generated for 
+                <code data-jscall-id="41">Rect3f</code>, which wants per-face normals to avoid smooth shading across its edges and corners. &#40;
                 <code data-jscall-id="42">facetype</code> is only set to shorten the output a bit.&#41;
               </p>
               <pre data-jscall-id="43">
@@ -83,10 +83,11 @@ FaceView&#123;Vec&#123;3, Float32&#125;, Vector&#123;Vec&#123;3, Float32&#125;&#
  &#91;0.0, 0.0, 1.0&#93;</code>
               </pre>
               <p data-jscall-id="49">The 
-                <code data-jscall-id="50">FaceView</code> contains 6 normal vectors as data, which is shown above. The number of normals the mesh reports refers to them. The FaceView also contains 6 faces, which correspond to the 6 faces in the mesh.
+                <code data-jscall-id="50">FaceView</code> contains 6 normal vectors as data, which is shown above. The number of normals the mesh reports refers to them. The 
+                <code data-jscall-id="51">FaceView</code> also contains 6 faces, which correspond to the 6 faces in the mesh.
               </p>
-              <pre data-jscall-id="51">
-                <code class="language-julia" data-jscall-id="52">
+              <pre data-jscall-id="52">
+                <code class="language-julia" data-jscall-id="53">
 julia&#62; m.normal.faces
 6-element Vector&#123;QuadFace&#123;Int64&#125;&#125;:
  QuadFace&#123;Int64&#125;&#40;1, 1, 1, 1&#41;
@@ -96,37 +97,38 @@ julia&#62; m.normal.faces
  QuadFace&#123;Int64&#125;&#40;5, 5, 5, 5&#41;
  QuadFace&#123;Int64&#125;&#40;6, 6, 6, 6&#41;</code>
               </pre>
-              <p data-jscall-id="53">Each of these faces refers to just one index in 
-                <code data-jscall-id="54">m.normal.data</code>, making that data apply per face.
+              <p data-jscall-id="54">Each of these faces refers to just one index in 
+                <code data-jscall-id="55">m.normal.data</code>, making that data apply per face.
               </p>
-              <p data-jscall-id="55">You can convert a mesh with 
-                <code data-jscall-id="56">FaceView</code>s to one without by calling 
-                <code data-jscall-id="57">expand_faceviews&#40;mesh&#41;</code>. This will directly return the mesh if it does not contain FaceViews. Otherwise it will build a new mesh without them, remapping indices and separating faces as needed.
+              <p data-jscall-id="56">You can convert a mesh with 
+                <code data-jscall-id="57">FaceView</code>s to one without by calling 
+                <code data-jscall-id="58">expand_faceviews&#40;mesh&#41;</code>. This will directly return the mesh if it does not contain 
+                <code data-jscall-id="59">FaceView</code>s. Otherwise, it will build a new mesh without them, remapping indices and separating faces as needed.
               </p>
-              <pre data-jscall-id="58">
-                <code class="language-julia" data-jscall-id="59">
+              <pre data-jscall-id="60">
+                <code class="language-julia" data-jscall-id="61">
 julia&#62; expand_faceviews&#40;m&#41;
 Mesh&#123;3, Float32, QuadFace&#123;Int64&#125;&#125;
     faces: 6
     vertex position: 24
     vertex normal: 24</code>
               </pre>
-              <p data-jscall-id="60">To combine the per-face normals with positions, our mesh requires 3 copies of each position &#40;one per face using that position&#41; and 4 copies of each normal &#40;one per vertex in the face&#41;. The are generated by 
-                <code data-jscall-id="61">expand_faceviews&#40;m&#41;</code>.
+              <p data-jscall-id="62">To combine the per-face normals with positions, our mesh requires 3 copies of each position &#40;one per face using that position&#41; and 4 copies of each normal &#40;one per vertex in the face&#41;. These are generated by 
+                <code data-jscall-id="63">expand_faceviews&#40;m&#41;</code>.
               </p>
-              <p data-jscall-id="62">Note that we also added a convenience function 
-                <code data-jscall-id="63">face_normals&#40;points, faces&#41;</code> to GeometryBasics to generate a 
-                <code data-jscall-id="64">FaceView</code> for per-face normals. In the docs you can also find an example of how to use 
-                <code data-jscall-id="65">FaceView</code> to set per-face colors.
+              <p data-jscall-id="64">Note that we also added a convenience function 
+                <code data-jscall-id="65">face_normals&#40;points, faces&#41;</code> to GeometryBasics to generate a 
+                <code data-jscall-id="66">FaceView</code> for per-face normals. In the docs, you can also find an example of how to use 
+                <code data-jscall-id="67">FaceView</code> to set per-face colors.
               </p>
-              <h3 id="MetaMesh &#38; MeshIO" data-jscall-id="66">MetaMesh &#38; MeshIO</h3>
-              <p data-jscall-id="67">We have introduced a 
-                <code data-jscall-id="68">MetaMesh</code> type, which allows you to bundle arbitrary data with a 
-                <code data-jscall-id="69">GeometryBasics.Mesh</code>. Any data &#40;that does not correspond to vertices or faces&#41; can be shipped with this type. It is now used by MeshIO when loading an 
-                <code data-jscall-id="70">obj</code> file that includes a material template library &#40;i.e. an .mtl file&#41;.
+              <h3 id="MetaMesh &#38; MeshIO" data-jscall-id="68">MetaMesh &#38; MeshIO</h3>
+              <p data-jscall-id="69">We have introduced a 
+                <code data-jscall-id="70">MetaMesh</code> type, which allows you to bundle arbitrary data with a 
+                <code data-jscall-id="71">GeometryBasics.Mesh</code>. Any data &#40;that does not correspond to vertices or faces&#41; can be shipped with this type. It is now used by MeshIO when loading an 
+                <code data-jscall-id="72">obj</code> file that includes a material template library &#40;i.e., an .mtl file&#41;.
               </p>
-              <pre data-jscall-id="71">
-                <code class="language-julia" data-jscall-id="72">
+              <pre data-jscall-id="73">
+                <code class="language-julia" data-jscall-id="74">
 julia&#62; using FileIO, Makie
 julia&#62; m &#61; load&#40;Makie.assetpath&#40;&#34;sponza/sponza.obj&#34;&#41;&#41;
 MetaMesh&#123;3, Float32, NgonFace&#123;3, OffsetInteger&#123;-1, UInt32&#125;&#125;&#125;
@@ -135,131 +137,136 @@ MetaMesh&#123;3, Float32, NgonFace&#123;3, OffsetInteger&#123;-1, UInt32&#125;&#
     vertex uv: 60896
     meta: &#91;:groups, :material_names, :materials&#93;</code>
               </pre>
-              <p data-jscall-id="73">The material data ends up in 
-                <code data-jscall-id="74">m&#91;:materials&#93;</code> as a nested 
-                <code data-jscall-id="75">Dict</code>, where the first key is the name of the material. The names are also listed in 
-                <code data-jscall-id="76">m&#91;:material_names&#93;</code> in the same order they are referred to by the 
-                <code data-jscall-id="77">.obj</code> file. The mesh contains a new 
-                <code data-jscall-id="78">m.mesh.views</code> field, which marks the subset of faces affected by each material. 
-                <code data-jscall-id="79">m&#91;:groups&#93;</code> is also synchronized with 
-                <code data-jscall-id="80">m.mesh.views</code>, containing the group names of these faces.
+              <p data-jscall-id="75">The material data ends up in 
+                <code data-jscall-id="76">m&#91;:materials&#93;</code> as a nested 
+                <code data-jscall-id="77">Dict</code>, where the first key is the name of the material. The names are also listed in 
+                <code data-jscall-id="78">m&#91;:material_names&#93;</code> in the same order they are referred to by the 
+                <code data-jscall-id="79">.obj</code> file. The mesh contains a new 
+                <code data-jscall-id="80">m.mesh.views</code> field, which marks the subset of faces affected by each material. 
+                <code data-jscall-id="81">m&#91;:groups&#93;</code> is also synchronized with 
+                <code data-jscall-id="82">m.mesh.views</code>, containing the group names of these faces.
               </p>
-              <p data-jscall-id="81">Makie can directly plot a 
-                <code data-jscall-id="82">MetaMesh</code> as it is constructed by 
-                <code data-jscall-id="83">MeshIO</code>, applying the material properties it knows how to handle. This includes textures referred to by the mtl file.
+              <p data-jscall-id="83">Makie can directly plot a 
+                <code data-jscall-id="84">MetaMesh</code> as it is constructed by 
+                <code data-jscall-id="85">MeshIO</code>, applying the material properties it knows how to handle. This includes textures referred to by the mtl file.
               </p>
-              <pre data-jscall-id="84">
-                <code class="language-julia" data-jscall-id="85">
+              <pre data-jscall-id="86">
+                <code class="language-julia" data-jscall-id="87">
 using FileIO, GLMakie
 m &#61; load&#40;Makie.assetpath&#40;&#34;sponza/sponza.obj&#34;&#41;&#41;
 f,a,p &#61; Makie.mesh&#40;m&#41;
 display&#40;f&#41;
 update_cam&#33;&#40;a.scene, Vec3f&#40;-15, 7, 1&#41;, Vec3f&#40;3, 5, 0&#41;, Vec3f&#40;0,1,0&#41;&#41;</code>
               </pre>
-              <p data-jscall-id="86">Note that Makie can currently only handle a very limited subset of the material properties an mtl file can set. As such the results may differ from what the mtl file sets and will improve in the future.</p>
-              <p data-jscall-id="87">
-                <img alt="sponza" data-jscall-id="88" src="../../bonito/bin/e30249b9fe6f2b6862693855429144cf88f78269-10049286866202656474.bin" />
-              </p>
+              <p data-jscall-id="88">Note that Makie can currently only handle a very limited subset of the material properties an mtl file can set. As such, the results may differ from what the mtl file sets and will improve in the future.</p>
               <p data-jscall-id="89">
-                <a href="https://github.com/JuliaIO/MeshIO.jl/pull/98" data-jscall-id="90">MeshIO#98</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4368" data-jscall-id="91">#4368</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4496" data-jscall-id="92">#4496</a>
+                <img alt="sponza" data-jscall-id="90" src="../../bonito/bin/e30249b9fe6f2b6862693855429144cf88f78269-10049286866202656474.bin" />
               </p>
-              <h2 id="" data-jscall-id="93">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4131" data-jscall-id="94">Axis3 Controls</a>
-              </h2>
-              <p data-jscall-id="95">With version 0.22 we have introduced a few new controls to Axis3:</p>
-              <h4 id="Translation" data-jscall-id="96">Translation</h4>
-              <p data-jscall-id="97">The content of an Axis3 can be translated by holding the right mouse button and dragging. Any content that spills outside the frame of the axis will be clipped. Translations can be restricted to a specific dimension by holding the x, y and/or z key while translating. If 
-                <code data-jscall-id="98">viewmode &#61; :free</code> you can also translate the whole Axis3 &#40;content &#43; decorations&#41; by holding left control while translating.
+              <p data-jscall-id="91">
+                <a href="https://github.com/JuliaIO/MeshIO.jl/pull/98" data-jscall-id="92">MeshIO#98</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4368" data-jscall-id="93">#4368</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4496" data-jscall-id="94">#4496</a>
               </p>
-              <h4 id="Zoom" data-jscall-id="99">Zoom</h4>
-              <p data-jscall-id="100">The content of an Axis3 can be zoomed by scrolling the mouse wheel. By default zoom is focused on the center of the axis. This can be changed to be focused on the cursor by setting 
-                <code data-jscall-id="101">ax.zoommode&#91;&#93; &#61; :cursor</code>. Like with translations, content outside the frame is clipped and the x, y and/or z key can be used to restrict zooming to specific dimensions. If 
-                <code data-jscall-id="102">viewmode &#61; :free</code> zooming always affects the whole Axis3 &#40;content &#43; decorations&#41; and is always focused on the center of the axis.
+              <h2 id="Axis3 Controls" data-jscall-id="95">Axis3 Controls</h2>
+              <p data-jscall-id="96">With version 0.22, we have introduced a few new controls to Axis3:</p>
+              <h4 id="Translation" data-jscall-id="97">Translation</h4>
+              <p data-jscall-id="98">The content of an Axis3 can be translated by holding the right mouse button and dragging. Any content that spills outside the frame of the axis will be clipped. Translations can be restricted to a specific dimension by holding the x, y, and/or z key while translating. If 
+                <code data-jscall-id="99">viewmode &#61; :free</code>, you can also translate the whole Axis3 &#40;content &#43; decorations&#41; by holding left control while translating.
               </p>
-              <h4 id="Limit Reset" data-jscall-id="103">Limit Reset</h4>
-              <p data-jscall-id="104">The limit reset works similarly to Axis. By pressing left control and the left mouse button limits are reset to the previously set user limits or, if none exist, default limits. Adding left shift results in a full reset, removing user limits if any exist. In the context of Axis3, the former resets zoom and translation of axis content. The latter also resets rotation and translation of the whole Axis3. The latter can also be activated without the former by just pressing left shift and the left mouse button</p>
-              <h4 id="Focus on cursor" data-jscall-id="105">Focus on cursor</h4>
-              <p data-jscall-id="106">You can center the Axis3 on the data under the cursor by pressing left alt and the left mouse button. With 
-                <code data-jscall-id="107">zoommode &#61; :center</code> &#40;or 
-                <code data-jscall-id="108">viewmode &#61; :free</code>&#41; this will translate that data point in such a way that you can zoom towards it without clipping into it.
+              <h4 id="Zoom" data-jscall-id="100">Zoom</h4>
+              <p data-jscall-id="101">The content of an Axis3 can be zoomed by scrolling the mouse wheel. By default, zoom is focused on the center of the axis. This can be changed to be focused on the cursor by setting 
+                <code data-jscall-id="102">ax.zoommode&#91;&#93; &#61; :cursor</code>. Like with translations, content outside the frame is clipped, and the x, y, and/or z key can be used to restrict zooming to specific dimensions. If 
+                <code data-jscall-id="103">viewmode &#61; :free</code>, zooming always affects the whole Axis3 &#40;content &#43; decorations&#41; and is always focused on the center of the axis.
               </p>
-              <h2 id="Smaller Changes" data-jscall-id="109">Smaller Changes</h2>
-              <h3 id="Scatter marker_offset behavior change" data-jscall-id="110">Scatter marker_offset behavior change</h3>
-              <p data-jscall-id="111">In previous versions 
-                <code data-jscall-id="112">marker_offset</code> was used to center scatter markers, but it could also be set by the user to specify some other offset. This was somewhat confusing as 
-                <code data-jscall-id="113">marker_offset &#61; Vec2f&#40;0&#41;</code> did not result in a centered marker. It also did not work with 
-                <code data-jscall-id="114">BezierPath</code> markers, which have become the default.
+              <h4 id="Limit Reset" data-jscall-id="104">Limit Reset</h4>
+              <p data-jscall-id="105">The limit reset works similarly to Axis. By pressing left control and the left mouse button, limits are reset to the previously set user limits or, if none exist, default limits. Adding left shift results in a full reset, removing user limits if any exist. In the context of Axis3, the former resets zoom and translation of axis content. The latter also resets rotation and translation of the whole Axis3. The latter can also be activated without the former by just pressing left shift and the left mouse button.</p>
+              <h4 id="Focus on Cursor" data-jscall-id="106">Focus on Cursor</h4>
+              <p data-jscall-id="107">You can center the Axis3 on the data under the cursor by pressing left alt and the left mouse button. With 
+                <code data-jscall-id="108">zoommode &#61; :center</code> &#40;or 
+                <code data-jscall-id="109">viewmode &#61; :free</code>&#41;, this will translate that data point in such a way that you can zoom towards it without clipping into it.
               </p>
-              <p data-jscall-id="115">In this release we separated the centering into an internal attribute, so that 
-                <code data-jscall-id="116">marker_offset</code> is a pure user attribute. With this 
-                <code data-jscall-id="117">marker_offset &#61; 0</code> now results in the same centered marker as not specifying it would. It also now works consistently for all marker types and is no longer affected by the 
-                <code data-jscall-id="118">rotation</code> attribute. 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4594" data-jscall-id="119">#4594</a>
+              <p data-jscall-id="110">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4131" data-jscall-id="111">#4131</a>
               </p>
-              <h3 id="MeshScatter transform_marker" data-jscall-id="120">MeshScatter transform_marker</h3>
-              <p data-jscall-id="121">
-                <code data-jscall-id="122">Scatter</code> has a 
-                <code data-jscall-id="123">transform_marker::Bool</code> attribute which controls whether the model matrix &#40;i.e. 
-                <code data-jscall-id="124">translate&#33;&#40;&#41;</code>, 
-                <code data-jscall-id="125">rotate&#33;&#40;&#41;</code>, 
-                <code data-jscall-id="126">zoom&#33;&#40;&#41;</code>&#41; affects the marker. 
-                <code data-jscall-id="127">MeshScatter</code> now also has this attribute. It is set to 
-                <code data-jscall-id="128">false</code> by default, which changes the behavior from the previous version. Most notably this will affect the shape of meshscatter objects in an Axis3. Where previously they were scaled based on the limits of the Axis they now preserve their shape and size.
+              <h2 id="Smaller Changes" data-jscall-id="112">Smaller Changes</h2>
+              <h3 id="Scatter marker_offset behavior change" data-jscall-id="113">Scatter marker_offset behavior change</h3>
+              <p data-jscall-id="114">In previous versions, 
+                <code data-jscall-id="115">marker_offset</code> was used to center scatter markers, but it could also be set by the user to specify some other offset. This was somewhat confusing as 
+                <code data-jscall-id="116">marker_offset &#61; Vec2f&#40;0&#41;</code> did not result in a centered marker. It also did not work with 
+                <code data-jscall-id="117">BezierPath</code> markers, which have become the default.
               </p>
-              <p data-jscall-id="129">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4606" data-jscall-id="130">#4606</a>
+              <p data-jscall-id="118">In this release, we separated the centering into an internal attribute, so that 
+                <code data-jscall-id="119">marker_offset</code> is a pure user attribute. With this, 
+                <code data-jscall-id="120">marker_offset &#61; 0</code> now results in the same centered marker as not specifying it would. It also now works consistently for all marker types and is no longer affected by the 
+                <code data-jscall-id="121">rotation</code> attribute.
               </p>
-              <h3 id="CairoMakie" data-jscall-id="131">CairoMakie</h3>
-              <p data-jscall-id="132">We have cleaned up two rendering pipelines in CairoMakie. The first is the meshscatter/voxel/surface/mesh pipeline. It previously handled transformations incorrectly, always applying transform_func and model to &#40;generated&#41; mesh vertices. This is correct for 
-                <code data-jscall-id="133">mesh</code> and 
-                <code data-jscall-id="134">surface</code> but not 
-                <code data-jscall-id="135">meshscatter</code> and 
-                <code data-jscall-id="136">voxel</code>. It also didn&#39;t allow for meshes without normals.
+              <p data-jscall-id="122">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4594" data-jscall-id="123">#4594</a>
               </p>
-              <p data-jscall-id="137">The second is the 
-                <code data-jscall-id="138">scatter</code> pipeline. It was previously built with 
-                <code data-jscall-id="139">markerspace &#61; :pixel</code> in mind, which caused various rendering issues when 
-                <code data-jscall-id="140">markerspace &#33;&#61; :pixel</code>, 
-                <code data-jscall-id="141">transform_marker &#33;&#61; false</code> and/or 
-                <code data-jscall-id="142">rotation</code> was involved. These issues include silent corruption of Cairo state which causes no more plots to be drawn. These issues have now been resolved and you should get the same results from CairoMakie as you get from GLMakie and WGLMakie when these attributes are involved. &#40;Up to some smaller differences due to perspective projection in 3D.&#41;
+              <h3 id="MeshScatter transform_marker" data-jscall-id="124">MeshScatter transform_marker</h3>
+              <p data-jscall-id="125">
+                <code data-jscall-id="126">Scatter</code> has a 
+                <code data-jscall-id="127">transform_marker::Bool</code> attribute which controls whether the model matrix &#40;i.e., 
+                <code data-jscall-id="128">translate&#33;&#40;&#41;</code>, 
+                <code data-jscall-id="129">rotate&#33;&#40;&#41;</code>, 
+                <code data-jscall-id="130">zoom&#33;&#40;&#41;</code>&#41; affects the marker. 
+                <code data-jscall-id="131">MeshScatter</code> now also has this attribute. It is set to 
+                <code data-jscall-id="132">false</code> by default, which changes the behavior from the previous version. Most notably, this will affect the shape of meshscatter objects in an Axis3. Where previously they were scaled based on the limits of the Axis, they now preserve their shape and size.
               </p>
-              <table data-jscall-id="143">
-                <tr data-jscall-id="144">
-                  <th data-jscall-id="145" align="right">
-                    <strong data-jscall-id="146">GLMakie</strong>
+              <p data-jscall-id="133">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4606" data-jscall-id="134">#4606</a>
+              </p>
+              <h3 id="CairoMakie" data-jscall-id="135">CairoMakie</h3>
+              <p data-jscall-id="136">We have cleaned up two rendering pipelines in CairoMakie. The first is the meshscatter/voxel/surface/mesh pipeline. It previously handled transformations incorrectly, always applying 
+                <code data-jscall-id="137">transform_func</code> and 
+                <code data-jscall-id="138">model</code> to &#40;generated&#41; mesh vertices. This is correct for 
+                <code data-jscall-id="139">mesh</code> and 
+                <code data-jscall-id="140">surface</code> but not 
+                <code data-jscall-id="141">meshscatter</code> and 
+                <code data-jscall-id="142">voxel</code>. It also didn&#39;t allow for meshes without normals.
+              </p>
+              <p data-jscall-id="143">The second is the 
+                <code data-jscall-id="144">scatter</code> pipeline. It was previously built with 
+                <code data-jscall-id="145">markerspace &#61; :pixel</code> in mind, which caused various rendering issues when 
+                <code data-jscall-id="146">markerspace &#33;&#61; :pixel</code>, 
+                <code data-jscall-id="147">transform_marker &#33;&#61; false</code>, and/or 
+                <code data-jscall-id="148">rotation</code> was involved. These issues include silent corruption of Cairo state which causes no more plots to be drawn. These issues have now been resolved, and you should get the same results from CairoMakie as you get from GLMakie and WGLMakie when these attributes are involved. &#40;Up to some smaller differences due to perspective projection in 3D.&#41;
+              </p>
+              <table data-jscall-id="149">
+                <tr data-jscall-id="150">
+                  <th data-jscall-id="151" align="right">
+                    <strong data-jscall-id="152">GLMakie</strong>
                   </th>
-                  <th data-jscall-id="147" align="right">
-                    <strong data-jscall-id="148">CairoMakie before</strong>
+                  <th data-jscall-id="153" align="right">
+                    <strong data-jscall-id="154">CairoMakie before</strong>
                   </th>
-                  <th data-jscall-id="149" align="right">
-                    <strong data-jscall-id="150">CairoMakie after</strong>
+                  <th data-jscall-id="155" align="right">
+                    <strong data-jscall-id="156">CairoMakie after</strong>
                   </th>
                 </tr>
-                <tr data-jscall-id="151">
-                  <td data-jscall-id="152" align="right">
-                    <img alt="GLMakie" data-jscall-id="153" src="../../bonito/png/GLMakie_transform_marker15594842360273442278.png" />
+                <tr data-jscall-id="157">
+                  <td data-jscall-id="158" align="right">
+                    <img alt="GLMakie" data-jscall-id="159" src="../../bonito/png/GLMakie_transform_marker15594842360273442278.png" />
                   </td>
-                  <td data-jscall-id="154" align="right">
-                    <img alt="CairoMakie before" data-jscall-id="155" src="../../bonito/png/CairoMakie_transform_marker_before17499417893629454440.png" />
+                  <td data-jscall-id="160" align="right">
+                    <img alt="CairoMakie before" data-jscall-id="161" src="../../bonito/png/CairoMakie_transform_marker_before17499417893629454440.png" />
                   </td>
-                  <td data-jscall-id="156" align="right">
-                    <img alt="CairoMakie after" data-jscall-id="157" src="../../bonito/png/CairoMakie_transform_marker_after10903051031105726376.png" />
+                  <td data-jscall-id="162" align="right">
+                    <img alt="CairoMakie after" data-jscall-id="163" src="../../bonito/png/CairoMakie_transform_marker_after10903051031105726376.png" />
                   </td>
                 </tr>
               </table>
-              <p data-jscall-id="158">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4606" data-jscall-id="159">#4606</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4663" data-jscall-id="160">#4663</a>
+              <p data-jscall-id="164">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4606" data-jscall-id="165">#4606</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4663" data-jscall-id="166">#4663</a>
               </p>
-              <h2 id="Front Spines in Axis3" data-jscall-id="161">Front Spines in Axis3</h2>
-              <p data-jscall-id="162">Introduces an option to close an Axis3&#39;s outline box with a new 
-                <code data-jscall-id="163">front_spines</code> feature, enhancing the visualization of 3D plots by drawing the box spines in front.
+              <h2 id="Front Spines in Axis3" data-jscall-id="167">Front Spines in Axis3</h2>
+              <p data-jscall-id="168">Introduces an option to close an Axis3&#39;s outline box with a new 
+                <code data-jscall-id="169">front_spines</code> feature, enhancing the visualization of 3D plots by drawing the box spines in front.
               </p>
-              <div class="markdown-body" data-jscall-id="164">
-                <pre data-jscall-id="165">
-                  <code class="language-julia" data-jscall-id="166">using GLMakie, FileIO
+              <div class="markdown-body" data-jscall-id="170">
+                <pre data-jscall-id="171">
+                  <code class="language-julia" data-jscall-id="172">using GLMakie, FileIO
 
 fig &#61; Figure&#40;&#41;
 brain &#61; load&#40;assetpath&#40;&#34;brain.stl&#34;&#41;&#41;
@@ -267,16 +274,16 @@ ax &#61; Axis3&#40;fig&#91;1, 1&#93;, front_spines &#61; true&#41; # see also x/
 mesh&#33;&#40;ax, brain, color &#61; :gray80&#41;
 fig</code>
                 </pre>
-                <img data-jscall-id="167" src="../../bonito/png/cell_output_18871779995178971846.png" />
+                <img data-jscall-id="173" src="../../bonito/png/cell_output_18871779995178971846.png" />
               </div>
-              <p data-jscall-id="168">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4305" data-jscall-id="169">#4305</a>
+              <p data-jscall-id="174">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4305" data-jscall-id="175">#4305</a>
               </p>
-              <h2 id="Enable curvilinear contour plots" data-jscall-id="170">Enable curvilinear contour plots</h2>
-              <p data-jscall-id="171">Curvilinear contour plots are enabled using Contour.jl&#39;s capabilities, now supporting grids for more flexible contour visualizations:</p>
-              <div class="markdown-body" data-jscall-id="172">
-                <pre data-jscall-id="173">
-                  <code class="language-julia" data-jscall-id="174">using GLMakie
+              <h2 id="Enable Curvilinear Contour Plots" data-jscall-id="176">Enable Curvilinear Contour Plots</h2>
+              <p data-jscall-id="177">Curvilinear contour plots are enabled using Contour.jl&#39;s capabilities, now supporting grids for more flexible contour visualizations:</p>
+              <div class="markdown-body" data-jscall-id="178">
+                <pre data-jscall-id="179">
+                  <code class="language-julia" data-jscall-id="180">using GLMakie
 x &#61; -10:10
 y &#61; -10:10
 # The curvilinear grid:
@@ -288,55 +295,55 @@ fig, ax, srf &#61; surface&#40;xs, ys, fill&#40;0f0, size&#40;zs&#41;&#41;; colo
 ctr &#61; contour&#33;&#40;ax, xs, ys, zs; color &#61; :orange, levels &#61; levels, labels &#61; true, labelfont &#61; :bold, labelsize &#61; 12&#41;
 fig</code>
                 </pre>
-                <img data-jscall-id="175" src="../../bonito/png/cell_output_210865109458722174098.png" />
+                <img data-jscall-id="181" src="../../bonito/png/cell_output_210865109458722174098.png" />
               </div>
-              <p data-jscall-id="176">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4670" data-jscall-id="177">#4670</a>
-              </p>
-              <h2 id="Backlog" data-jscall-id="178">Backlog</h2>
-              <h3 id="Fix Screen re-opening issue" data-jscall-id="179">Fix Screen re-opening issue</h3>
-              <p data-jscall-id="180">Implements screen reusability by using 
-                <code data-jscall-id="181">empty&#33;</code> instead of closing and reopening, solving a window behavior issue on Linux when reusing GLMakie&#39;s singleton screen.
-              </p>
               <p data-jscall-id="182">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/3881" data-jscall-id="183">#3881</a>
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4670" data-jscall-id="183">#4670</a>
               </p>
-              <h3 id="Picking improvements" data-jscall-id="184">Picking improvements</h3>
-              <p data-jscall-id="185">Since the last breaking release we had a bunch of fixes for picking in WGMakie and GLMakie. We added tests and also updated the indices produced by image, heatmap and surface to correspond to the matrix indices of the given data.</p>
-              <p data-jscall-id="186">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4082" data-jscall-id="187">#4082</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4136" data-jscall-id="188">#4136</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4137" data-jscall-id="189">#4137</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4459" data-jscall-id="190">#4459</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4488" data-jscall-id="191">#4488</a>, 
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/4604" data-jscall-id="192">#4604</a>
+              <h2 id="Backlog" data-jscall-id="184">Backlog</h2>
+              <h3 id="Fix Screen Re-opening Issue" data-jscall-id="185">Fix Screen Re-opening Issue</h3>
+              <p data-jscall-id="186">Implements screen reusability by using 
+                <code data-jscall-id="187">empty&#33;</code> instead of closing and reopening, solving a window behavior issue on Linux when reusing GLMakie&#39;s singleton screen.
               </p>
-              <h3 id="Tick Event" data-jscall-id="193">Tick Event</h3>
-              <p data-jscall-id="194">In version 0.21.6 we introduced a 
-                <code data-jscall-id="195">events&#40;fig&#41;.tick</code> event. The event triggers once per frame in GLMakie, CairoMakie and 
-                <code data-jscall-id="196">record&#40;&#41;</code>, and on a timer in WGLMakie. It can be used for anything that should happen synchronized with rendering, e.g. animation. The tick event contains the number of frames rendered 
-                <code data-jscall-id="197">tick.count</code>, the time since rendering started 
-                <code data-jscall-id="198">tick.time</code> and the time since the last tick 
-                <code data-jscall-id="199">tick.delta_time</code>.
+              <p data-jscall-id="188">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3881" data-jscall-id="189">#3881</a>
               </p>
-              <p data-jscall-id="200">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/3948" data-jscall-id="201">#3948</a>
+              <h3 id="Picking Improvements" data-jscall-id="190">Picking Improvements</h3>
+              <p data-jscall-id="191">Since the last breaking release, we had a bunch of fixes for picking in WGMakie and GLMakie. We added tests and also updated the indices produced by image, heatmap, and surface to correspond to the matrix indices of the given data.</p>
+              <p data-jscall-id="192">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4082" data-jscall-id="193">#4082</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4136" data-jscall-id="194">#4136</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4137" data-jscall-id="195">#4137</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4459" data-jscall-id="196">#4459</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4488" data-jscall-id="197">#4488</a>, 
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/4604" data-jscall-id="198">#4604</a>
               </p>
-              <h3 id="uv_transform" data-jscall-id="202">uv_transform</h3>
-              <p data-jscall-id="203">In version 0.21.6 we added the 
-                <code data-jscall-id="204">uv_transform</code> attribute to 
-                <code data-jscall-id="205">image</code>, 
-                <code data-jscall-id="206">surface</code>, 
-                <code data-jscall-id="207">mesh</code> and 
-                <code data-jscall-id="208">meshscatter</code>. It acts as a transformation matrix on texture coordinates similar to how model transforms coordinates. The attribute accept 2x3 and 3x3 matrices &#40;which will get truncated to 2x3&#41;, a 
-                <code data-jscall-id="209">Symbol</code> for named transformations, 
-                <code data-jscall-id="210">LinearAlgebra.I</code>, a 
-                <code data-jscall-id="211">Vec2f</code> representing scaling, a 
-                <code data-jscall-id="212">Tuple&#123;Vec2f, Vec2f&#125;</code> representing translation and scaling or a tuple of the containing multiple operations which will get chained &#40;last operation applies first&#41;. See 
-                <code data-jscall-id="213">?Makie.uv_transform</code> for more information.
+              <h3 id="Tick Event" data-jscall-id="199">Tick Event</h3>
+              <p data-jscall-id="200">In version 0.21.6, we introduced a 
+                <code data-jscall-id="201">events&#40;fig&#41;.tick</code> event. The event triggers once per frame in GLMakie, CairoMakie, and 
+                <code data-jscall-id="202">record&#40;&#41;</code>, and on a timer in WGLMakie. It can be used for anything that should happen synchronized with rendering, e.g., animation. The tick event contains the number of frames rendered 
+                <code data-jscall-id="203">tick.count</code>, the time since rendering started 
+                <code data-jscall-id="204">tick.time</code>, and the time since the last tick 
+                <code data-jscall-id="205">tick.delta_time</code>.
               </p>
-              <pre data-jscall-id="214">
-                <code class="language-julia" data-jscall-id="215">
+              <p data-jscall-id="206">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3948" data-jscall-id="207">#3948</a>
+              </p>
+              <h3 id="uv_transform" data-jscall-id="208">uv_transform</h3>
+              <p data-jscall-id="209">In version 0.21.6, we added the 
+                <code data-jscall-id="210">uv_transform</code> attribute to 
+                <code data-jscall-id="211">image</code>, 
+                <code data-jscall-id="212">surface</code>, 
+                <code data-jscall-id="213">mesh</code>, and 
+                <code data-jscall-id="214">meshscatter</code>. It acts as a transformation matrix on texture coordinates similar to how model transforms coordinates. The attribute accepts 2x3 and 3x3 matrices &#40;which will get truncated to 2x3&#41;, a 
+                <code data-jscall-id="215">Symbol</code> for named transformations, 
+                <code data-jscall-id="216">LinearAlgebra.I</code>, a 
+                <code data-jscall-id="217">Vec2f</code> representing scaling, a 
+                <code data-jscall-id="218">Tuple&#123;Vec2f, Vec2f&#125;</code> representing translation and scaling, or a tuple containing multiple operations which will get chained &#40;last operation applies first&#41;. See 
+                <code data-jscall-id="219">?Makie.uv_transform</code> for more information.
+              </p>
+              <pre data-jscall-id="220">
+                <code class="language-julia" data-jscall-id="221">
 using LinearAlgebra, GeometryBasics, FileIO, GLMakie, ColorSchemes
 
 cow &#61; load&#40;assetpath&#40;&#34;cow.png&#34;&#41;&#41;
@@ -367,27 +374,27 @@ meshscatter&#40;
 &#41;
 f</code>
               </pre>
-              <p data-jscall-id="216">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/1406" data-jscall-id="217">#1406</a>
+              <p data-jscall-id="222">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/1406" data-jscall-id="223">#1406</a>
               </p>
-              <h3 id="Line Loops" data-jscall-id="218">Line Loops</h3>
-              <p data-jscall-id="219">After reworking our line shaders in 0.21 we added code for rendering closed line loops in version 0.21.4. If the start and end point of a line is the same and it has at least 4 points, it is detected as a loop. In that case the line doesn&#39;t draw a linecap at the start and end point, but instead another joint, closing the loop.</p>
-              <p data-jscall-id="220">
-                <a href="https://github.com/MakieOrg/Makie.jl/pull/3907" data-jscall-id="221">#3907</a>
+              <h3 id="Line Loops" data-jscall-id="224">Line Loops</h3>
+              <p data-jscall-id="225">After reworking our line shaders in 0.21, we added code for rendering closed line loops in version 0.21.4. If the start and end point of a line is the same and it has at least 4 points, it is detected as a loop. In that case, the line doesn&#39;t draw a linecap at the start and end point, but instead another joint, closing the loop.</p>
+              <p data-jscall-id="226">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/3907" data-jscall-id="227">#3907</a>
               </p>
             </div>
-            <div data-jscall-id="222">
-              <script data-jscall-id="223" src="../../bonito/js/highlight.pack13102628173626074447.js"></script>
-              <script data-jscall-id="224">hljs.highlightAll()</script>
+            <div data-jscall-id="228">
+              <script data-jscall-id="229" src="../../bonito/js/highlight.pack13102628173626074447.js"></script>
+              <script data-jscall-id="230">hljs.highlightAll()</script>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div data-jscall-id="225">
-      <script async="true" defer="true" data-jscall-id="226" src="https://api.makie.org/latest.js"></script>
-      <noscript data-jscall-id="227">
-        <img alt="" data-jscall-id="228" src="https://api.makie.org/noscript.gif" referrerpolicy="no-referrer-when-downgrade" />
+    <div data-jscall-id="231">
+      <script async="true" defer="true" data-jscall-id="232" src="https://api.makie.org/latest.js"></script>
+      <noscript data-jscall-id="233">
+        <img alt="" data-jscall-id="234" src="https://api.makie.org/noscript.gif" referrerpolicy="no-referrer-when-downgrade" />
       </noscript>
     </div>
   </body>
