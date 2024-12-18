@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   docs:
-    name: Documentation
+    name: Build blog
     runs-on: ubuntu-latest
     permissions:
       actions: write # needed to allow julia-actions/cache to proactively delete old caches that it has created
@@ -27,7 +27,7 @@ jobs:
         with:
           version: '1'
       - uses: julia-actions/cache@v2
-      - name: Make Docs
+      - name: Make Blog
         run: julia --color=yes docs/make.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

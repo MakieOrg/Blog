@@ -1,0 +1,9 @@
+<item>
+  <title>v0.22</title>
+  <link>./blogposts/v0.22</link>
+  <description> Makie.jl 0.22's is out: Better Geometry handling, curvilinear contour plots, and `fullbox` feature for Axis3.</description>
+  <pubDate>Tue, 17 Dec 2024 17:4:43</pubDate>
+  <image>
+    <url>images/img1.png</url>
+  </image>
+</item>
