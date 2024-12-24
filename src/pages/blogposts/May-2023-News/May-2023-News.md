@@ -83,7 +83,7 @@ Blog.gh_by("asinghvi17", "SimonDanisch")
 
 Benedikt Ehinger also worked on [a recipe](https://github.com/MakieOrg/Makie.jl/pull/2872), which makes it easy to introduce some jitter to points, so that one can better judge their distribution:
 
-![](https://user-images.githubusercontent.com/10183650/233134380-5321d9c0-8f97-4e90-a3ca-8a9de0183834.png)
+![](./images/233134380-5321d9c0-8f97-4e90-a3ca-8a9de0183834.png)
 
 ```julia
 # hide
@@ -130,7 +130,7 @@ There is an ongoing effort to make plotting function and `Block` documentation p
 The 1.9 release is a great release for Makie 🙂
 It substantially improves time to first plot and time to load the package:
 
-![](https://julialang.org/assets/blog/2023-1.9-highlights/benchmarks.png)
+![](./images/benchmarks.png)
 
 Also, it fixes [a long standing issue](https://github.com/JuliaGL/GLFW.jl/issues/198) for GLMakie users with AMD GPU on linux, which [got backported to 1.8.4](https://github.com/JuliaGL/GLFW.jl/issues/198#issuecomment-1367567883).
 
@@ -157,7 +157,7 @@ From the README:
 
 > The ModelingToolkitDesigner.jl package is a helper tool for visualizing and editing ModelingToolkit.jl system connections.
 
-![](https://user-images.githubusercontent.com/40798837/229201536-4444a037-18b3-4efd-bc93-d2c182abf533.png)
+![](./images/229201536-4444a037-18b3-4efd-bc93-d2c182abf533.png)
 
 ```julia
 # hide
@@ -176,7 +176,7 @@ During MakieCon and before, lots of cool use cases have been opened up:
 
 Simon Danisch has made an [initial demo](https://github.com/SimonDanisch/MakieSAM.jl) directly calling [segment-anything](https://github.com/facebookresearch/segment-anything) via PyCall and integrating it with Tyler, to easily segment satellite data:
 
-![tyler-sam](https://github.com/MakieOrg/Makie.jl/assets/1010467/2cf43375-cbea-4c9f-9d9f-df1ec670a5fe)
+![tyler-sam](./images/2cf43375-cbea-4c9f-9d9f-df1ec670a5fe.gif)
 
 Rafael Schouten took this demo and created [SegmentAnything.jl](https://github.com/rafaqz/SegmentAnything.jl) from it, which wraps the python dependencies much nicer via PythonCall.
 

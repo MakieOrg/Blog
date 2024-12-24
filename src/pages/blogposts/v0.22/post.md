@@ -244,7 +244,6 @@ In version 0.21.6 we added the `uv_transform` attribute to `image`, `surface`, `
 It acts as a transformation matrix on texture coordinates similar to how model transforms coordinates. The attribute accepts 2x3 and 3x3 matrices (which will get truncated to 2x3), a `Symbol` for named transformations, `LinearAlgebra.I`, a `Vec2f` representing scaling, a `Tuple{Vec2f, Vec2f}` representing translation and scaling, or a tuple containing multiple operations which will get chained (last operation applies first). See `?Makie.uv_transform` for more information.
 
 ```julia
-# no-eval
 using LinearAlgebra, GeometryBasics, FileIO, GLMakie, ColorSchemes
 
 cow = load(assetpath("cow.png"))
@@ -275,8 +274,6 @@ meshscatter(
 )
 f
 ```
-
-![uv_transform0](./images/uv-transform.png)
 
 [#1406](https://github.com/MakieOrg/Makie.jl/pull/1406)
 
@@ -310,3 +307,34 @@ fig
 After reworking our line shaders in 0.21, we added code for rendering closed line loops in version 0.21.4. If the start and end point of a line is the same and it has at least 4 points, it is detected as a loop. In that case, the line doesn't draw a linecap at the start and end point, but instead another joint, closing the loop.
 
 [#3907](https://github.com/MakieOrg/Makie.jl/pull/3907)
+
+
+### Heatmap shader for large heatmaps
+
+You can wrap your data into Makie.Resampler, to resample large heatmaps for the viewing area.
+When zooming in, it will update the resampled version, to show it at best fidelity.
+It blocks updates while any mouse or keyboard button is pressed, to not spam e.g. WGLMakie with data updates.
+This goes well with `Axis(figure; zoombutton=Keyboard.left_control)`. You can disable this behavior with:
+
+`Resampler(data; update_while_button_pressed=true)`.
+
+Example:
+
+```julia
+# no-eval
+using Downloads, FileIO, GLMakie
+# 30000×22943 image
+path = Downloads.download("https://upload.wikimedia.org/wikipedia/commons/7/7e/In_the_Conservatory.jpg")
+img = rotr90(load(path))
+f, ax, pl = heatmap(Resampler(img); axis=(; aspect=DataAspect()), figure=(;size=size(img)./20))
+hidedecorations!(ax)
+f
+```
+```julia
+# hide
+using Blog, Bonito
+Blog.Video(Bonito.Asset("./images/heatmap-resampler.CZhgLAWl.mp4"))
+```
+Visit the [docs](https://docs.makie.org/stable/reference/plots/heatmap#Plotting-large-Heatmaps) for more information about this feature.
+
+[#4317](https://github.com/MakieOrg/Makie.jl/pull/4317)
