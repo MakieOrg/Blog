@@ -4,7 +4,7 @@ We like to thank the [Max Planck Institute for Biogeochemistry](https://www.bgc-
 
 At MakieCon, we were happy to announce that Makie is now the most starred Julia plotting library:
 
-[![stars](https://github.com/MakieOrg/Makie.jl/assets/1010467/6e437b43-3f69-43b8-8531-046fc40f5785)](https://star-history.com/#MakieOrg/Makie.jl&JuliaPlots/Plots.jl&GiovineItalia/Gadfly.jl&JuliaPy/PyPlot.jl&jheinen/GR.jl&JuliaPlots/UnicodePlots.jl&Date)
+[![stars](./images/6e437b43-3f69-43b8-8531-046fc40f5785)](https://star-history.com/#MakieOrg/Makie.jl&JuliaPlots/Plots.jl&GiovineItalia/Gadfly.jl&JuliaPy/PyPlot.jl&jheinen/GR.jl&JuliaPlots/UnicodePlots.jl&Date)
 
 While one shouldn't put too much emphasis on GitHub star counts, we like to think that it's an indicator that Makie is on a good trajectory and people are excited to see where it's going next.
 

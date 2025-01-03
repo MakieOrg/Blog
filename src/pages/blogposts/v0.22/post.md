@@ -1,5 +1,19 @@
 # Makie v0.22
 
+## Announcement
+
+### Sovereign Tech Fund
+
+We're happy to announce, that Makie qualified for an investment from the [Sovereign Tech Fund](https://www.sovereign.tech)!
+This allows [Simon](https://github.com/simondanisch) and [Frederic](https://github.com/ffreyer) to work on maintenance and improvements for Makie until the end of 2025.
+The work has been chosen by the project proposal and we'll post more about it in the future.
+
+### Improvements to the Blog and website
+
+Makie's website and Blog are created with Bonito.jl (the backbone of WGLMakie.jl), which isn't the best idea in terms of feature completeness and design, but helps to use Bonito more and improve it for general use cases, therefore helping WGLMakie to mature.
+We finally added an RSS feed, brought the docs, website and blog closer together and updated a few sections and made sure the blogposts doesn't contain any dead links anymore.
+We also updated the build system for the blog and made it easier to create new blogposts for new Makie versions and general news.
+
 ## GeometryBasics 0.5
 
 The largest part of this release is a refactor of GeometryBasics. The main goal was to simplify the package, both from a user perspective and a compiler perspective. Even if you don't interact with GeometryBasics directly, you should see some improvements to TTFP (specifically using and first display time).
