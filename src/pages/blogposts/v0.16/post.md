@@ -43,7 +43,7 @@ GLMakie offers high quality text rendering again now :)
 
 | Before       | After     |
 |--------------|-----------|
-| ![before](https://user-images.githubusercontent.com/10947937/144500095-5b239ed0-346f-4783-998a-701c2c44a66c.png) | ![after](https://user-images.githubusercontent.com/10947937/144500158-a17863e5-8929-4f2b-a630-39d5bac9ae11.png) |
+| ![before](./images/144500095-5b239ed0-346f-4783-998a-701c2c44a66c.png) | ![after](./images/144500158-a17863e5-8929-4f2b-a630-39d5bac9ae11.png) |
 
 ```julia
 # hide

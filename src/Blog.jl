@@ -18,6 +18,16 @@ function tracking()
     )
 end
 
+function BlueSky(post)
+    js = DOM.script(src=asset("libs", "bluesky.js"))
+    container = DOM.div(
+        id = "comments",
+        dataUri = post,
+        style = "width: 600px;",
+    )
+    return DOM.div(container, js)
+end
+
 function Page(markdown_page)
     assets = asset.([
         "css/makie.css",
@@ -32,6 +42,8 @@ function Page(markdown_page)
         title="Makie Blog rss feed",
         href="./rss.xml"
     )
+    bluesky = BlueSky("https://bsky.app/profile/georgetakei.bsky.social/post/3le5a5c4hp222")
+
     return DOM.html(
         DOM.head(
             DOM.meta(charset="UTF-8"),
@@ -40,7 +52,7 @@ function Page(markdown_page)
             assets...,
             DOM.link(rel="icon", type="image/x-icon", href=asset("images", "favicon.ico")),
         ),
-        DOM.body(DOM.div(banner, body), tracking())
+        DOM.body(DOM.div(banner, body, Centered(Card(bluesky))), tracking())
     )
 end
 

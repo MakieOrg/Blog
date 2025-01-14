@@ -1,10 +1,24 @@
 # Makie v0.22
 
+## Announcement
+
+### Sovereign Tech Fund
+
+We're happy to announce, that Makie qualified for an investment from the [Sovereign Tech Fund](https://www.sovereign.tech)!
+This allows [Simon](https://github.com/simondanisch) and [Frederic](https://github.com/ffreyer) to work on maintenance and improvements for Makie until the end of 2025.
+The work we'll be doing is documented in the project proposal and we'll post more about it in the future.
+
+### Improvements to the Blog and website
+
+Makie's website and Blog are created with Bonito.jl (the backbone of WGLMakie.jl), which isn't the best idea in terms of feature completeness and design, but helps to use Bonito more and improve it for general use cases, therefore helping WGLMakie to mature.
+We finally added an RSS feed, brought the docs, website and blog closer together and updated a few sections and made sure the blogposts doesn't contain any dead links anymore.
+We also updated the build system for the blog and made it easier to create new blogposts for new Makie versions and general news.
+
 ## GeometryBasics 0.5
 
 The largest part of this release is a refactor of GeometryBasics. The main goal was to simplify the package, both from a user perspective and a compiler perspective. Even if you don't interact with GeometryBasics directly, you should see some improvements to TTFP (specifically using and first display time).
 
-![benchmark](https://gist.githubusercontent.com/MakieBot/acb50b133a32f9e1958696b81c662d07/raw/GLMakie.svg)
+![benchmark](./images/benchmark.svg)
 
 [#173](https://github.com/JuliaGeometry/GeometryBasics.jl/pull/173), [#219](https://github.com/JuliaGeometry/GeometryBasics.jl/pull/219), [#4319](https://github.com/MakieOrg/Makie.jl/pull/4319)
 
@@ -283,6 +297,7 @@ In version 0.21.6 an optional position argument and the `offset_radius` attribut
 The position argument can be used to translate the whole plot or each sector individually and the `offset radius` can be used to translate sectors along radial direction.
 
 ```julia
+using GLMakie
 fig = Figure(size = (400, 400))
 ax = Axis(fig[1, 1]; autolimitaspect=1)
 
@@ -307,3 +322,34 @@ fig
 After reworking our line shaders in 0.21, we added code for rendering closed line loops in version 0.21.4. If the start and end point of a line is the same and it has at least 4 points, it is detected as a loop. In that case, the line doesn't draw a linecap at the start and end point, but instead another joint, closing the loop.
 
 [#3907](https://github.com/MakieOrg/Makie.jl/pull/3907)
+
+
+### Heatmap shader for large heatmaps
+
+You can wrap your data into Makie.Resampler, to resample large heatmaps for the viewing area.
+When zooming in, it will update the resampled version, to show it at best fidelity.
+It blocks updates while any mouse or keyboard button is pressed, to not spam e.g. WGLMakie with data updates.
+This goes well with `Axis(figure; zoombutton=Keyboard.left_control)`. You can disable this behavior with:
+
+`Resampler(data; update_while_button_pressed=true)`.
+
+Example:
+
+```julia
+# no-eval
+using Downloads, FileIO, GLMakie
+# 30000×22943 image
+path = Downloads.download("https://upload.wikimedia.org/wikipedia/commons/7/7e/In_the_Conservatory.jpg")
+img = rotr90(load(path))
+f, ax, pl = heatmap(Resampler(img); axis=(; aspect=DataAspect()), figure=(;size=size(img)./20))
+hidedecorations!(ax)
+f
+```
+```julia
+# hide
+using Blog, Bonito
+Blog.Video(Bonito.Asset("./images/heatmap-resampler.CZhgLAWl.mp4"))
+```
+Visit the [docs](https://docs.makie.org/stable/reference/plots/heatmap#Plotting-large-Heatmaps) for more information about this feature.
+
+[#4317](https://github.com/MakieOrg/Makie.jl/pull/4317)

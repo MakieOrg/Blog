@@ -12,7 +12,7 @@ title = "Makie Blog"
 link = "https://blog.makie.org"
 description = "A Blog about anything new in the Makie world"
 
-function make(f, page_folder, destination)
+function create_routes(f, page_folder)
     routes = Routes()
     folders = filter(isdir, readdir(page_folder; join=true))
     entries = map(folders) do dir
@@ -23,21 +23,35 @@ function make(f, page_folder, destination)
     sort!(entries; by=x -> x[2].date, rev=true)
     for (dir, entry) in entries
         page = BonitoSites.MarkdownPage(dir)
-        route = replace(entry.link, "./" => "")
+        route = replace(entry.link, "./" => "/")
         routes[route] = App(f(page))
     end
     site_entries = map(x -> x[2], entries)
     routes["/"] = App(f(Bonito.Col(site_entries...)))
+    return routes
+end
+
+function make(routes, destination)
     Bonito.export_static(destination, routes)
     rss_path = joinpath(destination, "rss.xml")
     BonitoSites.generate_rss_feed(site_entries, rss_path; title, link, description, relative_path="./website/")
 end
 
 ##
+# using Revise
+# routes, task, server = interactive_server([Blog.markdown(), Blog.assetpath()]) do
+#     return create_routes(Blog.Page, Blog.markdown())
+# end;
+# server
+
+##
 build = Blog.site_path("build")
 isdir(build) && rm(build; recursive=true)
+routes = create_routes(Blog.Page, Blog.markdown())
 make(Blog.Page, Blog.markdown(), build)
 cp(Blog.assetpath("images"), Blog.site_path("build", "images"))
+
+
 
 ##
 BonitoSites.deploy(
