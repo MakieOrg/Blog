@@ -2,9 +2,9 @@
 
 ## Announcement
 
-### Sovereign Tech Fund
+### Working together with the Sovereign Tech Agency
 
-We're happy to announce, that Makie qualified for an investment from the [Sovereign Tech Fund](https://www.sovereign.tech)!
+We're happy to announce, that Makie qualified for an investment from the [Sovereign Tech Agency](https://www.sovereign.tech)!
 This allows [Simon](https://github.com/simondanisch) and [Frederic](https://github.com/ffreyer) to work on maintenance and improvements for Makie until the end of 2025.
 The work we'll be doing is documented in the project proposal and we'll post more about it in the future.
 
