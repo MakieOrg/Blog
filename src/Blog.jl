@@ -28,7 +28,60 @@ function BlueSky(post)
     return DOM.div(container, js)
 end
 
-function Page(markdown_page)
+function Navigation(highlighted="")
+    function item(name, href; target="")
+        bg = name == "Blog" ? "#73b5e4" : ""
+        style = Bonito.Styles(
+            CSS(
+                "color" => "white",
+                "cursor" => "pointer",
+                "padding" => "0.25rem 0.5rem",
+                "transition" => "opacity 0.2s",
+                "opacity" => "1.0",
+                "background-color" => bg
+            ),
+            CSS(":hover","opacity" => "0.5"),
+        )
+        l = Bonito.Styles("text-decoration" => "none",)
+        return DOM.a(DOM.div(name, style=style); href=href, target=target, style=l)
+    end
+
+    github = asset("images/GitHub-Mark-Light-64px.png")
+    img_style = Bonito.Styles(
+        "height" => "1.2rem",
+        "display" => "inline-block",
+        "vertical-align" => "text-bottom"
+    )
+
+    container_style = Bonito.Styles(
+        "display" => "flex",
+        "justify-content" => "center",
+        "background-color" => !isempty(highlighted) ? "#73b5e4" : "#3892d2",
+    )
+
+    inner_container_style = Bonito.Styles(
+        "display" => "flex",
+        "width" => "100%",
+        "padding" => "0 1rem",
+        "flex-wrap" => "wrap",
+        "height" => "2rem",
+    )
+    return DOM.div(
+        style=container_style, class="outer-page",
+        DOM.div(
+            style=inner_container_style, class="inner-page",
+            item("Home", "https://makie.org/website/"),
+            item("Team", "https://makie.org/website/team/"),
+            item("Support", "https://makie.org/website/support/"),
+            item("Contact", "https://makie.org/website/contact/"),
+            item("Blog", Bonito.Link("/")),
+            item("Docs", "http://docs.makie.org"; target="_blank"),
+            item(DOM.img(src=github, style=img_style), "https://github.com/MakieOrg/Makie.jl"; target="_blank")
+        )
+    )
+end
+
+function Page(markdown_page, bsky=nothing)
     assets = asset.([
         "css/makie.css",
         "css/style.css"
@@ -42,8 +95,12 @@ function Page(markdown_page)
         title="Makie Blog rss feed",
         href="./rss.xml"
     )
-    bluesky = BlueSky("https://bsky.app/profile/georgetakei.bsky.social/post/3le5a5c4hp222")
-
+    bluesky = if !isnothing(bsky)
+        Centered(Card(BlueSky(bsky)))
+    else
+        nothing
+    end
+    navigation = Navigation()
     return DOM.html(
         DOM.head(
             DOM.meta(charset="UTF-8"),
@@ -52,7 +109,15 @@ function Page(markdown_page)
             assets...,
             DOM.link(rel="icon", type="image/x-icon", href=asset("images", "favicon.ico")),
         ),
-        DOM.body(DOM.div(banner, body, Centered(Card(bluesky))), tracking())
+        DOM.body(
+            DOM.div(
+                banner,
+                navigation,
+                body,
+                bluesky
+            ),
+            tracking()
+        )
     )
 end
 

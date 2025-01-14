@@ -12,7 +12,7 @@ title = "Makie Blog"
 link = "https://blog.makie.org"
 description = "A Blog about anything new in the Makie world"
 
-function create_routes(f, page_folder, destination)
+function create_routes(f, page_folder, destination=nothing)
     routes = Routes()
     folders = filter(isdir, readdir(page_folder; join=true))
     entries = map(folders) do dir
@@ -28,11 +28,11 @@ function create_routes(f, page_folder, destination)
     end
     site_entries = map(x -> x[2], entries)
     routes["/"] = App(f(Bonito.Col(site_entries...)))
+    isnothing(destination) && return routes
     rss_path = joinpath(destination, "rss.xml")
     BonitoSites.generate_rss_feed(site_entries, rss_path; title, link, description, relative_path="./website/")
     return routes
 end
-
 
 ##
 # using Revise
@@ -48,8 +48,6 @@ isdir(build) && rm(build; recursive=true);
 routes = create_routes(Blog.Page, Blog.markdown(), build);
 Bonito.export_static(build, routes);
 cp(Blog.assetpath("images"), Blog.site_path("build", "images"))
-
-
 
 ##
 BonitoSites.deploy(
