@@ -1,0 +1,253 @@
+<!doctype html>
+<html data-jscall-id="1">
+  <head data-jscall-id="2">
+    <script src="../../bonito/js/Bonito.bundled3046859427437497252.js" type="module"></script>
+    <meta charset="UTF-8" data-jscall-id="3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" data-jscall-id="4" />
+    <link rel="alternate" data-jscall-id="5" href="./rss.xml" title="Makie Blog rss feed" type="application/rss+xml" />
+    <link rel="icon" data-jscall-id="6" href="../../bonito/ico/favicon7600468465817277261.ico" type="image/x-icon" />
+    <style>.style_2 {
+  list-style-type: disc;
+  list-style: inside;
+}
+</style>
+    <div>
+      <link href="../../bonito/css/makie3804115995239873387.css" rel="stylesheet" type="text/css" />
+      <link href="../../bonito/css/style3103408506044813217.css" rel="stylesheet" type="text/css" />
+    </div>
+  </head>
+  <body data-jscall-id="7">
+    <script type="module">Bonito.lock_loading(() => Bonito.init_session('b9cd376a-f5f9-4ce5-835d-8bebf4daef45', null, 'root'))</script>
+    <div data-jscall-id="8">
+      <a href="/" data-jscall-id="9">
+        <img data-jscall-id="10" src="../../bonito/png/bannermesh_gradient10002001459189426229.png" width="100%" />
+      </a>
+      <div class="outer-page" data-jscall-id="11">
+        <div class="inner-page" data-jscall-id="12">
+          <div data-jscall-id="13">
+            <div class="markdown-body" data-jscall-id="14">
+              <h1 id="Makie v0.19.7" data-jscall-id="15">Makie v0.19.7</h1>
+              <p data-jscall-id="16">We have a new release for you which - even though it takes the form of an unassuming patch - comes which a bunch of long-awaited changes and additions.</p>
+              <h2 id="Polar axis" data-jscall-id="17">Polar axis</h2>
+              <p data-jscall-id="18">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/2990" data-jscall-id="19">PR #2990</a>
+              </p>
+              <p data-jscall-id="20">Frederic put in a lot of work and finished an effort originally started by Anshul &#40;
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/2014" data-jscall-id="21">#2014</a>&#41; and Julius. Now, Makie finally has its own polar axis. We consider this an experimental feature for now, which means that breaking changes to the implementation are more likely once users start testing it.
+              </p>
+              <p data-jscall-id="22">
+                <img alt="polar axis" data-jscall-id="23" src="../../bonito/png/b7c29390bc21a85cab05e65bb604b4d0ae1b9988-1204418902319633832.png" />
+              </p>
+              <h2 id="Color scales" data-jscall-id="24">Color scales</h2>
+              <p data-jscall-id="25">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/2900" data-jscall-id="26">PR #2900</a>
+              </p>
+              <p data-jscall-id="27">This work was a joint effort by t-bltg &#40;
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/2493" data-jscall-id="28">#2900</a>&#41; and Simon. Now you can pass scaling functions via the 
+                <code data-jscall-id="29">colorscale</code> parameter to plotting primitives that take numerical colors and colormaps. The numbers will then be pre-transformed before being looked up in the colormap, allowing you to quickly visualize exponential and other nonlinearly distributed data.
+              </p>
+              <p data-jscall-id="30">
+                <img alt="colorscale" data-jscall-id="31" src="../../bonito/png/e9dfbec6b69892cf5087310804decaaba527e266-5441252506833180676.png" />
+              </p>
+              <h2 id="Alpha keyword" data-jscall-id="32">Alpha keyword</h2>
+              <p data-jscall-id="33">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/2900" data-jscall-id="34">PR #2900</a>
+              </p>
+              <p data-jscall-id="35">With the colorscale rework, Simon refactored the internal color handling which also resulted in the implementation of an 
+                <code data-jscall-id="36">alpha</code> keyword for most primitive plot types. This alpha value simply acts as a multiplier for any colors passed or looked up in colormaps &#40;as opposed to a layer-based compositing alpha&#41;.
+              </p>
+              <div class="markdown-body" data-jscall-id="37">
+                <pre data-jscall-id="38">
+                  <code class="language-julia" data-jscall-id="39">f, _ &#61; lines&#40;0..8, sin, color &#61; :blue, linewidth &#61; 10&#41;
+lines&#33;&#40;0..8, cos, color &#61; :red, alpha &#61; 0.5, linewidth &#61; 10&#41;
+f</code>
+                </pre>
+                <img data-jscall-id="40" src="../../bonito/png/cell_output_216216717442601367278.png" />
+              </div>
+              <h2 id="" data-jscall-id="41">DelaunayTriangulation.jl support for 
+                <code data-jscall-id="42">tricontourf</code>
+              </h2>
+              <p data-jscall-id="43">
+                <a href="https://github.com/MakieOrg/Makie.jl/pull/2896" data-jscall-id="44">PR #2896</a>
+              </p>
+              <p data-jscall-id="45">This work by Daniel switched the internal handler of triangulation computations in Makie from jll-based MiniQHull to his own package 
+                <a href="https://github.com/DanielVandH/DelaunayTriangulation.jl/" data-jscall-id="46">DelaunayTriangulation.jl</a> written completely in Julia. This allows users to exert much more control over the triangulations used for their 
+                <code data-jscall-id="47">tricontourf</code> plots.
+              </p>
+              <p data-jscall-id="48">
+                <img alt="" data-jscall-id="49" src="../../bonito/png/0b05a5ccf8dcef15c6927998cf7a97e9ffb9a16f-15365325229093021326.png" />
+              </p>
+              <p data-jscall-id="50">Here&#39;s a more comprehensive list of changes which can also be found at 
+                <a href="https://docs.makie.org/stable/news/" data-jscall-id="51">docs.makie.org/stable/news/</a>.
+              </p>
+              <p data-jscall-id="52">We hope you enjoy the new release&#33;</p>
+              <h3 id="Changelog v0.19.7" data-jscall-id="53">Changelog v0.19.7</h3>
+              <ul class=" style_2" style="" data-jscall-id="54">
+                <li data-jscall-id="55">
+                  <p data-jscall-id="56">Allow arbitrary functions to color 
+                    <code data-jscall-id="57">streamplot</code> lines by passing a 
+                    <code data-jscall-id="58">Function</code> to 
+                    <code data-jscall-id="59">color</code>.  This must accept 
+                    <code data-jscall-id="60">Point</code> of the appropriate dimension and return a 
+                    <code data-jscall-id="61">Point</code>, 
+                    <code data-jscall-id="62">Vec</code>, or other arraylike object 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2002" data-jscall-id="63">#2002</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="64">
+                  <p data-jscall-id="65">
+                    <code data-jscall-id="66">arrows</code> can now take input of the form 
+                    <code data-jscall-id="67">x::AbstractVector, y::AbstractVector, &#91;z::AbstractVector,&#93; f::Function</code>, where 
+                    <code data-jscall-id="68">f</code> must return a 
+                    <code data-jscall-id="69">VecTypes</code> of the appropriate dimension 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2597" data-jscall-id="70">#2597</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="71">
+                  <p data-jscall-id="72">Exported colorbuffer, and added 
+                    <code data-jscall-id="73">colorbuffer&#40;axis::Axis; include_decorations&#61;false, colorbuffer_kws...&#41;</code>, to get an image of an axis with or without decorations 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/3078" data-jscall-id="74">#3078</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="75">
+                  <p data-jscall-id="76">Fixed an issue where the 
+                    <code data-jscall-id="77">linestyle</code> of some polys was not applied to the stroke in CairoMakie. 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2604" data-jscall-id="78">#2604</a>
+                  </p>
+                </li>
+                <li data-jscall-id="79">
+                  <p data-jscall-id="80">Add 
+                    <code data-jscall-id="81">colorscale &#61; identity</code> to any plotting function using a colormap. This works with any scaling function like 
+                    <code data-jscall-id="82">log10</code>, 
+                    <code data-jscall-id="83">sqrt</code> etc. Consequently, 
+                    <code data-jscall-id="84">scale</code> for 
+                    <code data-jscall-id="85">hexbin</code> is replaced with 
+                    <code data-jscall-id="86">colorscale</code> 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2900" data-jscall-id="87">#2900</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="88">
+                  <p data-jscall-id="89">Add 
+                    <code data-jscall-id="90">alpha&#61;1.0</code> argument to all basic plots, which supports independently adding an alpha component to colormaps and colors. Multiple alphas like in 
+                    <code data-jscall-id="91">plot&#40;alpha&#61;0.2, color&#61;RGBAf&#40;1, 0, 0, 0.5&#41;&#41;</code>, will get multiplied 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2900" data-jscall-id="92">#2900</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="93">
+                  <p data-jscall-id="94">
+                    <code data-jscall-id="95">hexbin</code> now supports any per-observation weights which StatsBase respects - 
+                    <code data-jscall-id="96">&#60;: StatsBase.AbstractWeights</code>, 
+                    <code data-jscall-id="97">Vector&#123;Real&#125;</code>, or 
+                    <code data-jscall-id="98">nothing</code> &#40;the default&#41;. 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pulls/2804" data-jscall-id="99">#2804</a>
+                  </p>
+                </li>
+                <li data-jscall-id="100">
+                  <p data-jscall-id="101">Added a new Axis type, 
+                    <code data-jscall-id="102">PolarAxis</code>, which is an axis with a polar projection.  Input is in 
+                    <code data-jscall-id="103">&#40;r, theta&#41;</code> coordinates and is transformed to 
+                    <code data-jscall-id="104">&#40;x, y&#41;</code> coordinates using the standard polar-to-cartesian transformation. Generally, its attributes are very similar to the usual 
+                    <code data-jscall-id="105">Axis</code> attributes, but 
+                    <code data-jscall-id="106">x</code> is replaced by 
+                    <code data-jscall-id="107">r</code> and 
+                    <code data-jscall-id="108">y</code> by 
+                    <code data-jscall-id="109">θ</code>. It also inherits from the theme of 
+                    <code data-jscall-id="110">Axis</code> in this manner, so should work seamlessly with Makie themes 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2990" data-jscall-id="111">#2990</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="112">
+                  <p data-jscall-id="113">
+                    <code data-jscall-id="114">inherit</code> now has a new signature 
+                    <code data-jscall-id="115">inherit&#40;scene, attrs::NTuple&#123;N, Symbol&#125;, default_value&#41;</code>, allowing recipe authors to access nested attributes when trying to inherit from the parent Scene. For example, one could inherit from 
+                    <code data-jscall-id="116">scene.Axis.yticks</code> by 
+                    <code data-jscall-id="117">inherit&#40;scene, &#40;:Axis, :yticks&#41;, &#36;default_value&#41;</code> 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2990" data-jscall-id="118">#2990</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="119">
+                  <p data-jscall-id="120">Fixed incorrect rendering of 3D heatmaps 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2959" data-jscall-id="121">#2959</a>
+                  </p>
+                </li>
+                <li data-jscall-id="122">
+                  <p data-jscall-id="123">Deprecated 
+                    <code data-jscall-id="124">flatten_plots</code> in favor of 
+                    <code data-jscall-id="125">collect_atomic_plots</code>. Using the new 
+                    <code data-jscall-id="126">collect_atomic_plots</code> fixed a bug in CairoMakie where the z-level of plots within recipes was not respected. 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2793" data-jscall-id="127">#2793</a>
+                  </p>
+                </li>
+                <li data-jscall-id="128">
+                  <p data-jscall-id="129">Fixed incorrect line depth in GLMakie 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2843" data-jscall-id="130">#2843</a>
+                  </p>
+                </li>
+                <li data-jscall-id="131">
+                  <p data-jscall-id="132">Fixed incorrect line alpha in dense lines in GLMakie 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2843" data-jscall-id="133">#2843</a>
+                  </p>
+                </li>
+                <li data-jscall-id="134">
+                  <p data-jscall-id="135">Fixed DataInspector interaction with transformations 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/3002" data-jscall-id="136">#3002</a>
+                  </p>
+                </li>
+                <li data-jscall-id="137">
+                  <p data-jscall-id="138">Added option 
+                    <code data-jscall-id="139">WGLMakie.activate&#33;&#40;resize_to_body&#61;true&#41;</code>, to make plots resize to the VSCode plotpane. Resizes to the HTML body element, so may work outside VSCode 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/3044" data-jscall-id="140">#3044</a>, 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/3042" data-jscall-id="141">#3042</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="142">
+                  <p data-jscall-id="143">Fixed DataInspector interaction with transformations 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/3002" data-jscall-id="144">#3002</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="145">
+                  <p data-jscall-id="146">Fix incomplete stroke with some Bezier markers in CairoMakie and blurry strokes in GLMakie 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2961" data-jscall-id="147">#2961</a>
+                  </p>
+                </li>
+                <li data-jscall-id="148">
+                  <p data-jscall-id="149">Added the ability to use custom triangulations from DelaunayTriangulation.jl 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2896" data-jscall-id="150">#2896</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="151">
+                  <p data-jscall-id="152">Adjusted scaling of scatter/text stroke, glow and anti-aliasing width under non-uniform 2D scaling &#40;Vec2f markersize/fontsize&#41; in GLMakie 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/2950" data-jscall-id="153">#2950</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="154">
+                  <p data-jscall-id="155">Scaled 
+                    <code data-jscall-id="156">errorbar</code> whiskers and 
+                    <code data-jscall-id="157">bracket</code> correctly with transformations 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/3012" data-jscall-id="158">#3012</a>.
+                  </p>
+                </li>
+                <li data-jscall-id="159">
+                  <p data-jscall-id="160">Updated 
+                    <code data-jscall-id="161">bracket</code> when the screen is resized or transformations change 
+                    <a href="https://github.com/MakieOrg/Makie.jl/pull/3012" data-jscall-id="162">#3012</a>.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div data-jscall-id="163">/home/runner/.julia/packages/BonitoSites/R2njz/src/assets/highlight/github.min.css
+              <script data-jscall-id="164" src="../../bonito/js/highlight.pack13102628173626074447.js"></script>
+              <script data-jscall-id="165">hljs.highlightAll()</script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-jscall-id="166">
+      <script async="true" defer="true" data-jscall-id="167" src="https://api.makie.org/latest.js"></script>
+      <noscript data-jscall-id="168">
+        <img alt="" data-jscall-id="169" src="https://api.makie.org/noscript.gif" referrerpolicy="no-referrer-when-downgrade" />
+      </noscript>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html data-jscall-id="1">
+  <head data-jscall-id="2">
+    <script src="../../bonito/js/Bonito.bundled3046859427437497252.js" type="module"></script>
+    <meta charset="UTF-8" data-jscall-id="3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" data-jscall-id="4" />
+    <link rel="alternate" data-jscall-id="5" href="./rss.xml" title="Makie Blog rss feed" type="application/rss+xml" />
+    <link rel="icon" data-jscall-id="6" href="../../bonito/ico/favicon7600468465817277261.ico" type="image/x-icon" />
+    <style></style>
+    <div>
+      <link href="../../bonito/css/makie3804115995239873387.css" rel="stylesheet" type="text/css" />
+      <link href="../../bonito/css/style3103408506044813217.css" rel="stylesheet" type="text/css" />
+    </div>
+  </head>
+  <body data-jscall-id="7">
+    <script type="module">Bonito.lock_loading(() => Bonito.init_session('ccdfb5a6-8407-452d-a6aa-fb35e2f4359a', null, 'root'))</script>
+    <div data-jscall-id="8">
+      <a href="/" data-jscall-id="9">
+        <img data-jscall-id="10" src="../../bonito/png/bannermesh_gradient10002001459189426229.png" width="100%" />
+      </a>
+      <div class="outer-page" data-jscall-id="11">
+        <div class="inner-page" data-jscall-id="12">
+          <div data-jscall-id="13">
+            <div class="markdown-body" data-jscall-id="14">
+              <h1 id="Makie 0.16 release" data-jscall-id="15">Makie 0.16 release</h1>
+              <p data-jscall-id="16">The v0.16 release is one of the biggest Makie releases in quite some time, adding a new backend, big GLMakie improvements and lots of other small improvements.</p>
+              <p data-jscall-id="17">This blog post will walk you through the main changes&#33;</p>
+              <h3 id="RPRMakie" data-jscall-id="18">RPRMakie</h3>
+              <p data-jscall-id="19">A new raytracing backend got added, which is based on AMDs high quality and production ready 
+                <a href="https://github.com/JuliaGraphics/RadeonProRender.jl" data-jscall-id="20">RadeonProRender</a>. It&#39;s still experimental and not all Makie features are supported, but it&#39;s already at a staged where one can create some pretty amazing visualizations. From the 
+                <a href="https://makie.juliaplots.org/stable/documentation/backends/rprmakie/" data-jscall-id="21">backend docs</a>:
+              </p>
+              <div class="markdown-body" data-jscall-id="22"><div class="column" data-jscall-id="1"><video controls="true" data-jscall-id="2"><source data-jscall-id="3" src="../../images/lego_walk.mp4" type="video/mp4" /></video><div data-jscall-id="4"><img data-jscall-id="5" src="../../images/submarine_cables.png" /></div><div data-jscall-id="6"><img data-jscall-id="7" src="../../images/materials.png" /></div><video controls="true" data-jscall-id="8"><source data-jscall-id="9" src="../../images/opengl_interop.mp4" type="video/mp4" /></video><div data-jscall-id="10"><img data-jscall-id="11" src="../../images/topographie.png" /></div></div></div>
+              <div class="markdown-body" data-jscall-id="23"><div style="display: flex; align-items: center" data-jscall-id="1"><span style="margin: 2px; font-weight: 500" data-jscall-id="2">By: </span><span style="padding: 2px"><a href="https://github.com/SimonDanisch" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/1010467?v=4" width="22" /><span style="margin: 2px; color: 'gray">SimonDanisch</span></div></a></span></div></div>
+              <h3 id="Fix fuzzy text" data-jscall-id="24">Fix fuzzy text</h3>
+              <p data-jscall-id="25">Frederic heroically fixed a very long standing GLMakie bug in the text rendering, that made the text look fuzzy. GLMakie offers high quality text rendering again now :&#41;</p>
+              <table data-jscall-id="26">
+                <tr data-jscall-id="27">
+                  <th data-jscall-id="28" align="right">Before</th>
+                  <th data-jscall-id="29" align="right">After</th>
+                </tr>
+                <tr data-jscall-id="30">
+                  <td data-jscall-id="31" align="right">
+                    <img alt="before" data-jscall-id="32" src="https://user-images.githubusercontent.com/10947937/144500095-5b239ed0-346f-4783-998a-701c2c44a66c.png" />
+                  </td>
+                  <td data-jscall-id="33" align="right">
+                    <img alt="after" data-jscall-id="34" src="https://user-images.githubusercontent.com/10947937/144500158-a17863e5-8929-4f2b-a630-39d5bac9ae11.png" />
+                  </td>
+                </tr>
+              </table>
+              <div class="markdown-body" data-jscall-id="35"><div style="display: flex; align-items: center" data-jscall-id="1"><span style="margin: 2px; font-weight: 500" data-jscall-id="2">By: </span><span style="padding: 2px"><a href="https://github.com/ffreyer" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/10947937?v=4" width="22" /><span style="margin: 2px; color: 'gray">ffreyer</span></div></a></span></div></div>
+              <h3 id="Scene refactor" data-jscall-id="36">Scene refactor</h3>
+              <p data-jscall-id="37">In ancient Makie, the 
+                <code data-jscall-id="38">Scene</code> type was the main object to plot into. With the integration of MakieLayout, this changed and 
+                <code data-jscall-id="39">Figure</code>/
+                <code data-jscall-id="40">Axis</code> became the main user facing types. That turned 
+                <code data-jscall-id="41">Scene</code> into a lower level type, but we never removed all the high-level constructs to control limits, axis etc. In this refactor, all higher level constructs got removed and turned the 
+                <code data-jscall-id="42">Scene</code> type into a leaner scene graph type. These changes shouldn&#39;t be breaking for anyone working with the 
+                <code data-jscall-id="43">MakieLayout</code>  figure API. Breaking changes for the Scene API are explained in the 
+                <a href="https://github.com/JuliaPlots/Makie.jl/blob/master/NEWS.md" data-jscall-id="44">NEWS.md</a>:
+              </p>
+              <blockquote data-jscall-id="45">
+                <p data-jscall-id="46">The Scene&#40;&#41; constructor doesn&#39;t create any axes or limits anymore. All keywords like raw, show_axis have been removed. A scene now always works like it did when using the deprecated raw&#61;true. All the high level functionality like showing an axis and adding a 3d camera has been moved to LScene.</p>
+              </blockquote>
+              <p data-jscall-id="47">See the new 
+                <a href="https://makie.juliaplots.org/dev/tutorials/scenes/" data-jscall-id="48">Scene tutorial</a> for more info.
+              </p>
+              <p data-jscall-id="49">Also, lights got moved from being a plot attributes to being a scene attribute, which is described in the 
+                <a href="https://makie.juliaplots.org/stable/documentation/lighting/#examples" data-jscall-id="50">light section</a>
+              </p>
+              <div class="markdown-body" data-jscall-id="51"><div style="display: flex; align-items: center" data-jscall-id="1"><span style="margin: 2px; font-weight: 500" data-jscall-id="2">By: </span><span style="padding: 2px"><a href="https://github.com/SimonDanisch" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/1010467?v=4" width="22" /><span style="margin: 2px; color: 'gray">SimonDanisch</span></div></a></span></div></div>
+              <h3 id="Resize to layout" data-jscall-id="52">Resize to layout</h3>
+              <p data-jscall-id="53">Some figures with aspect ratio restrictions or fixed objects sizes use more or less than the allotted space. With the new command 
+                <code data-jscall-id="54">resize_to_layout&#33;</code>, a Figure can be adjusted so it uses exactly the size necessary for its current content.
+              </p>
+              <div class="markdown-body" data-jscall-id="55">
+                <pre data-jscall-id="56">
+                  <code class="language-julia" data-jscall-id="57">using CairoMakie
+CairoMakie.activate&#33;&#40;&#41;
+f &#61; Figure&#40;resolution &#61; &#40;800, 500&#41;, backgroundcolor &#61; :gray80&#41;
+ax &#61; Axis&#40;f&#91;1, 1&#93;, title &#61; &#34;Before resize_to_layout&#33;&#34;&#41;
+Colorbar&#40;f&#91;1, 2&#93;&#41;
+colsize&#33;&#40;f.layout, 1, Aspect&#40;1, 1.0&#41;&#41;
+f</code>
+                </pre>
+                <img data-jscall-id="58" src="../../bonito/png/cell_output_56823189014148147247.png" />
+              </div>
+              <div class="markdown-body" data-jscall-id="59">
+                <pre data-jscall-id="60">
+                  <code class="language-julia" data-jscall-id="61">ax.title &#61; &#34;After resize_to_layout&#33;&#34;
+resize_to_layout&#33;&#40;f&#41;
+f</code>
+                </pre>
+                <img data-jscall-id="62" src="../../bonito/png/cell_output_615930777240515283705.png" />
+              </div>
+              <div class="markdown-body" data-jscall-id="63"><div style="display: flex; align-items: center" data-jscall-id="1"><span style="margin: 2px; font-weight: 500" data-jscall-id="2">By: </span><span style="padding: 2px"><a href="https://github.com/jkrumbiegel" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/22495855?v=4" width="22" /><span style="margin: 2px; color: 'gray">jkrumbiegel</span></div></a></span></div></div>
+              <h3 id="OIT" data-jscall-id="64">OIT</h3>
+              <p data-jscall-id="65">Order independent transparency has been on the wishlist for GLMakie for a very long time. It&#39;s still an approximation, so you may run into inaccurate transparency, but it should be much better than before:</p>
+              <div class="markdown-body" data-jscall-id="66">
+                <pre data-jscall-id="67">
+                  <code class="language-julia" data-jscall-id="68">using GLMakie
+GLMakie.activate&#33;&#40;&#41;
+fig &#61; Figure&#40;&#41;
+left &#61; LScene&#40;fig&#91;1, 1&#93;&#41;
+right &#61; LScene&#40;fig&#91;1, 2&#93;&#41;
+
+mesh&#33;&#40;left, Rect2f&#40;-1, -1, 2, 1&#41;, color &#61; :blue&#41;
+mesh&#33;&#40;right, Rect2f&#40;-1, -1, 2, 1&#41;, color &#61; :blue&#41;
+
+mesh&#33;&#40;left, Sphere&#40;Point3f&#40;0&#41;, 1f0&#41;, color &#61; &#40;:orange, 0.5&#41;&#41;
+mesh&#33;&#40;right, Sphere&#40;Point3f&#40;0&#41;, 1f0&#41;, color &#61; &#40;:orange, 0.5&#41;, transparency &#61; true&#41;
+fig</code>
+                </pre>
+                <img data-jscall-id="69" src="../../bonito/png/cell_output_815516323574583993819.png" />
+              </div>
+              <div class="markdown-body" data-jscall-id="70"><div style="display: flex; align-items: center" data-jscall-id="1"><span style="margin: 2px; font-weight: 500" data-jscall-id="2">By: </span><span style="padding: 2px"><a href="https://github.com/ffreyer" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/10947937?v=4" width="22" /><span style="margin: 2px; color: 'gray">ffreyer</span></div></a></span></div></div>
+              <h3 id="using Cycled for single plots" data-jscall-id="71">using Cycled for single plots</h3>
+              <p data-jscall-id="72">Plots can now be given attributes that pick a specific value from the current cycle using the 
+                <code data-jscall-id="73">Cycled&#40;&#41;</code> struct, for example to choose the 3rd color from the current palette.
+              </p>
+              <div class="markdown-body" data-jscall-id="74">
+                <pre data-jscall-id="75">
+                  <code class="language-julia" data-jscall-id="76">using Statistics
+f &#61; Figure&#40;&#41;
+ax &#61; Axis&#40;f&#91;1, 1&#93;, title &#61; &#34;Cycled&#40;&#41; attributes&#34;&#41;
+data &#61; &#91;randn&#40;100&#41; .&#43; i for i in &#91;1, 3, 5&#93;&#93;
+for i in 1:3
+    density&#33;&#40;ax, data&#91;i&#93;&#41;
+end
+vlines&#33;&#40;ax, median&#40;data&#91;3&#93;&#41;, color &#61; Cycled&#40;3&#41;, linewidth &#61; 4&#41;
+f</code>
+                </pre>
+                <img data-jscall-id="77" src="../../bonito/png/cell_output_104844749217808421309.png" />
+              </div>
+              <div class="markdown-body" data-jscall-id="78"><div style="display: flex; align-items: center" data-jscall-id="1"><span style="margin: 2px; font-weight: 500" data-jscall-id="2">By: </span><span style="padding: 2px"><a href="https://github.com/jkrumbiegel" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/22495855?v=4" width="22" /><span style="margin: 2px; color: 'gray">jkrumbiegel</span></div></a></span></div></div>
+              <h3 id="Depth shift" data-jscall-id="79">Depth shift</h3>
+              <p data-jscall-id="80">To enable better wireframe renderings over meshes, Frederic added a depth shift attribute, which can shift an objects depth 
+                <strong data-jscall-id="81">after</strong> applying all projections:
+              </p>
+              <div class="markdown-body" data-jscall-id="82">
+                <pre data-jscall-id="83">
+                  <code class="language-julia" data-jscall-id="84">GLMakie.activate&#33;&#40;inline&#61;true&#41;
+f &#61; Figure&#40;resolution&#61;&#40;900, 500&#41;&#41;
+s &#61; Sphere&#40;Point3f&#40;0&#41;, 1&#41;
+for &#40;i, depth&#41; in enumerate&#40;&#91;-0.01f0, 0f0, 0.01f0&#93;&#41;
+    ax &#61; LScene&#40;f&#91;1, i&#93;; show_axis&#61;false&#41;
+    mesh&#33;&#40;ax, s, color&#61;rand&#40;100, 100&#41;&#41;
+    wireframe&#33;&#40;ax, s; depth_shift&#61;depth,
+        transparency&#61;true, color&#61;&#40;:white, 0.5&#41;, linewidth&#61;4&#41;
+end
+f</code>
+                </pre>
+                <img data-jscall-id="85" src="../../bonito/png/cell_output_124677982396784776079.png" />
+              </div>
+              <div class="markdown-body" data-jscall-id="86"><div style="display: flex; align-items: center" data-jscall-id="1"><span style="margin: 2px; font-weight: 500" data-jscall-id="2">By: </span><span style="padding: 2px"><a href="https://github.com/ffreyer" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/10947937?v=4" width="22" /><span style="margin: 2px; color: 'gray">ffreyer</span></div></a></span></div></div>
+              <h3 id="Add depth to volumes" data-jscall-id="87">Add depth to volumes</h3>
+              <p data-jscall-id="88">Volumes used the depth of the cube they&#39;re rendered into, which results in bad depth clipping. Now, volume and contour plots emit correct depth values for opaque pixels:</p>
+              <div class="markdown-body" data-jscall-id="89">
+                <pre data-jscall-id="90">
+                  <code class="language-julia" data-jscall-id="91">fig &#61; Figure&#40;&#41;
+left &#61; LScene&#40;fig&#91;1, 1&#93;&#41;
+contour&#33;&#40;left, &#91;sin&#40;i&#43;j&#41; * sin&#40;j&#43;k&#41; * sin&#40;i&#43;k&#41; for i in 1:10, j in 1:10, k in 1:10&#93;, enable_depth &#61; true&#41;
+mesh&#33;&#40;left, Sphere&#40;Point3f&#40;5&#41;, 6f0&#41;&#41;
+right &#61; LScene&#40;fig&#91;1, 2&#93;&#41;
+volume&#33;&#40;right, &#91;sin&#40;2i&#41; * sin&#40;2j&#41; * sin&#40;2k&#41; for i in 1:10, j in 1:10, k in 1:10&#93;, algorithm &#61; :iso, enable_depth &#61; true&#41;
+mesh&#33;&#40;right, Sphere&#40;Point3f&#40;5&#41;, 6f0&#41;&#41;
+fig</code>
+                </pre>
+                <img data-jscall-id="92" src="../../bonito/png/cell_output_141671814384930339969.png" />
+              </div>
+              <div class="markdown-body" data-jscall-id="93"><div style="display: flex; align-items: center" data-jscall-id="1"><span style="margin: 2px; font-weight: 500" data-jscall-id="2">By: </span><span style="padding: 2px"><a href="https://github.com/ffreyer" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/10947937?v=4" width="22" /><span style="margin: 2px; color: 'gray">ffreyer</span></div></a></span></div></div>
+              <h3 id="More details" data-jscall-id="94">More details</h3>
+              <p data-jscall-id="95">More details about all changes can be found in the 
+                <a href="https://github.com/JuliaPlots/Makie.jl/blob/master/NEWS.md#v016" data-jscall-id="96">NEWS.md</a> and in the 
+                <a href="https://github.com/JuliaPlots/Makie.jl/releases/tag/v0.16.0" data-jscall-id="97">release</a>.
+              </p>
+              <p data-jscall-id="98">There are lots of others who have contributed to this release:</p>
+              <div class="markdown-body" data-jscall-id="99"><div class="wrap" data-jscall-id="1"><span style="padding: 2px"><a href="https://github.com/SimonDanisch" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/1010467?v=4" width="22" /><span style="margin: 2px; color: 'gray">SimonDanisch</span></div></a></span><span style="padding: 2px"><a href="https://github.com/timholy" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/1525481?v=4" width="22" /><span style="margin: 2px; color: 'gray">timholy</span></div></a></span><span style="padding: 2px"><a href="https://github.com/fatteneder" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/26469701?v=4" width="22" /><span style="margin: 2px; color: 'gray">fatteneder</span></div></a></span><span style="padding: 2px"><a href="https://github.com/jkrumbiegel" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/22495855?v=4" width="22" /><span style="margin: 2px; color: 'gray">jkrumbiegel</span></div></a></span><span style="padding: 2px"><a href="https://github.com/kimkroener" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/78850600?v=4" width="22" /><span style="margin: 2px; color: 'gray">kimkroener</span></div></a></span><span style="padding: 2px"><a href="https://github.com/IanButterworth" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/1694067?v=4" width="22" /><span style="margin: 2px; color: 'gray">IanButterworth</span></div></a></span><span style="padding: 2px"><a href="https://github.com/rikhuijzer" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/20724914?v=4" width="22" /><span style="margin: 2px; color: 'gray">rikhuijzer</span></div></a></span><span style="padding: 2px"><a href="https://github.com/hexaeder" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/35867212?v=4" width="22" /><span style="margin: 2px; color: 'gray">hexaeder</span></div></a></span><span style="padding: 2px"><a href="https://github.com/piever" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/6333339?v=4" width="22" /><span style="margin: 2px; color: 'gray">piever</span></div></a></span><span style="padding: 2px"><a href="https://github.com/t-bltg" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/13423344?v=4" width="22" /><span style="margin: 2px; color: 'gray">t-bltg</span></div></a></span><span style="padding: 2px"><a href="https://github.com/Datseris" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/19669089?v=4" width="22" /><span style="margin: 2px; color: 'gray">Datseris</span></div></a></span><span style="padding: 2px"><a href="https://github.com/jqfeld" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/12704074?v=4" width="22" /><span style="margin: 2px; color: 'gray">jqfeld</span></div></a></span><span style="padding: 2px"><a href="https://github.com/lazarusA" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/19525261?v=4" width="22" /><span style="margin: 2px; color: 'gray">lazarusA</span></div></a></span><span style="padding: 2px"><a href="https://github.com/ffreyer" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/10947937?v=4" width="22" /><span style="margin: 2px; color: 'gray">ffreyer</span></div></a></span><span style="padding: 2px"><a href="https://github.com/edljk" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/14992507?v=4" width="22" /><span style="margin: 2px; color: 'gray">edljk</span></div></a></span><span style="padding: 2px"><a href="https://github.com/LilithHafner" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/60898866?v=4" width="22" /><span style="margin: 2px; color: 'gray">LilithHafner</span></div></a></span><span style="padding: 2px"><a href="https://github.com/LoganLieou" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/91910704?v=4" width="22" /><span style="margin: 2px; color: 'gray">LoganLieou</span></div></a></span><span style="padding: 2px"><a href="https://github.com/Krastanov" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/705248?v=4" width="22" /><span style="margin: 2px; color: 'gray">Krastanov</span></div></a></span><span style="padding: 2px"><a href="https://github.com/jakebolewski" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/1157798?v=4" width="22" /><span style="margin: 2px; color: 'gray">jakebolewski</span></div></a></span><span style="padding: 2px"><a href="https://github.com/KronosTheLate" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/61620837?v=4" width="22" /><span style="margin: 2px; color: 'gray">KronosTheLate</span></div></a></span><span style="padding: 2px"><a href="https://github.com/carstenbauer" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/187980?v=4" width="22" /><span style="margin: 2px; color: 'gray">carstenbauer</span></div></a></span><span style="padding: 2px"><a href="https://github.com/lassepe" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/10076790?v=4" width="22" /><span style="margin: 2px; color: 'gray">lassepe</span></div></a></span><span style="padding: 2px"><a href="https://github.com/jonas-schulze" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/8181318?v=4" width="22" /><span style="margin: 2px; color: 'gray">jonas-schulze</span></div></a></span><span style="padding: 2px"><a href="https://github.com/apps/github-actions" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/in/15368?v=4" width="22" /><span style="margin: 2px; color: 'gray">github-actions&#91;bot&#93;</span></div></a></span><span style="padding: 2px"><a href="https://github.com/sethaxen" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/8673634?v=4" width="22" /><span style="margin: 2px; color: 'gray">sethaxen</span></div></a></span><span style="padding: 2px"><a href="https://github.com/HenriDeh" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/47037088?v=4" width="22" /><span style="margin: 2px; color: 'gray">HenriDeh</span></div></a></span><span style="padding: 2px"><a href="https://github.com/mschauer" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/1923437?v=4" width="22" /><span style="margin: 2px; color: 'gray">mschauer</span></div></a></span><span style="padding: 2px"><a href="https://github.com/yakir12" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/3281957?v=4" width="22" /><span style="margin: 2px; color: 'gray">yakir12</span></div></a></span><span style="padding: 2px"><a href="https://github.com/felixcremer" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/17124431?v=4" width="22" /><span style="margin: 2px; color: 'gray">felixcremer</span></div></a></span><span style="padding: 2px"><a href="https://github.com/logankilpatrick" style="color: gray; text-decoration: none"><div style="display: flex; align-items: center"><img style="border-radius: 50%" src="https://avatars.githubusercontent.com/u/35577566?v=4" width="22" /><span style="margin: 2px; color: 'gray">logankilpatrick</span></div></a></span></div></div>
+            </div>
+            <div data-jscall-id="100">/home/runner/.julia/packages/BonitoSites/R2njz/src/assets/highlight/github.min.css
+              <script data-jscall-id="101" src="../../bonito/js/highlight.pack13102628173626074447.js"></script>
+              <script data-jscall-id="102">hljs.highlightAll()</script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-jscall-id="103">
+      <script async="true" defer="true" data-jscall-id="104" src="https://api.makie.org/latest.js"></script>
+      <noscript data-jscall-id="105">
+        <img alt="" data-jscall-id="106" src="https://api.makie.org/noscript.gif" referrerpolicy="no-referrer-when-downgrade" />
+      </noscript>
+    </div>
+  </body>
+</html>
