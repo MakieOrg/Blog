@@ -4,7 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Redirecting</title>
-    <meta http-equiv="refresh" content="0; url=./website/">
+    <script>
+        // Get the current path from the URL + remove /website/ so we dont include it double.
+        // This way we also allow old links not containing website to stay valid
+        let path = window.location.pathname.replace(/^\/website\/?/, '/');;
+        if (path == '/') {
+            path = '/blog';
+        }
+        // Redirect to makie.org, appending the path but removing '/website/'
+        const targetUrl = `https://makie.org/website${path}`;
+
+        // Perform the redirection
+        window.location.replace(targetUrl);
+    </script>
 </head>
-<link rel="canonical" href="./website/">
+<link rel="canonical" href="https://makie.org/website/blog">
+
 </html>
