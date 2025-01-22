@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Error 404 - Page not found</title>
+    <meta charset="UTF-8">
+    <title>Redirecting</title>
     <script>
-        window.onload = function () {
-            const pathname = window.location.pathname;
-            console.log(pathname)
-            if (pathname.startsWith("/blogposts")) {
-              const new_pathname = "/website" + pathname;
-                console.log(new_pathname)
-              // change url without history
-              window.location.replace(new_pathname);
-            }
+        // Get the current path from the URL + remove /website/ so we dont include it double.
+        // This way we also allow old links not containing website to stay valid
+        let path = window.location.pathname.replace(/^\/website\/?/, '/');;
+        if (path == '/') {
+            path = '/blog';
         }
+        // Redirect to makie.org, appending the path but removing '/website/'
+        const targetUrl = `https://makie.org/website${path}`;
+
+        // Perform the redirection
+        window.location.replace(targetUrl);
     </script>
 </head>
-
-<body id="body" style="text-align: center">
-    Page not found.<br>
-    If you tried to access a blogpost from rss and you have disabled javascript, try putting blog.makie.org/website/* infront of the post link (so just insert a /website after makie.org) <br>
-</body>
+<link rel="canonical" href="https://makie.org/website/blog">
 
 </html>
