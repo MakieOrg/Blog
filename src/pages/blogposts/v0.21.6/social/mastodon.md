@@ -1,0 +1,1 @@
+Enhancements in Makie: Resolving projection and method ambiguity issues, improving documentation navigation, and introducing the `uv_transform` attribute for advanced texture handling.
